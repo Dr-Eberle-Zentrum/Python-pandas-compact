@@ -1,8 +1,6 @@
 ## Contributing
 
-[The Carpentries][cp-site] ([Software Carpentry][swc-site], [Data
-Carpentry][dc-site], and [Library Carpentry][lc-site]) are open source
-projects, and we welcome contributions of all kinds: new lessons, fixes to
+We welcome contributions of all kinds: new lessons, fixes to
 existing material, bug reports, and reviews of proposed changes are all
 welcome.
 
@@ -11,8 +9,7 @@ welcome.
 By contributing, you agree that we may redistribute your work under [our
 license](LICENSE.md). In exchange, we will address your issues and/or assess
 your change proposal as promptly as we can, and help you become a member of our
-community. Everyone involved in [The Carpentries][cp-site] agrees to abide by
-our [code of conduct](CODE_OF_CONDUCT.md).
+community.
 
 ### How to Contribute
 
@@ -39,39 +36,7 @@ documentation][template-doc].
 
 ### Where to Contribute
 
-1. If you wish to change this lesson, add issues and pull requests here.
-2. If you wish to change the template used for workshop websites, please refer
-   to [The Workbench documentation][template-doc].
-
-
-### What to Contribute
-
-There are many ways to contribute, from writing new exercises and improving
-existing ones to updating or filling in the documentation and submitting [bug
-reports][issues] about things that do not work, are not clear, or are missing.
-If you are looking for ideas, please see [the list of issues for this
-repository][repo-issues], or the issues for [Data Carpentry][dc-issues],
-[Library Carpentry][lc-issues], and [Software Carpentry][swc-issues] projects.
-
-Comments on issues and reviews of pull requests are just as welcome: we are
-smarter together than we are on our own. **Reviews from novices and newcomers
-are particularly valuable**: it's easy for people who have been using these
-lessons for a while to forget how impenetrable some of this material can be, so
-fresh eyes are always welcome.
-
-### What *Not* to Contribute
-
-Our lessons already contain more material than we can cover in a typical
-workshop, so we are usually *not* looking for more concepts or tools to add to
-them. As a rule, if you want to introduce a new idea, you must (a) estimate how
-long it will take to teach and (b) explain what you would take out to make room
-for it. The first encourages contributors to be honest about requirements; the
-second, to think hard about priorities.
-
-We are also not looking for exercises or other material that only run on one
-platform. Our workshops typically contain a mixture of Windows, macOS, and
-Linux users; in order to be usable, our lessons must run equally well on all
-three.
+If you wish to change this lesson, add issues and pull requests here.
 
 ### Using GitHub
 
@@ -93,14 +58,7 @@ Each lesson has a team of maintainers who review issues and pull requests or
 encourage others to do so. The maintainers are community volunteers, and have
 final say over what gets merged into the lesson.
 
-### Other Resources
 
-The Carpentries is a global organisation with volunteers and learners all over
-the world. We share values of inclusivity and a passion for sharing knowledge,
-teaching and learning. There are several ways to connect with The Carpentries
-community listed at <https://carpentries.org/connect/> including via social
-media, slack, newsletters, and email lists. You can also [reach us by
-email][contact].
 
 [repo]: https://example.com/FIXME
 [repo-issues]: https://example.com/FIXME/issues
