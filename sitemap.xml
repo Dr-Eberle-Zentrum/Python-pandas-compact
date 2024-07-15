@@ -1,81 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/01-introduction.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/01-introduction.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/404.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/404.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/CODE_OF_CONDUCT.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/CODE_OF_CONDUCT.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/LICENSE.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/Datenimport.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/aio.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/Datenstrukturen.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/images.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/Datenverarbeitung.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/index.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/01-introduction.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/Visualisierung.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/404.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/aio.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/CODE_OF_CONDUCT.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/images.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/LICENSE.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/index.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/aio.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/instructor/01-introduction.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/images.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/instructor/404.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/index.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/instructor/CODE_OF_CONDUCT.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/instructor-notes.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/instructor/Datenimport.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/introduction.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/instructor/Datenstrukturen.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/key-points.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/instructor/Datenverarbeitung.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/keypoints.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/instructor/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/profiles.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/instructor/Visualisierung.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/reference.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/instructor/aio.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor-notes.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/instructor/images.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/introduction.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/instructor/index.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/key-points.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/instructor/instructor-notes.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/keypoints.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/instructor/introduction.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/profiles.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/instructor/key-points.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/reference.html</loc>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/instructor/keypoints.html</loc>
+  </url>
+  <url>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/instructor/profiles.html</loc>
+  </url>
+  <url>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/instructor/reference.html</loc>
+  </url>
+  <url>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/key-points.html</loc>
+  </url>
+  <url>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/keypoints.html</loc>
+  </url>
+  <url>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/profiles.html</loc>
+  </url>
+  <url>
+    <loc>https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/reference.html</loc>
   </url>
 </urlset>
