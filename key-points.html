@@ -367,23 +367,21 @@ Zeile pro Datenpunkt benötigt und keine doppelt verwendet wird.</li>
 <ul>
 <li>Dateinamen sind Textinformation und müssen in Anführungszeichen
 gesetzt werden.</li>
-<li>Pfade können absolut (eher schlecht) oder relativ zum
-Arbeitsverzeichnis angegeben werden. Letzteres ist portabler und
-empfohlen.</li>
-<li>Das Arbeitsverzeichnis kann mit <code>getwd()</code> und
-<code>setwd()</code> abgefragt und gesetzt werden.</li>
-<li>In Microsoft Windows können Pfade auch mit Schrägstrichen
-<code>/</code> statt Backslashes <code>\</code> geschrieben werden.</li>
-<li>Achten sie auf die korrekte Kodierung von Textdateien, um Umlaute
-und Sonderzeichen korrekt einzulesen.</li>
+<li>Pfade können absolut oder relativ zum Arbeitsverzeichnis angegeben
+werden. Letzteres ist portabler und empfohlen.</li>
+<li>Unter Microsoft Windows können Pfade in Pyhton auch mit
+Schrägstrichen <code>/</code> statt Backslashes <code>\</code>
+geschrieben werden.</li>
+<li>Achten sie auf die Angabe der korrekten Kodierung von Textdateien,
+um Umlaute und Sonderzeichen korrekt einzulesen.</li>
 <li>Denken sie daran, dass deutsche CSV-Dateien oft Semikolon
-(<code>;</code>) als Trennzeichen und Komma <code>,</code> als
-Dezimaltrenner verwenden.</li>
-<li>Excel-Dateien enthalten i.d.R. mehrere Blätter, die einzeln
-importiert werden müssen.</li>
-<li>Zusammenfassung im <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-import.pdf" class="external-link"><code>readr</code>
-Cheat Sheet</a>
-</li>
+(<code>;</code>) als Spaltentrennzeichen und Komma <code>,</code> als
+Dezimaltrenner verwenden. Auch Excel verwendet für den CSV-Export das
+Semikolon als Spaltentrennzeichen.</li>
+<li>Excel-Dateien können mehrere Blätter (<em>sheets</em>) enthalten,
+die einzeln importiert werden müssen.</li>
+<li>Zusammenfassung der Lese- und Schreiboperationen in der <a href="https://pandas.pydata.org/docs/user_guide/io.html" class="external-link">Pandas-Dokumentation
+zu IO-Tools</a>.</li>
 </ul></section><section id="Datenverarbeitung"><h2 class="section-heading"><a href="Datenverarbeitung.html">Datenverarbeitung</a></h2>
 <hr class="half-width">
 <ul>
@@ -488,8 +486,8 @@ Cheat Sheet</a>
   "url": "https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/key-points.html",
   "identifier": "https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/key-points.html",
   "dateCreated": "2024-07-15",
-  "dateModified": "2024-10-01",
-  "datePublished": "2024-10-01"
+  "dateModified": "2024-10-02",
+  "datePublished": "2024-10-02"
 }
 
   </script><script>

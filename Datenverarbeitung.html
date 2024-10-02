@@ -314,7 +314,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Datenverarbeitung</h1>
-        <p>Last updated on 2024-10-01 |
+        <p>Last updated on 2024-10-02 |
 
         <a href="https://github.com/Dr-Eberle-Zentrum/Python-pandas-compact/edit/main/episodes/Datenverarbeitung.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -333,20 +333,19 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>Wie baue ich komplexe Workflows mit pipes?</li>
-<li>Wie transformiere ich Tabellen?</li>
-<li>Wie bearbeite ich Text?</li>
-<li>Wie führe ich mehrere Datensätze zusammen?</li>
-</ul></div>
+<p>TODO - Wie baue ich komplexe Workflows mit pipes? - Wie transformiere
+ich Tabellen? - Wie bearbeite ich Text? - Wie führe ich mehrere
+Datensätze zusammen?</p>
+</div>
 </div>
 </div>
 <div class="col-md-8">
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>Überblick über die Möglichkeiten der Datenverarbeitung mit
-<code>tidyverse</code> Paketen</li>
-</ul></div>
+<p>TODO - Überblick über die Möglichkeiten der Datenverarbeitung mit
+<code>tidyverse</code> Paketen</p>
+</div>
 </div>
 </div>
 </div>
@@ -442,86 +441,105 @@ Datensatz!</em></p>
 ohne Anführungzeichen</em> (quoting) verwendet werden.</p>
 <p>Basistransformationen sind:</p>
 <ul><li>Filtern von Zeilen mit gegebenen Kriterien (formulieren was man
-BEHALTEN will!)
+BEHALTEN will!) macht man in eckigen Klammern
 <ul><li>
-<code>filter(storms, year == 2020)</code> = alle Sturmdaten aus dem
+<code>storms[storms.year == 2020]</code> = alle Sturmdaten aus dem
 Jahr 2020</li>
 <li>
-<code>filter(storms, year == 2020 &amp; month == 6)</code> = alle
-Sturmdaten aus dem Juni 2020</li>
+<code>storms[(storms.year == 2020) &amp; (storms.month == 6)]</code>
+= alle Sturmdaten aus dem Juni 2020. Bitte beachten, dass logisch
+verknüpfte Bedingungen in Klammern stehen müssen und die einzelnen
+Bedingungen mit <code>&amp;</code> (UND) oder <code>|</code> (ODER)
+verknüpft werden.</li>
 <li>
-<code>filter(storms, !is.na(category))</code> = alle Sturmdaten, bei
-denen die Kategorie bekannt ist</li>
+<code>storms[~pd.isna(storms.category)]</code> = alle Sturmdaten,
+bei denen die Kategorie bekannt ist, wobei <code>~</code> für Negation
+steht und <code>pd.isna()</code> kurz für <em>is not available</em>
+ist.</li>
 </ul></li>
-<li>Konkrete Zeilenauswahl (via Index oder Anzahl)
+<li>Konkrete Zeilenauswahl (via Index oder Anzahl) geht mit der Funktion
+<code>.loc[]</code> und der Übergabe eines einzelnen Zeilenindex oder
+einer Liste von Zeilenindizes
 <ul><li>
-<code>slice(storms, 1, 3, 5)</code> = die Zeilen 1, 3 und 5</li>
+<code>storms.loc[25]</code> = die Zeile 25</li>
 <li>
-<code>slice_tail(storms, n=10)</code> = die 10 letzten Zeilen</li>
+<code>storms.loc[[1, 3, 5]]</code> = die Zeilen 1, 3 und 5</li>
 <li>
-<code>slice_max(storms, pressure)</code> = die Zeile mit dem
-höchsten Wert in der Spalte <code>pressure</code>
+<code>storms.head(10)</code> = die 10 ersten Zeilen</li>
+<li>
+<code>storms.tail(10)</code> = die 10 letzten Zeilen<br></li>
+<li>
+<code>storms[storms.pressure == storms.pressure.max()]</code> = die
+Zeile(n) mit dem höchsten Wert in der Spalte <code>pressure</code>
 </li>
 </ul></li>
 <li>Sortieren von Zeilen
 <ul><li>
-<code>arrange(storms, year)</code> = Sturmdaten nach Jahr
+<code>storms.sort_values("year")</code> = Sturmdaten nach Jahr
 aufsteigend sortieren</li>
 <li>
-<code>arrange(storms, year, desc(month))</code> = Sturmdaten
-aufsteigend nach Jahr sortieren und innerhalb eines Jahres absteigend
-nach Monat</li>
+<code>storms.sort_values("year", ascending=False)</code> =
+Sturmdaten nach Jahr absteigend sortieren</li>
+<li>
+<code>storms.sort_values(["year", "month"], ascending=[True, False])</code>
+= Sturmdaten aufsteigend nach Jahr sortieren und innerhalb eines Jahres
+absteigend nach Monat</li>
 </ul></li>
 <li>Duplikate entfernen
 <ul><li>
-<code>distinct(storms)</code> = alle Zeilen mit identischen Werten
-in allen Spalten entfernen</li>
+<code>storms.drop_duplicates()</code> = alle Zeilen mit identischen
+Werten in allen Spalten entfernen</li>
 <li>
-<code>distinct(storms, year, month, day)</code> = alle Zeilen mit
-gleichen Werten in den Spalten <code>year</code>, <code>month</code> und
-<code>day</code> entfernen (reduziert die Spalten auf die
-Ausgewählten)</li>
-<li>
-<code>distinct(storms, year, month, day, .keep_all = TRUE)</code> =
+<code>storms[["year", "month", "day"]].drop_duplicates()</code> =
 alle Zeilen mit gleichen Werten in den Spalten <code>year</code>,
+<code>month</code> und <code>day</code> entfernen (reduziert die Spalten
+auf die Ausgewählten)</li>
+<li>
+<code>storms.drop_duplicates(["year", "month", "day"])</code> = alle
+Zeilen mit gleichen Werten in den Spalten <code>year</code>,
 <code>month</code> und <code>day</code> entfernen, aber <em>alle Spalten
 behalten</em>
 </li>
 </ul></li>
 <li>Auswählen/Entfernen von Spalten
 <ul><li>
-<code>select(storms, name, year, month, day)</code> = nur Spalten
-mit Zeitinformation und Namen der Stürme behalten</li>
+<code>storms[["year", "month", "day"]]</code> = nur Spalten mit
+Zeitinformation und Namen der Stürme behalten</li>
 <li>
-<code>select(storms, -year, -month, -day)</code> = Spalte mit
-Zeitinformation entfernen</li>
+<code>storms.drop(columns=["year", "month", "day"])</code> = alle
+Datumsspalten entfernen</li>
 </ul></li>
 <li>Umbenennen von Spalten
 <ul><li>
-<code>rename(storms, sturmname = name)</code> = Spalte
+<code>storms.rename(columns={"name": "sturmname"})</code> = Spalte
 <code>name</code> in <code>sturmname</code> umbenennen</li>
 </ul></li>
 <li>Zusammenfassen von Daten: nur eine Zeile mit aggregierten
 Informationen (z.B. Mittelwert, Summe, Anzahl, etc.) pro Gruppe
 <ul><li>
-<code>summarize(storms, max_wind = max(wind), num_datasets = n())</code>
-= maximale Windgeschwindigkeit und Anzahl der Datensätze (Zeilen)</li>
+<code>storms.agg({"wind": "max", "name": "count"})</code> = maximale
+(<code>max</code>) Windgeschwindigkeit und Anzahl (<code>count</code>)
+der Datensätze (Zeilen); auch Durchschnitt (<code>avg</code>), Summe
+(<code>sum</code>) und Minimum (<code>min</code>) sind möglich</li>
 </ul></li>
 <li>Gruppierung von Daten = “Zerlegung” des Datensatzes in Teiltabellen,
 für die anschliessende Arbeitsschritte unabängig voneinander
 durchgeführt werden. Wird i.d.R. verwendet, wenn die Aufgabe “pro …”
 oder “für jede …” lautet.
 <ul><li>
-<code>group_by(storms, year)</code> = Gruppierung der Sturmdaten
-nach Jahr (aber noch keine Aggregation!)</li>
+<code>storms.groupby("year")</code> = Gruppierung der Sturmdaten
+nach Jahr (aber noch keine Aggregation!); das ist nur ein
+Zwischenschritt, der die unterschiedlichen Werte der Jahre ermittelt und
+für die folgenden Arbeitsschritte bereitstellt</li>
 <li>
-<code>group_by(storms, year) |&gt;  summarize(max_wind = max(wind))</code>
-= maximale Windgeschwindigkeit <em>pro Jahr</em> (eine “summarize” Zeile
-pro Teiltabelle = Gruppe = Jahr)</li>
+<code>storms.groupby("year").agg({"wind": "max", "name": "count"})</code>
+= maximale Windgeschwindigkeit und Anzahl der Datenzeilen <em>pro
+Jahr</em>
+</li>
 <li>
-<code>group_by(storms, year) |&gt; filter(wind == max(wind)) |&gt; ungroup()</code>
-= alle Sturmdaten, bei denen die maximale Windgeschwindigkeit <em>pro
-Jahr</em> erreicht wurde (keine Zusammenfassung!)</li>
+<code>storms[storms['wind'] == storms.groupby('year')['wind'].transform('max')]</code>
+= alle Sturmdaten, bei denen die maximale Windgeschwindigkeit des
+jeweiligen erreicht wurde (keine Zusammenfassung!). `transform</li>
 <li>Grouping ist ein extrem mächtiges Werkzeug, das in vielen
 Situationen verwendet wird, um Daten zu transformieren. Allerdings
 braucht es etwas Übung, um zu verstehen, wie es funktioniert.</li>
@@ -529,20 +547,29 @@ braucht es etwas Übung, um zu verstehen, wie es funktioniert.</li>
 <li>Spalten hinzufügen/ausrechnen oder bestehende Spalten verändern
 (z.B. Einheiten umrechnen)
 <ul><li>
-<code>mutate(storms, wind_kmh = wind * 1.60934)</code> =
-Windgeschwindigkeit in km/h berechnen und als <em>neue Spalte
-hinzufügen</em>
-</li>
+<code>storms["wind_kmh"] = storms.wind * 1.852</code> =
+Windgeschwindigkeit in Knoten nach km/h konvertieren und als <em>neue
+Spalte hinzufügen</em> (hier darf für die Benennung der neuen Spalte
+nicht die Punktnotation verwendet werden)</li>
 <li>
-<code>mutate(storms, wind = wind * 1.60934)</code> =
-Windgeschwindigkeit in km/h umrechnen und <em>bestehende Spalte
+<code>storms.wind = storms.wind * 1.852</code> = Windgeschwindigkeit
+in Knoten nach km/h konvertieren und <em>bestehende Spalte
 überschreiben</em>
 </li>
+</ul></li>
+<li>Spalten entfernen
+<ul><li>
+<code>storms.pop("wind_kmh")</code> = die Spalte
+<code>wind_kmh</code> entfernen; als Ergebnis wird die Spalte
+zurückgegeben, mit der dann weitere Operationen außerhalb des DataFrame
+durchgeführt werden können, wie z.B. hier:</li>
 <li>
-<code>mutate(storms, wind_kmh = wind * 1.60934, wind_kmh_rounded = round(wind_kmh, 1))</code>
-= es können auch mehrere Spalten auf einmal berechnet werden und dabei
-direkt neue angelegte Spalten in anschliessenden Formeln verwendet
-werden (hier Runden auf eine Nachkommastelle)</li>
+<code>storms.insert(2, "wind_kmh", storms.pop("wind_kmh"))</code> =
+die Spalte <code>wind_kmh</code> an die dritte Stelle (nullbasierter
+Index ist 2) verschieben durch Entfernen mit <code>pop()</code> und
+Wiedereinfügen mit <code>insert</code> an der gewünschten Stelle mit dem
+gleichen Namen <code>wind_kmh</code>
+</li>
 </ul></li>
 </ul><div id="stürme-vor-1980" class="callout challenge">
 <div class="callout-square">
@@ -566,9 +593,11 @@ Status sortiert ist.</em></p>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<p>Verwenden sie eine Pipe die folgende Funktionen verbindet -
-<code>filter()</code> - <code>select()</code> - <code>distinct()</code>
-- <code>arrange()</code></p>
+<p>Gehen Sie wie folgt vor: - Reduzieren Sie auf jene Zeilen, in denen
+das Jahr kleiner als 1980 ist - Reduzieren Sie auf die Spalten
+<code>name</code>, <code>year</code> und <code>status</code> - Durch die
+Spaltenreduktion sind Duplikate entstanden, entfernen Sie diese -
+Sortieren Sie nach Jahr und Status</p>
 </div>
 </div>
 </div>
@@ -582,38 +611,98 @@ Status sortiert ist.</em></p>
 </button>
 <div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
+<p>Eine Lösung mit Zwischenschritten, bei denen die Arbeitsschritte
+einzeln ausgeführt und jeweils in der Tabelle <code>ergebnis</code>
+gespeichert werden, könnte so aussehen:</p>
 <div class="codewrapper sourceCode" id="cb2">
-<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Ausgangsdatensatz = Beginn der Pipe</span></span>
-<span><span class="va">storms</span> <span class="op">|&gt;</span></span>
-<span>  <span class="co"># Zeilen filtern</span></span>
-<span>  <span class="fu">filter</span><span class="op">(</span><span class="va">year</span> <span class="op">&lt;</span> <span class="fl">1980</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="co"># Spalten auswählen</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">name</span>, <span class="va">year</span>, <span class="va">status</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="co"># doppelte Zeilen entfernen</span></span>
-<span>  <span class="fu">distinct</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="co"># sortieren</span></span>
-<span>  <span class="fu">arrange</span><span class="op">(</span><span class="va">year</span>, <span class="va">status</span><span class="op">)</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Filtern nach Stürmen vor 1980</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>ergebnis <span class="op">=</span> storms[storms[<span class="st">'year'</span>] <span class="op">&lt;</span> <span class="dv">1980</span>]</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code># A tibble: 129 × 3
-   name      year status
-   &lt;chr&gt;    &lt;dbl&gt; &lt;fct&gt;
- 1 Amy       1975 extratropical
- 2 Blanche   1975 extratropical
- 3 Doris     1975 extratropical
- 4 Eloise    1975 extratropical
- 5 Gladys    1975 extratropical
- 6 Hallie    1975 extratropical
- 7 Blanche   1975 hurricane
- 8 Caroline  1975 hurricane
- 9 Doris     1975 hurricane
-10 Eloise    1975 hurricane
-# ℹ 119 more rows</code></pre>
+<pre class="output" tabindex="0"><code>NameError: name 'storms' is not defined</code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Reduzieren auf die Spalten name, year und status</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>ergebnis <span class="op">=</span> ergebnis[[<span class="st">'name'</span>, <span class="st">'year'</span>, <span class="st">'status'</span>]]</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>NameError: name 'ergebnis' is not defined</code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># Entfernen von Duplikaten</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>ergebnis <span class="op">=</span> ergebnis.drop_duplicates()</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>NameError: name 'ergebnis' is not defined</code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># Sortieren nach Jahr und Status</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>ergebnis <span class="op">=</span> ergebnis.sort_values(by<span class="op">=</span>[<span class="st">'year'</span>, <span class="st">'status'</span>])</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>NameError: name 'ergebnis' is not defined</code></pre>
+</div>
+<p>Eine Lösung, die alle Arbeitsschritte in einer Zeile zusammenfasst,
+könnte so aussehen:</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>ergebnis <span class="op">=</span> storms[storms[<span class="st">'year'</span>] <span class="op">&lt;</span> <span class="dv">1980</span>][[<span class="st">'name'</span>, <span class="st">'year'</span>, <span class="st">'status'</span>]].drop_duplicates().sort_values(by<span class="op">=</span>[<span class="st">'year'</span>, <span class="st">'status'</span>])</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>NameError: name 'storms' is not defined</code></pre>
+</div>
+<p>Diese Lösung ist durch die Verkettung der Arbeitsschritte in einer
+Zeile kürzer und kompakter, aber auch schwerer zu lesen. Um das
+übersuchtlich zu halten, kann man die Arbeitsschritte auch in mehreren
+Zeilen schreiben. In Python setzt man dazu entweder den mehrzeilige
+Befehl in eine umgreifende Klammer wie hier:</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>(storms</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>  [storms[<span class="st">'year'</span>] <span class="op">&lt;</span> <span class="dv">1980</span>]</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>  [[<span class="st">'name'</span>, <span class="st">'year'</span>, <span class="st">'status'</span>]]</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>  .drop_duplicates()</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>  .sort_values(by<span class="op">=</span>[<span class="st">'year'</span>, <span class="st">'status'</span>]))</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>NameError: name 'storms' is not defined</code></pre>
+</div>
+<p>… oder aber terminiert jede Zeile mit einem Backslash:</p>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>storms <span class="op">\</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>  [storms[<span class="st">'year'</span>] <span class="op">&lt;</span> <span class="dv">1980</span>] <span class="op">\</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  [[<span class="st">'name'</span>, <span class="st">'year'</span>, <span class="st">'status'</span>]] <span class="op">\</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  .drop_duplicates() <span class="op">\</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>  .sort_values(by<span class="op">=</span>[<span class="st">'year'</span>, <span class="st">'status'</span>])</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>NameError: name 'storms' is not defined</code></pre>
 </div>
 </div>
 </div>
@@ -632,7 +721,7 @@ separate Berechnung durchgeführt.</p>
 verwendete Funktion, um Werte innerhalb dieser Gruppen zu
 aggregieren.</p>
 <p>Ein einfaches Beispiel:</p>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -643,22 +732,9 @@ aggregieren.</p>
 <span>  <span class="fu">summarize</span><span class="op">(</span>max_wind <span class="op">=</span> <span class="fu">max</span><span class="op">(</span><span class="va">wind</span><span class="op">)</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code># A tibble: 48 × 2
-    year max_wind
-   &lt;dbl&gt;    &lt;int&gt;
- 1  1975      120
- 2  1976      105
- 3  1977      150
- 4  1978      120
- 5  1979      150
- 6  1980      165
- 7  1981      115
- 8  1982      115
- 9  1983      100
-10  1984      115
-# ℹ 38 more rows</code></pre>
+<pre class="error" tabindex="0"><code>Error in summarize(group_by(storms, year), max_wind = max(wind)): could not find function "summarize"</code></pre>
 </div>
 <p>In diesem Beispiel wird die Tabelle <code>storms</code> nach dem Jahr
 gruppiert und für jede Gruppe (d.h. jedes Jahr) die maximale
@@ -702,20 +778,9 @@ den Namen des letzten Sturms auflistet.</em></p>
 <div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code># A tibble: 9 × 3
-  status                  year name
-  &lt;fct&gt;                  &lt;dbl&gt; &lt;chr&gt;
-1 tropical wave           2018 Kirk
-2 subtropical depression  2020 Dolly
-3 disturbance             2022 Julia
-4 extratropical           2022 Martin
-5 subtropical storm       2022 Nicole
-6 hurricane               2022 Nicole
-7 tropical storm          2022 Nicole
-8 tropical depression     2022 Nicole
-9 other low               2022 Nicole</code></pre>
+<pre class="error" tabindex="0"><code>Error in select(ungroup(filter(mutate(group_by(storms, status), date = parse_date_time(str_c(year, : could not find function "select"</code></pre>
 </div>
 </div>
 </div>
@@ -753,7 +818,7 @@ bzw. letzte Zeile extrahieren</li>
 <div class="accordion-body">
 <div class="section level3">
 <h3 id="alternative-1">Alternative 1<a class="anchor" aria-label="anchor" href="#alternative-1"></a></h3>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -775,7 +840,7 @@ bzw. letzte Zeile extrahieren</li>
 </div>
 <div class="section level3">
 <h3 id="alternative-2">Alternative 2<a class="anchor" aria-label="anchor" href="#alternative-2"></a></h3>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -851,7 +916,7 @@ als “reshaping” oder “pivotieren” bezeichnet. Hiermit können Spalten in
 Zeilen und umgekehrt umgeformt werden.</p>
 <p>Das Beispiel hierfür ist etwas länger, um für Anschauungszwecke die
 Datentabelle erst etwas einzukürzen.</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -863,15 +928,9 @@ Datentabelle erst etwas einzukürzen.</p>
 <span>  <span class="fu">slice_head</span><span class="op">(</span>n<span class="op">=</span><span class="fl">4</span><span class="op">)</span> <span class="co"># nur die ersten 4 Zeilen anzeigen</span></span></code></pre>
 </div>
 <div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code># A tibble: 4 × 6
-  name    year month   day measure  value
-  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;    &lt;int&gt;
-1 Arthur  2020     5    16 wind        30
-2 Arthur  2020     5    16 pressure  1008
-3 Arthur  2020     5    17 wind        35
-4 Arthur  2020     5    17 pressure  1006</code></pre>
+<pre class="error" tabindex="0"><code>Error in slice_head(pivot_longer(select(filter(storms, name == "Arthur" &amp; : could not find function "slice_head"</code></pre>
 </div>
 <p>Details und weitere Funktionen und Beispiele sind im Cheat Sheets des
 <code>tidyr</code> Paketes übersichtlich zusammengefasst.</p>
@@ -924,7 +983,7 @@ Cheat Sheet</a> zusammengefasst.</p>
 <p><a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/strings.pdf" class="external-link"><img src="https://raw.githubusercontent.com/rstudio/cheatsheets/main/pngs/thumbnails/strings-cheatsheet-thumbs.png" style="width:100.0%" alt="CLICK TO ENLARGE: cheat sheet for stringr ackage" class="figure"></a></p>
 <p>Beispiele für deren Verwendung mit <code>mutate()</code> und
 Co. sind:</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1000,7 +1059,7 @@ extrahieren</li>
 werden müssen, um die Daten zu analysieren. Zum Beispiel können Daten in
 einer Tabelle die Anzahl der Sturmtage pro Jahr enthalten und in einer
 anderen Tabelle die Kosten für Sturmschäden pro Jahr.</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1057,7 +1116,7 @@ Spalten stehen.</p>
 <p>Das mapping der Spalten erfolgt über einen <em>benannten Vektor</em>,
 d.h. die Spaltennamen der linken Tabelle werden als Elementnamen für die
 entsprechenden Spaltennamen der rechten Tabelle verwendet:</p>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1109,9 +1168,6 @@ Cheat Sheet</a></li>
 </ul></div>
 </div>
 </div>
-<hr><p>Dieses Dokument wurde mit Unterstützung von GitHub Copilot erstellt,
-einem KI-gestützten Autocompletion-Tool, das auf der OpenAI
-GPT-3-Technologie basiert.</p>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
@@ -1174,8 +1230,8 @@ any links that you are not going to use.
   "url": "https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/Datenverarbeitung.html",
   "identifier": "https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/Datenverarbeitung.html",
   "dateCreated": "2024-07-15",
-  "dateModified": "2024-10-01",
-  "datePublished": "2024-10-01"
+  "dateModified": "2024-10-02",
+  "datePublished": "2024-10-02"
 }
 
   </script><script>

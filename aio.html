@@ -344,12 +344,15 @@
         
 <section id="aio-Datenstrukturen"><p>Content from <a href="Datenstrukturen.html">Datenstrukturen</a></p>
 <hr>
-<p>Last updated on 2024-10-01 |
+<p>Last updated on 2024-10-02 |
 
         <a href="https://github.com/Dr-Eberle-Zentrum/Python-pandas-compact/edit/main/episodes/Datenstrukturen.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
+<p>NOTIZEN: - Pandas DataFrame - Spalte addressieren - Listen [1,2,3] -
+Dictionary {“name”:“sturmname”} - “Effective Pandas Video” <a href="https://www.youtube.com/watch?v=zgbUk90aQ6A" class="external-link uri">https://www.youtube.com/watch?v=zgbUk90aQ6A</a> - EDL Pandas
+Video</p>
 <div class="overview card">
 <h2 class="card-header">Overview</h2>
 <div class="row g-0">
@@ -437,6 +440,11 @@ Daten in die Funktion <code>tibble()</code> eingegeben werden.</p>
 <span>    married <span class="op">=</span> <span class="fu">c</span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre>
 </div>
+<div class="codewrapper">
+<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="error" tabindex="0"><code>Error in tibble(name = c("Alice", "Bob", "Charlie", "Diana"), age = c(25, : could not find function "tibble"</code></pre>
+</div>
 <p>Ziel der Datenverarbeitung ist es, die Daten so zu transformieren,
 dass sie für die Analyse und Visualisierung geeignet sind und ein Format
 wie oben gezeigt vorweisen. Wenn das der Fall ist, sprich</p>
@@ -466,9 +474,9 @@ extrahieren?</em></p>
   Antwort
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -510,7 +518,7 @@ aktuelle Datenstruktur), während - DOPPELTE eckige Klammern
   Antwort
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <ul>
 <li>
@@ -556,7 +564,7 @@ z.B. <code>as.integer(c(25, 30, 35))</code>.</li>
   Antwort
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <ul>
 <li>Beobachtungen: 4 = Anzahl Zeilen (oder Länge der Spalten)</li>
@@ -569,7 +577,7 @@ z.B. <code>as.integer(c(25, 30, 35))</code>.</li>
 <p>Um zu verdeutlichen, worin der Unterschied zwischen
 <code>data.frame</code> und <code>tibble</code> besteht, führen sie
 folgende Code in eine R-Session aus:</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -596,7 +604,7 @@ folgende Code in eine R-Session aus:</p>
   Antwort
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -673,7 +681,7 @@ Zeile pro Datenpunkt benötigt und keine doppelt verwendet wird.</li>
 einem KI-gestützten Autocompletion-Tool, das auf der OpenAI
 GPT-3-Technologie basiert.</p></section><section id="aio-Datenimport"><p>Content from <a href="Datenimport.html">Datenimport aus Dateien</a></p>
 <hr>
-<p>Last updated on 2024-10-01 |
+<p>Last updated on 2024-10-02 |
 
         <a href="https://github.com/Dr-Eberle-Zentrum/Python-pandas-compact/edit/main/episodes/Datenimport.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -687,8 +695,7 @@ GPT-3-Technologie basiert.</p></section><section id="aio-Datenimport"><p>Content
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>Wie importiere ich Daten? (<code>readr</code>, <code>readxl</code>,
-…)</li>
+<li>Wie importiere ich Daten?</li>
 <li>Auf was muss ich achten?</li>
 </ul>
 </div>
@@ -699,7 +706,7 @@ GPT-3-Technologie basiert.</p></section><section id="aio-Datenimport"><p>Content
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>Datenimport via <code>readr</code> und <code>readxl</code>
+<li>Datenimport via <code>pandas</code>
 </li>
 <li>Kodierung von Zahlen und Texten</li>
 <li>Pfadangaben</li>
@@ -709,15 +716,14 @@ GPT-3-Technologie basiert.</p></section><section id="aio-Datenimport"><p>Content
 </div>
 </div>
 </div>
-<p>In R können Daten aus verschiedenen Quellen und von verschiedenen
-Orten eingelesen werden.</p>
+<p>Mit Python können Daten aus verschiedenen Quellen und von
+verschiedenen Orten eingelesen werden.</p>
 <p>Die gängigsten Quellen sind:</p>
 <ul>
 <li>Textdateien (z.B. <code>.csv</code>, <code>.tsv</code>,
 <code>.txt</code>)</li>
 <li>Excel-Dateien (z.B. <code>.xlsx</code>, <code>.xls</code>)</li>
-<li>Datenbanken (z.B. <code>MySQL</code>, <code>PostgreSQL</code>,
-<code>SQLite</code>)</li>
+<li>Datenbanken (z.B. MySQL, PostgreSQL, SQLite)</li>
 </ul>
 <p>Die gängigsten Orte sind:</p>
 <ul>
@@ -726,40 +732,31 @@ Orten eingelesen werden.</p>
 Netzwerk</li>
 </ul>
 <p>Im Folgenden einige Beispiele zum Einlesen von Daten aus Dateien in
-R. Die lokalen Dateien müssen sich im <em>Arbeitsverzeichnis</em>
-befinden, das mit <code>getwd()</code> abgefragt und mit
-<code>setwd()</code> gesetzt werden kann (oder mit entsprechenden
-Menüeinträgen in RStudio), oder mit vollem Verzeichnisinformationen
-angegeben werden (nicht gezeigt und nicht empfohlen). Um den folgenden
-Beispielcode mit lokalen Dateien auszuführen, müssen daher die Dateien
-<a href="data/storms-2019-2021.csv">storms-2019-2021.csv</a> und <a href="data/storms-2019-2021.xlsx">storms-2019-2021.xlsx</a> erst ins
-aktuelle Arbeitsverzeichnis gedownloaded werden.</p>
+Python. Die lokalen Dateien müssen sich im <em>Arbeitsverzeichnis</em>
+befinden, also in dem gleichen Verzeichnis in dem das Python-Skript
+ausgeführt wird, oder über den relativen bzw. absoluten Dateipfad
+adressiert werden (siehe weiter unten). Um den folgenden Beispielcode
+mit lokalen Dateien auszuführen, müssen daher die Dateien <a href="data/storms-2019-2021.csv">storms-2019-2021.csv</a> und <a href="data/storms-2019-2021.xlsx">storms-2019-2021.xlsx</a> erst
+heruntergeladen und ins aktuelle Arbeitsverzeichnis kopiert werden.</p>
 <div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">library</span><span class="op">(</span><span class="va">readr</span><span class="op">)</span></span>
-<span><span class="co"># CSV aus dem Internet</span></span>
-<span><span class="fu">read_csv</span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/tidyverse/dplyr/master/data-raw/storms.csv"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># lokale Excel-Datei</span></span>
-<span><span class="fu">readxl</span><span class="fu">::</span><span class="fu">read_xlsx</span><span class="op">(</span><span class="st">"storms-2019-2021.xlsx"</span>,</span>
-<span>                  sheet <span class="op">=</span> <span class="st">"storms-2020"</span><span class="op">)</span> <span class="co"># explizite Angabe des Tabellenblatts</span></span>
-<span></span>
-<span><span class="co"># lokale CSV Datei Semikolon getrennt (";") und mit westeuropäischem Zahlenformat ("," als Dezimaltrenner)</span></span>
-<span><span class="fu">read_csv2</span><span class="op">(</span><span class="st">"storms-2019-2021.csv"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># explizites Einstellen des Daten- und Dateiformats</span></span>
-<span><span class="co"># (hier analog zu den Standardeinstellungen von `read_csv2()`)</span></span>
-<span><span class="fu">read_delim</span><span class="op">(</span></span>
-<span>  <span class="st">"storms-2019-2021.csv"</span>, <span class="co"># Dateiname</span></span>
-<span>  delim <span class="op">=</span> <span class="st">";"</span>, <span class="co"># Spaltentrenner der Datei</span></span>
-<span>  locale <span class="op">=</span> <span class="fu">locale</span><span class="op">(</span> <span class="co"># zusätzliche Einstellungen wie gespeicherte Informationen kodiert sind</span></span>
-<span>    decimal_mark <span class="op">=</span> <span class="st">","</span>, <span class="co"># Dezimaltrenner</span></span>
-<span>    grouping_mark <span class="op">=</span> <span class="st">"."</span>, <span class="co"># Tausendertrenner</span></span>
-<span>    encoding <span class="op">=</span> <span class="st">"latin1"</span> <span class="co"># (alte) westeuropäisches Buchstabenkodierung (z.B. Umlaute)</span></span>
-<span>    <span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># zunächst importieren wir das Paket pandas und benennen es um in "pd", das ist gängige Praxis und findet sich in fast allen Beispielen so wieder</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co"># CSV-Datei aus dem Internet laden und in die Variable web_data speichern</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>web_data <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/tidyverse/dplyr/master/data-raw/storms.csv"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co"># Geben wir die Daten aus</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="bu">print</span>(web_data)</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co"># Lokale Excel-Datei laden mit expliziter Angabe des Tabellenblatts</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>excel_data <span class="op">=</span> pd.read_excel(<span class="st">"storms-2019-2021.xlsx"</span>, sheet_name<span class="op">=</span><span class="st">"storms-2020"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="bu">print</span>(excel_data)</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="co"># Lokale CSV-Datei laden. Achtung: die oben aus dem Internet geladene Datei verwendet gemäß CSV-Standard ein Komma als Trennzeichen, die lokale Datei jedoch ein Semikolon. Die Zahlen in dieser CSV-Datei sind auch mit westeuropäischem Zahlenformat ("," als Dezimaltrennzeichen und "." als Tausendertrennzeichen) gespeichert. Daher müssen hier beim Laden die Parameter sep, decimal und thousands angepasst werden. Auch das Encoding der Datei kann angegeben werden, vor allem wenn es nicht UTF-8 ist.</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>csv_data <span class="op">=</span> pd.read_csv(<span class="st">"storms-2019-2021.csv"</span>, sep<span class="op">=</span><span class="st">";"</span>, decimal<span class="op">=</span><span class="st">","</span>, thousands<span class="op">=</span><span class="st">"."</span>, encoding<span class="op">=</span><span class="st">"UTF-8"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="bu">print</span>(csv_data)</span></code></pre>
 </div>
 <p>Beachten sie im letzten Beispiel das explizite Setzen des
 Textencodings, um sicherzustellen, dass Umlaute korrekt eingelesen
@@ -769,13 +766,27 @@ war). Dies ist vor allem beim <em>Import von alten Daten</em> wichtig,
 die in einem anderen Zeichensatz kodiert sein könnten. Heutzutage wird
 meist <code>UTF-8</code> verwendet, was ein internationaler Standard ist
 und alle Zeichen korrekt darstellt. Dies ist auch das Standardencoding
-für die meisten Funktionen wie z.B. in <code>readr</code> und
-<code>readxl</code>.</p>
-<p>Das Schreiben von Dateien erfolgt analog, indem einfach
-<code>write_</code> anstelle von <code>read_</code> verwendet wird.</p>
-<p>Die Funktionen des <code>readr</code> Paketes sind übersichtlich in
-dessen Cheat Sheet zusammengefasst.</p>
-<p><a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-import.pdf" class="external-link"><img src="https://raw.githubusercontent.com/rstudio/cheatsheets/main/pngs/thumbnails/data-import-cheatsheet-thumbs.png" style="width:100.0%" alt="CLICK TO ENLARGE: cheat sheet for readr ackage" class="figure"></a></p>
+für die meisten Funktionen wie z.B. <code>read_csv</code>.</p>
+<p>Im dem Beispiel zu <code>read_csv</code> werden auch das
+Dezimaltrennzeichen und das Tausendertrennzeichen explizit angegeben, da
+z.B. westeuropäische Länder wie Deutschland oder Frankreich diese
+Trennzeichen vertauscht haben im Vergleich zu englischsprachigen Ländern
+(welche die Standardspezifikationen für CSV-Dateien sind).</p>
+<p>Es gibt noch viele weitere nützliche optionale Parameter der
+Funktionen <code>read_csv()</code> die in der <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html" class="external-link">Dokumentation</a>
+dieser Funktion beschrieben sind, wie beispielweise die einzulesenden
+Zeilen limitieren, Startzeile festlegen, usw.</p>
+<p>Das Speichern der Daten in einer Datei erfolgt analog, indem einfach
+<code>to_</code> anstelle von <code>read_</code> verwendet wird, also
+z.B. <code>to_csv()</code>. Bei <code>to_csv()</code> können analog die
+Spaltentrennzeichen usw. angegeben werden. Da in einem DataFrame jede
+Zeile einen Index hat, wird dieser standardmäßig auch in die Datei
+geschrieben. In der Regel möchten wir das nicht, so können wir den
+Parameter <code>index=False</code> setzen, z.B. mit
+<code>csv_data.to_csv("output.csv", index=False)</code>.</p>
+<p>Die Funktionen für das Einlesen und Speichern von Daten mit dem
+<code>pandas</code> Paket sind in der <a href="https://pandas.pydata.org/docs/user_guide/io.html" class="external-link">Pandas-Dokumentation
+zu IO-Tools</a> zusammengefasst.</p>
 <div id="frage-zu-csv-import" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -783,8 +794,11 @@ dessen Cheat Sheet zusammengefasst.</p>
 <div id="frage-zu-csv-import" class="callout-inner">
 <h3 class="callout-title">Frage zu CSV Import</h3>
 <div class="callout-content">
-<p><em>Was ist der Unterschied zwischen <code>read_csv()</code> und
-<code>read_csv2()</code>?</em></p>
+<p><em>Was sind bei <code>read_csv()</code> die Standardwerte für
+<code>sep</code> (Spaltentrennzeichen), <code>decimal</code>
+(Dezimaltrennzeichen), <code>thousands</code> (Tausendertrennzeichen)
+und <code>encoding</code> (Zeichenkodierung), wenn sie nicht explizit
+beim Aufruf der Funktion angegeben werden?</em></p>
 </div>
 </div>
 </div>
@@ -797,15 +811,10 @@ dessen Cheat Sheet zusammengefasst.</p>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<p><code>read_csv()</code> und <code>read_csv2()</code> sind Funktionen
-aus dem <code>readr</code> package, die beide CSV-Dateien einlesen
-können. Der Unterschied liegt in der Standardkonfiguration der
-Funktionen. <code>read_csv()</code> ist für CSV-Dateien mit Komma als
-Dezimaltrenner und Punkt als Tausendertrenner konfiguriert (z.B. für
-englische oder amerikanische Datenkodierungen), während
-<code>read_csv2()</code> für CSV-Dateien mit Semikolon als
-Spaltentrenner und Komma als Dezimaltrenner konfiguriert ist (wie es in
-Westeuropa wie Deutschland oder Frankreich Standard ist).</p>
+<p>Die Standardwerte sind: Komma für Spaltentrennzeichen, Punkt für
+Dezimaltrennzeichen, kein Tausendertrennzeichen, und UTF-8 für die
+Zeichenkodierung. Die Parameter müssen nur angegeben werden, wenn die
+CSV-Datei von diesen Standardwerten abweicht.</p>
 </div>
 </div>
 </div>
@@ -820,7 +829,7 @@ Westeuropa wie Deutschland oder Frankreich Standard ist).</p>
 <p>Führen sie die obigen Beispiele aus und passen sie sie an, um die
 Dateien <code>storms-2019-2021.csv</code> und
 <code>storms-2019-2021.xlsx</code> einzulesen. Hierzu müssen diese
-Dateien ggf. zuvor gedownloaded werden (oder sie verwenden direkt die
+Dateien ggf. zuvor heruntergeladen werden (oder sie verwenden direkt die
 URL zu den online verfügbaren Dateien).</p>
 <p><em>Wieviele Zeilen haben die jeweiligen Datensätze? Und wie erklärt
 sich der Unterschied?</em></p>
@@ -852,23 +861,16 @@ Jahr 2020 da nur ein einzelnes Datenblatt importiert wurde.</li>
 <section><h2 class="section-heading" id="pfade-und-arbeitsverzeichnis">Pfade und Arbeitsverzeichnis<a class="anchor" aria-label="anchor" href="#pfade-und-arbeitsverzeichnis"></a>
 </h2>
 <hr class="half-width">
-<p>In R können Dateien relativ zum <em>Arbeitsverzeichnis</em> geladen
-werden. Das Arbeitsverzeichnis ist der Ordner, in dem R nach Dateien
-sucht, wenn keine vollständigen Pfade angegeben sind. Das
-Arbeitsverzeichnis kann mit <code>getwd()</code> abgefragt und mit
-<code>setwd()</code> geändert werden. In RStudio kann das
-Arbeitsverzeichnis auch über das Menü “Session” -&gt; “Set Working
-Directory” -&gt; “To Source File Location” gesetzt werden.</p>
-<p>Dies erlaubt das Laden von Dateien ohne Angabe des vollständigen
-Pfades, wenn sich die Dateien im Arbeitsverzeichnis befinden. Der große
-Vorteil ist, dass der Code portabler wird, da er nicht mehr von
-absoluten Pfaden (also wwo die Daten auf ihrem Computer genau liegen)
-abhängt.</p>
-<p>Alternativ können auch <em>relative Pfade</em> verwendet werden, um
-Dateien in Unterordnern relativ zum Arbeitsverzeichnis zu laden. Zum
-Beispiel, wenn sich die Datei <code>data.csv</code> im Unterordner
-<code>data</code> des Arbeitsverzeichnisses befindet, kann sie mit
-<code>read_csv("data/data.csv")</code> geladen werden.</p>
+<p>Dateien können auch <em>relativ</em> zum Arbeitsverzeichnis geladen
+werden. Das Arbeitsverzeichnis ist der Ordner, in dem das aktuelle
+Python-Skript ausgeführt wird. Dies erlaubt das Laden von Dateien ohne
+Angabe des vollständigen Pfades, auch wenn sich die Dateien nicht im
+Arbeitsverzeichnis befinden. Der große Vorteil ist, dass der Code
+portabler wird, da er nicht mehr von absoluten Pfaden (also wo die Daten
+auf ihrem Computer genau liegen) abhängt.</p>
+<p>Zum Beispiel, wenn sich die Datei <code>storms.csv</code> im
+Unterordner <code>data</code> des Arbeitsverzeichnisses befindet, kann
+sie mit <code>read_csv("data/storms.csv")</code> geladen werden.</p>
 <p>Wenn nötig, können auch vollständige Pfade verwendet werden, um
 Dateien von beliebigen Orten auf dem Computer zu laden. Das nennt man
 dann einen <em>absoluten Pfad</em>. Ein Beispiel auf einem
@@ -878,11 +880,12 @@ Windows-System wäre
 vergleichen, werden sie feststellen, dass diese normalerweise mit
 Backslashes <code>\</code> arbeitet, also hier
 <code>"C:\Users\Username\Documents\data.csv"</code>. Das Problem ist,
-dass der Backslash in R als Escape-Zeichen verwendet wird, um spezielle
-TEXT-Zeichen zu kodieren. Daher wird der Backslash in Pfadangaben in R
-oft verdoppelt, um dies zu umgehen. Also würde der Pfad in R so
-aussehen: <code>"C:\\Users\\Username\\Documents\\data.csv"</code>.
-Alternativ können sie auch in Windows (wie im obigen Beispiel) die
+dass der Backslash in Python als Escape-Zeichen verwendet wird, um
+spezielle Zeichen (wie z.B. Zeilenumbruch oder Tabulator) zu kodieren.
+Daher wird der Backslash in Pfadangaben in R oft verdoppelt, um dies zu
+umgehen. Also würde der Pfad in R so aussehen:
+<code>"C:\\Users\\Username\\Documents\\data.csv"</code>. Alternativ
+können sie auch in Windows (wie im obigen Beispiel) die
 “Linux-Schreibweise” verwenden, die mit Schrägstrichen <code>/</code>
 arbeitet, die in R ohne Probleme verwendet werden können.</p>
 <div id="keypoints1" class="callout keypoints">
@@ -895,38 +898,32 @@ arbeitet, die in R ohne Probleme verwendet werden können.</p>
 <ul>
 <li>Dateinamen sind Textinformation und müssen in Anführungszeichen
 gesetzt werden.</li>
-<li>Pfade können absolut (eher schlecht) oder relativ zum
-Arbeitsverzeichnis angegeben werden. Letzteres ist portabler und
-empfohlen.</li>
-<li>Das Arbeitsverzeichnis kann mit <code>getwd()</code> und
-<code>setwd()</code> abgefragt und gesetzt werden.</li>
-<li>In Microsoft Windows können Pfade auch mit Schrägstrichen
-<code>/</code> statt Backslashes <code>\</code> geschrieben werden.</li>
-<li>Achten sie auf die korrekte Kodierung von Textdateien, um Umlaute
-und Sonderzeichen korrekt einzulesen.</li>
+<li>Pfade können absolut oder relativ zum Arbeitsverzeichnis angegeben
+werden. Letzteres ist portabler und empfohlen.</li>
+<li>Unter Microsoft Windows können Pfade in Pyhton auch mit
+Schrägstrichen <code>/</code> statt Backslashes <code>\</code>
+geschrieben werden.</li>
+<li>Achten sie auf die Angabe der korrekten Kodierung von Textdateien,
+um Umlaute und Sonderzeichen korrekt einzulesen.</li>
 <li>Denken sie daran, dass deutsche CSV-Dateien oft Semikolon
-(<code>;</code>) als Trennzeichen und Komma <code>,</code> als
-Dezimaltrenner verwenden.</li>
-<li>Excel-Dateien enthalten i.d.R. mehrere Blätter, die einzeln
-importiert werden müssen.</li>
-<li>Zusammenfassung im <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-import.pdf" class="external-link"><code>readr</code>
-Cheat Sheet</a>
-</li>
+(<code>;</code>) als Spaltentrennzeichen und Komma <code>,</code> als
+Dezimaltrenner verwenden. Auch Excel verwendet für den CSV-Export das
+Semikolon als Spaltentrennzeichen.</li>
+<li>Excel-Dateien können mehrere Blätter (<em>sheets</em>) enthalten,
+die einzeln importiert werden müssen.</li>
+<li>Zusammenfassung der Lese- und Schreiboperationen in der <a href="https://pandas.pydata.org/docs/user_guide/io.html" class="external-link">Pandas-Dokumentation
+zu IO-Tools</a>.</li>
 </ul>
 </div>
 </div>
 </div>
-<hr>
-<p>Dieses Dokument wurde mit Unterstützung von GitHub Copilot erstellt,
-einem KI-gestützten Autocompletion-Tool, das auf der OpenAI
-GPT-3-Technologie basiert.</p>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
 </section></section><section id="aio-Datenverarbeitung"><p>Content from <a href="Datenverarbeitung.html">Datenverarbeitung</a></p>
 <hr>
-<p>Last updated on 2024-10-01 |
+<p>Last updated on 2024-10-02 |
 
         <a href="https://github.com/Dr-Eberle-Zentrum/Python-pandas-compact/edit/main/episodes/Datenverarbeitung.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -939,12 +936,9 @@ any links that you are not going to use.
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul>
-<li>Wie baue ich komplexe Workflows mit pipes?</li>
-<li>Wie transformiere ich Tabellen?</li>
-<li>Wie bearbeite ich Text?</li>
-<li>Wie führe ich mehrere Datensätze zusammen?</li>
-</ul>
+<p>TODO - Wie baue ich komplexe Workflows mit pipes? - Wie transformiere
+ich Tabellen? - Wie bearbeite ich Text? - Wie führe ich mehrere
+Datensätze zusammen?</p>
 </div>
 </div>
 </div>
@@ -952,10 +946,8 @@ any links that you are not going to use.
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul>
-<li>Überblick über die Möglichkeiten der Datenverarbeitung mit
-<code>tidyverse</code> Paketen</li>
-</ul>
+<p>TODO - Überblick über die Möglichkeiten der Datenverarbeitung mit
+<code>tidyverse</code> Paketen</p>
 </div>
 </div>
 </div>
@@ -1059,55 +1051,70 @@ ohne Anführungzeichen</em> (quoting) verwendet werden.</p>
 <p>Basistransformationen sind:</p>
 <ul>
 <li>Filtern von Zeilen mit gegebenen Kriterien (formulieren was man
-BEHALTEN will!)
+BEHALTEN will!) macht man in eckigen Klammern
 <ul>
 <li>
-<code>filter(storms, year == 2020)</code> = alle Sturmdaten aus dem
+<code>storms[storms.year == 2020]</code> = alle Sturmdaten aus dem
 Jahr 2020</li>
 <li>
-<code>filter(storms, year == 2020 &amp; month == 6)</code> = alle
-Sturmdaten aus dem Juni 2020</li>
+<code>storms[(storms.year == 2020) &amp; (storms.month == 6)]</code>
+= alle Sturmdaten aus dem Juni 2020. Bitte beachten, dass logisch
+verknüpfte Bedingungen in Klammern stehen müssen und die einzelnen
+Bedingungen mit <code>&amp;</code> (UND) oder <code>|</code> (ODER)
+verknüpft werden.</li>
 <li>
-<code>filter(storms, !is.na(category))</code> = alle Sturmdaten, bei
-denen die Kategorie bekannt ist</li>
+<code>storms[~pd.isna(storms.category)]</code> = alle Sturmdaten,
+bei denen die Kategorie bekannt ist, wobei <code>~</code> für Negation
+steht und <code>pd.isna()</code> kurz für <em>is not available</em>
+ist.</li>
 </ul>
 </li>
-<li>Konkrete Zeilenauswahl (via Index oder Anzahl)
+<li>Konkrete Zeilenauswahl (via Index oder Anzahl) geht mit der Funktion
+<code>.loc[]</code> und der Übergabe eines einzelnen Zeilenindex oder
+einer Liste von Zeilenindizes
 <ul>
 <li>
-<code>slice(storms, 1, 3, 5)</code> = die Zeilen 1, 3 und 5</li>
+<code>storms.loc[25]</code> = die Zeile 25</li>
 <li>
-<code>slice_tail(storms, n=10)</code> = die 10 letzten Zeilen</li>
+<code>storms.loc[[1, 3, 5]]</code> = die Zeilen 1, 3 und 5</li>
 <li>
-<code>slice_max(storms, pressure)</code> = die Zeile mit dem
-höchsten Wert in der Spalte <code>pressure</code>
+<code>storms.head(10)</code> = die 10 ersten Zeilen</li>
+<li>
+<code>storms.tail(10)</code> = die 10 letzten Zeilen<br>
+</li>
+<li>
+<code>storms[storms.pressure == storms.pressure.max()]</code> = die
+Zeile(n) mit dem höchsten Wert in der Spalte <code>pressure</code>
 </li>
 </ul>
 </li>
 <li>Sortieren von Zeilen
 <ul>
 <li>
-<code>arrange(storms, year)</code> = Sturmdaten nach Jahr
+<code>storms.sort_values("year")</code> = Sturmdaten nach Jahr
 aufsteigend sortieren</li>
 <li>
-<code>arrange(storms, year, desc(month))</code> = Sturmdaten
-aufsteigend nach Jahr sortieren und innerhalb eines Jahres absteigend
-nach Monat</li>
+<code>storms.sort_values("year", ascending=False)</code> =
+Sturmdaten nach Jahr absteigend sortieren</li>
+<li>
+<code>storms.sort_values(["year", "month"], ascending=[True, False])</code>
+= Sturmdaten aufsteigend nach Jahr sortieren und innerhalb eines Jahres
+absteigend nach Monat</li>
 </ul>
 </li>
 <li>Duplikate entfernen
 <ul>
 <li>
-<code>distinct(storms)</code> = alle Zeilen mit identischen Werten
-in allen Spalten entfernen</li>
+<code>storms.drop_duplicates()</code> = alle Zeilen mit identischen
+Werten in allen Spalten entfernen</li>
 <li>
-<code>distinct(storms, year, month, day)</code> = alle Zeilen mit
-gleichen Werten in den Spalten <code>year</code>, <code>month</code> und
-<code>day</code> entfernen (reduziert die Spalten auf die
-Ausgewählten)</li>
-<li>
-<code>distinct(storms, year, month, day, .keep_all = TRUE)</code> =
+<code>storms[["year", "month", "day"]].drop_duplicates()</code> =
 alle Zeilen mit gleichen Werten in den Spalten <code>year</code>,
+<code>month</code> und <code>day</code> entfernen (reduziert die Spalten
+auf die Ausgewählten)</li>
+<li>
+<code>storms.drop_duplicates(["year", "month", "day"])</code> = alle
+Zeilen mit gleichen Werten in den Spalten <code>year</code>,
 <code>month</code> und <code>day</code> entfernen, aber <em>alle Spalten
 behalten</em>
 </li>
@@ -1116,17 +1123,17 @@ behalten</em>
 <li>Auswählen/Entfernen von Spalten
 <ul>
 <li>
-<code>select(storms, name, year, month, day)</code> = nur Spalten
-mit Zeitinformation und Namen der Stürme behalten</li>
+<code>storms[["year", "month", "day"]]</code> = nur Spalten mit
+Zeitinformation und Namen der Stürme behalten</li>
 <li>
-<code>select(storms, -year, -month, -day)</code> = Spalte mit
-Zeitinformation entfernen</li>
+<code>storms.drop(columns=["year", "month", "day"])</code> = alle
+Datumsspalten entfernen</li>
 </ul>
 </li>
 <li>Umbenennen von Spalten
 <ul>
 <li>
-<code>rename(storms, sturmname = name)</code> = Spalte
+<code>storms.rename(columns={"name": "sturmname"})</code> = Spalte
 <code>name</code> in <code>sturmname</code> umbenennen</li>
 </ul>
 </li>
@@ -1134,8 +1141,10 @@ Zeitinformation entfernen</li>
 Informationen (z.B. Mittelwert, Summe, Anzahl, etc.) pro Gruppe
 <ul>
 <li>
-<code>summarize(storms, max_wind = max(wind), num_datasets = n())</code>
-= maximale Windgeschwindigkeit und Anzahl der Datensätze (Zeilen)</li>
+<code>storms.agg({"wind": "max", "name": "count"})</code> = maximale
+(<code>max</code>) Windgeschwindigkeit und Anzahl (<code>count</code>)
+der Datensätze (Zeilen); auch Durchschnitt (<code>avg</code>), Summe
+(<code>sum</code>) und Minimum (<code>min</code>) sind möglich</li>
 </ul>
 </li>
 <li>Gruppierung von Daten = “Zerlegung” des Datensatzes in Teiltabellen,
@@ -1144,16 +1153,19 @@ durchgeführt werden. Wird i.d.R. verwendet, wenn die Aufgabe “pro …”
 oder “für jede …” lautet.
 <ul>
 <li>
-<code>group_by(storms, year)</code> = Gruppierung der Sturmdaten
-nach Jahr (aber noch keine Aggregation!)</li>
+<code>storms.groupby("year")</code> = Gruppierung der Sturmdaten
+nach Jahr (aber noch keine Aggregation!); das ist nur ein
+Zwischenschritt, der die unterschiedlichen Werte der Jahre ermittelt und
+für die folgenden Arbeitsschritte bereitstellt</li>
 <li>
-<code>group_by(storms, year) |&gt;  summarize(max_wind = max(wind))</code>
-= maximale Windgeschwindigkeit <em>pro Jahr</em> (eine “summarize” Zeile
-pro Teiltabelle = Gruppe = Jahr)</li>
+<code>storms.groupby("year").agg({"wind": "max", "name": "count"})</code>
+= maximale Windgeschwindigkeit und Anzahl der Datenzeilen <em>pro
+Jahr</em>
+</li>
 <li>
-<code>group_by(storms, year) |&gt; filter(wind == max(wind)) |&gt; ungroup()</code>
-= alle Sturmdaten, bei denen die maximale Windgeschwindigkeit <em>pro
-Jahr</em> erreicht wurde (keine Zusammenfassung!)</li>
+<code>storms[storms['wind'] == storms.groupby('year')['wind'].transform('max')]</code>
+= alle Sturmdaten, bei denen die maximale Windgeschwindigkeit des
+jeweiligen erreicht wurde (keine Zusammenfassung!). `transform</li>
 <li>Grouping ist ein extrem mächtiges Werkzeug, das in vielen
 Situationen verwendet wird, um Daten zu transformieren. Allerdings
 braucht es etwas Übung, um zu verstehen, wie es funktioniert.</li>
@@ -1163,20 +1175,31 @@ braucht es etwas Übung, um zu verstehen, wie es funktioniert.</li>
 (z.B. Einheiten umrechnen)
 <ul>
 <li>
-<code>mutate(storms, wind_kmh = wind * 1.60934)</code> =
-Windgeschwindigkeit in km/h berechnen und als <em>neue Spalte
-hinzufügen</em>
-</li>
+<code>storms["wind_kmh"] = storms.wind * 1.852</code> =
+Windgeschwindigkeit in Knoten nach km/h konvertieren und als <em>neue
+Spalte hinzufügen</em> (hier darf für die Benennung der neuen Spalte
+nicht die Punktnotation verwendet werden)</li>
 <li>
-<code>mutate(storms, wind = wind * 1.60934)</code> =
-Windgeschwindigkeit in km/h umrechnen und <em>bestehende Spalte
+<code>storms.wind = storms.wind * 1.852</code> = Windgeschwindigkeit
+in Knoten nach km/h konvertieren und <em>bestehende Spalte
 überschreiben</em>
 </li>
+</ul>
+</li>
+<li>Spalten entfernen
+<ul>
 <li>
-<code>mutate(storms, wind_kmh = wind * 1.60934, wind_kmh_rounded = round(wind_kmh, 1))</code>
-= es können auch mehrere Spalten auf einmal berechnet werden und dabei
-direkt neue angelegte Spalten in anschliessenden Formeln verwendet
-werden (hier Runden auf eine Nachkommastelle)</li>
+<code>storms.pop("wind_kmh")</code> = die Spalte
+<code>wind_kmh</code> entfernen; als Ergebnis wird die Spalte
+zurückgegeben, mit der dann weitere Operationen außerhalb des DataFrame
+durchgeführt werden können, wie z.B. hier:</li>
+<li>
+<code>storms.insert(2, "wind_kmh", storms.pop("wind_kmh"))</code> =
+die Spalte <code>wind_kmh</code> an die dritte Stelle (nullbasierter
+Index ist 2) verschieben durch Entfernen mit <code>pop()</code> und
+Wiedereinfügen mit <code>insert</code> an der gewünschten Stelle mit dem
+gleichen Namen <code>wind_kmh</code>
+</li>
 </ul>
 </li>
 </ul>
@@ -1202,9 +1225,11 @@ Status sortiert ist.</em></p>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<p>Verwenden sie eine Pipe die folgende Funktionen verbindet -
-<code>filter()</code> - <code>select()</code> - <code>distinct()</code>
-- <code>arrange()</code></p>
+<p>Gehen Sie wie folgt vor: - Reduzieren Sie auf jene Zeilen, in denen
+das Jahr kleiner als 1980 ist - Reduzieren Sie auf die Spalten
+<code>name</code>, <code>year</code> und <code>status</code> - Durch die
+Spaltenreduktion sind Duplikate entstanden, entfernen Sie diese -
+Sortieren Sie nach Jahr und Status</p>
 </div>
 </div>
 </div>
@@ -1218,38 +1243,98 @@ Status sortiert ist.</em></p>
 </button>
 <div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
+<p>Eine Lösung mit Zwischenschritten, bei denen die Arbeitsschritte
+einzeln ausgeführt und jeweils in der Tabelle <code>ergebnis</code>
+gespeichert werden, könnte so aussehen:</p>
 <div class="codewrapper sourceCode" id="cb2">
-<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Ausgangsdatensatz = Beginn der Pipe</span></span>
-<span><span class="va">storms</span> <span class="op">|&gt;</span></span>
-<span>  <span class="co"># Zeilen filtern</span></span>
-<span>  <span class="fu">filter</span><span class="op">(</span><span class="va">year</span> <span class="op">&lt;</span> <span class="fl">1980</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="co"># Spalten auswählen</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">name</span>, <span class="va">year</span>, <span class="va">status</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="co"># doppelte Zeilen entfernen</span></span>
-<span>  <span class="fu">distinct</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="co"># sortieren</span></span>
-<span>  <span class="fu">arrange</span><span class="op">(</span><span class="va">year</span>, <span class="va">status</span><span class="op">)</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Filtern nach Stürmen vor 1980</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>ergebnis <span class="op">=</span> storms[storms[<span class="st">'year'</span>] <span class="op">&lt;</span> <span class="dv">1980</span>]</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code># A tibble: 129 × 3
-   name      year status
-   &lt;chr&gt;    &lt;dbl&gt; &lt;fct&gt;
- 1 Amy       1975 extratropical
- 2 Blanche   1975 extratropical
- 3 Doris     1975 extratropical
- 4 Eloise    1975 extratropical
- 5 Gladys    1975 extratropical
- 6 Hallie    1975 extratropical
- 7 Blanche   1975 hurricane
- 8 Caroline  1975 hurricane
- 9 Doris     1975 hurricane
-10 Eloise    1975 hurricane
-# ℹ 119 more rows</code></pre>
+<pre class="output" tabindex="0"><code>NameError: name 'storms' is not defined</code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Reduzieren auf die Spalten name, year und status</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>ergebnis <span class="op">=</span> ergebnis[[<span class="st">'name'</span>, <span class="st">'year'</span>, <span class="st">'status'</span>]]</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>NameError: name 'ergebnis' is not defined</code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># Entfernen von Duplikaten</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>ergebnis <span class="op">=</span> ergebnis.drop_duplicates()</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>NameError: name 'ergebnis' is not defined</code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># Sortieren nach Jahr und Status</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>ergebnis <span class="op">=</span> ergebnis.sort_values(by<span class="op">=</span>[<span class="st">'year'</span>, <span class="st">'status'</span>])</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>NameError: name 'ergebnis' is not defined</code></pre>
+</div>
+<p>Eine Lösung, die alle Arbeitsschritte in einer Zeile zusammenfasst,
+könnte so aussehen:</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>ergebnis <span class="op">=</span> storms[storms[<span class="st">'year'</span>] <span class="op">&lt;</span> <span class="dv">1980</span>][[<span class="st">'name'</span>, <span class="st">'year'</span>, <span class="st">'status'</span>]].drop_duplicates().sort_values(by<span class="op">=</span>[<span class="st">'year'</span>, <span class="st">'status'</span>])</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>NameError: name 'storms' is not defined</code></pre>
+</div>
+<p>Diese Lösung ist durch die Verkettung der Arbeitsschritte in einer
+Zeile kürzer und kompakter, aber auch schwerer zu lesen. Um das
+übersuchtlich zu halten, kann man die Arbeitsschritte auch in mehreren
+Zeilen schreiben. In Python setzt man dazu entweder den mehrzeilige
+Befehl in eine umgreifende Klammer wie hier:</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>(storms</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>  [storms[<span class="st">'year'</span>] <span class="op">&lt;</span> <span class="dv">1980</span>]</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>  [[<span class="st">'name'</span>, <span class="st">'year'</span>, <span class="st">'status'</span>]]</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>  .drop_duplicates()</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>  .sort_values(by<span class="op">=</span>[<span class="st">'year'</span>, <span class="st">'status'</span>]))</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>NameError: name 'storms' is not defined</code></pre>
+</div>
+<p>… oder aber terminiert jede Zeile mit einem Backslash:</p>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>storms <span class="op">\</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>  [storms[<span class="st">'year'</span>] <span class="op">&lt;</span> <span class="dv">1980</span>] <span class="op">\</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  [[<span class="st">'name'</span>, <span class="st">'year'</span>, <span class="st">'status'</span>]] <span class="op">\</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  .drop_duplicates() <span class="op">\</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>  .sort_values(by<span class="op">=</span>[<span class="st">'year'</span>, <span class="st">'status'</span>])</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>NameError: name 'storms' is not defined</code></pre>
 </div>
 </div>
 </div>
@@ -1270,7 +1355,7 @@ separate Berechnung durchgeführt.</p>
 verwendete Funktion, um Werte innerhalb dieser Gruppen zu
 aggregieren.</p>
 <p>Ein einfaches Beispiel:</p>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1281,22 +1366,9 @@ aggregieren.</p>
 <span>  <span class="fu">summarize</span><span class="op">(</span>max_wind <span class="op">=</span> <span class="fu">max</span><span class="op">(</span><span class="va">wind</span><span class="op">)</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code># A tibble: 48 × 2
-    year max_wind
-   &lt;dbl&gt;    &lt;int&gt;
- 1  1975      120
- 2  1976      105
- 3  1977      150
- 4  1978      120
- 5  1979      150
- 6  1980      165
- 7  1981      115
- 8  1982      115
- 9  1983      100
-10  1984      115
-# ℹ 38 more rows</code></pre>
+<pre class="error" tabindex="0"><code>Error in summarize(group_by(storms, year), max_wind = max(wind)): could not find function "summarize"</code></pre>
 </div>
 <p>In diesem Beispiel wird die Tabelle <code>storms</code> nach dem Jahr
 gruppiert und für jede Gruppe (d.h. jedes Jahr) die maximale
@@ -1340,20 +1412,9 @@ den Namen des letzten Sturms auflistet.</em></p>
 <div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code># A tibble: 9 × 3
-  status                  year name
-  &lt;fct&gt;                  &lt;dbl&gt; &lt;chr&gt;
-1 tropical wave           2018 Kirk
-2 subtropical depression  2020 Dolly
-3 disturbance             2022 Julia
-4 extratropical           2022 Martin
-5 subtropical storm       2022 Nicole
-6 hurricane               2022 Nicole
-7 tropical storm          2022 Nicole
-8 tropical depression     2022 Nicole
-9 other low               2022 Nicole</code></pre>
+<pre class="error" tabindex="0"><code>Error in select(ungroup(filter(mutate(group_by(storms, status), date = parse_date_time(str_c(year, : could not find function "select"</code></pre>
 </div>
 </div>
 </div>
@@ -1396,7 +1457,7 @@ bzw. letzte Zeile extrahieren</li>
 <div class="section level3">
 <h3 id="alternative-1">Alternative 1<a class="anchor" aria-label="anchor" href="#alternative-1"></a>
 </h3>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1419,7 +1480,7 @@ bzw. letzte Zeile extrahieren</li>
 <div class="section level3">
 <h3 id="alternative-2">Alternative 2<a class="anchor" aria-label="anchor" href="#alternative-2"></a>
 </h3>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1497,7 +1558,7 @@ als “reshaping” oder “pivotieren” bezeichnet. Hiermit können Spalten in
 Zeilen und umgekehrt umgeformt werden.</p>
 <p>Das Beispiel hierfür ist etwas länger, um für Anschauungszwecke die
 Datentabelle erst etwas einzukürzen.</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1509,15 +1570,9 @@ Datentabelle erst etwas einzukürzen.</p>
 <span>  <span class="fu">slice_head</span><span class="op">(</span>n<span class="op">=</span><span class="fl">4</span><span class="op">)</span> <span class="co"># nur die ersten 4 Zeilen anzeigen</span></span></code></pre>
 </div>
 <div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code># A tibble: 4 × 6
-  name    year month   day measure  value
-  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;    &lt;int&gt;
-1 Arthur  2020     5    16 wind        30
-2 Arthur  2020     5    16 pressure  1008
-3 Arthur  2020     5    17 wind        35
-4 Arthur  2020     5    17 pressure  1006</code></pre>
+<pre class="error" tabindex="0"><code>Error in slice_head(pivot_longer(select(filter(storms, name == "Arthur" &amp; : could not find function "slice_head"</code></pre>
 </div>
 <p>Details und weitere Funktionen und Beispiele sind im Cheat Sheets des
 <code>tidyr</code> Paketes übersichtlich zusammengefasst.</p>
@@ -1574,7 +1629,7 @@ Cheat Sheet</a> zusammengefasst.</p>
 <p><a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/strings.pdf" class="external-link"><img src="https://raw.githubusercontent.com/rstudio/cheatsheets/main/pngs/thumbnails/strings-cheatsheet-thumbs.png" style="width:100.0%" alt="CLICK TO ENLARGE: cheat sheet for stringr ackage" class="figure"></a></p>
 <p>Beispiele für deren Verwendung mit <code>mutate()</code> und
 Co. sind:</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1661,7 +1716,7 @@ extrahieren</li>
 werden müssen, um die Daten zu analysieren. Zum Beispiel können Daten in
 einer Tabelle die Anzahl der Sturmtage pro Jahr enthalten und in einer
 anderen Tabelle die Kosten für Sturmschäden pro Jahr.</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1718,7 +1773,7 @@ Spalten stehen.</p>
 <p>Das mapping der Spalten erfolgt über einen <em>benannten Vektor</em>,
 d.h. die Spaltennamen der linken Tabelle werden als Elementnamen für die
 entsprechenden Spaltennamen der rechten Tabelle verwendet:</p>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1774,17 +1829,13 @@ Cheat Sheet</a></li>
 </div>
 </div>
 </div>
-<hr>
-<p>Dieses Dokument wurde mit Unterstützung von GitHub Copilot erstellt,
-einem KI-gestützten Autocompletion-Tool, das auf der OpenAI
-GPT-3-Technologie basiert.</p>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
 </section></section><section id="aio-Visualisierung"><p>Content from <a href="Visualisierung.html">Visualisierung</a></p>
 <hr>
-<p>Last updated on 2024-10-01 |
+<p>Last updated on 2024-10-02 |
 
         <a href="https://github.com/Dr-Eberle-Zentrum/Python-pandas-compact/edit/main/episodes/Visualisierung.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2038,8 +2089,8 @@ GPT-3-Technologie basiert.</p></section>
   "url": "https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/aio.html",
   "identifier": "https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/aio.html",
   "dateCreated": "2024-07-15",
-  "dateModified": "2024-10-01",
-  "datePublished": "2024-10-01"
+  "dateModified": "2024-10-02",
+  "datePublished": "2024-10-02"
 }
 
   </script><script>

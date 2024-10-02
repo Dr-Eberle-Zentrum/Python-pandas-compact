@@ -301,7 +301,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Datenstrukturen</h1>
-        <p>Last updated on 2024-10-01 |
+        <p>Last updated on 2024-10-02 |
 
         <a href="https://github.com/Dr-Eberle-Zentrum/Python-pandas-compact/edit/main/episodes/Datenstrukturen.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -315,6 +315,9 @@
 
         
 
+<p>NOTIZEN: - Pandas DataFrame - Spalte addressieren - Listen [1,2,3] -
+Dictionary {“name”:“sturmname”} - “Effective Pandas Video” <a href="https://www.youtube.com/watch?v=zgbUk90aQ6A" class="external-link uri">https://www.youtube.com/watch?v=zgbUk90aQ6A</a> - EDL Pandas
+Video</p>
 <div class="overview card">
 <h2 class="card-header">Overview</h2>
 <div class="row g-0">
@@ -398,6 +401,11 @@ Daten in die Funktion <code>tibble()</code> eingegeben werden.</p>
 <span>    married <span class="op">=</span> <span class="fu">c</span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre>
 </div>
+<div class="codewrapper">
+<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="error" tabindex="0"><code>Error in tibble(name = c("Alice", "Bob", "Charlie", "Diana"), age = c(25, : could not find function "tibble"</code></pre>
+</div>
 <p>Ziel der Datenverarbeitung ist es, die Daten so zu transformieren,
 dass sie für die Analyse und Visualisierung geeignet sind und ein Format
 wie oben gezeigt vorweisen. Wenn das der Fall ist, sprich</p>
@@ -425,9 +433,9 @@ extrahieren?</em></p>
   Antwort
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -469,7 +477,7 @@ aktuelle Datenstruktur), während - DOPPELTE eckige Klammern
   Antwort
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <ul><li>
 <code>name</code>: <code>character</code>
@@ -511,7 +519,7 @@ z.B. <code>as.integer(c(25, 30, 35))</code>.</li>
   Antwort
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <ul><li>Beobachtungen: 4 = Anzahl Zeilen (oder Länge der Spalten)</li>
 <li>Variablen: 3 = Anzahl Spalten</li>
@@ -522,7 +530,7 @@ z.B. <code>as.integer(c(25, 30, 35))</code>.</li>
 <p>Um zu verdeutlichen, worin der Unterschied zwischen
 <code>data.frame</code> und <code>tibble</code> besteht, führen sie
 folgende Code in eine R-Session aus:</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -549,7 +557,7 @@ folgende Code in eine R-Session aus:</p>
   Antwort
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -679,8 +687,8 @@ any links that you are not going to use.
   "url": "https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/instructor/Datenstrukturen.html",
   "identifier": "https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/instructor/Datenstrukturen.html",
   "dateCreated": "2024-07-15",
-  "dateModified": "2024-10-01",
-  "datePublished": "2024-10-01"
+  "dateModified": "2024-10-02",
+  "datePublished": "2024-10-02"
 }
 
   </script><script>
