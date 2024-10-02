@@ -6,9 +6,17 @@ exercises: 5
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-# load tidyverse
-suppressPackageStartupMessages(library(tidyverse))
+# reticulate package is required for Python code chunks
+library("reticulate")
 ```
+
+NOTIZEN:
+- Pandas DataFrame
+  - Spalte addressieren
+- Listen [1,2,3]
+- Dictionary {"name":"sturmname"}
+- "Effective Pandas Video" https://www.youtube.com/watch?v=zgbUk90aQ6A
+- EDL Pandas Video
 
 :::::::::::::::::::::::::::::::::::::: questions
 
