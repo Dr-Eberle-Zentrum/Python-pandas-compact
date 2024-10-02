@@ -9,6 +9,7 @@ exercises: 10
 
 :::::::::::::::::::::::::::::::::::::: questions
 
+TODO
 - Wie baue ich komplexe Workflows mit pipes?
 - Wie transformiere ich Tabellen?
 - Wie bearbeite ich Text?
@@ -18,6 +19,7 @@ exercises: 10
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
+TODO
 - Überblick über die Möglichkeiten der Datenverarbeitung mit `tidyverse` Paketen
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -90,40 +92,51 @@ Innerhalb von `dplyr` Funktionen können *Spaltennamen ohne Anführungzeichen* (
 
 Basistransformationen sind:
 
--   Filtern von Zeilen mit gegebenen Kriterien (formulieren was man BEHALTEN will!)
-    -   `filter(storms, year == 2020)` = alle Sturmdaten aus dem Jahr 2020
-    -   `filter(storms, year == 2020 & month == 6)` = alle Sturmdaten aus
-        dem Juni 2020
-    -  `filter(storms, !is.na(category))` = alle Sturmdaten, bei denen die Kategorie bekannt ist
-- Konkrete Zeilenauswahl (via Index oder Anzahl)
-    -   `slice(storms, 1, 3, 5)` = die Zeilen 1, 3 und 5
-    -   `slice_tail(storms, n=10)` = die 10 letzten Zeilen
-    -   `slice_max(storms, pressure)` = die Zeile mit dem höchsten Wert in der Spalte `pressure`
+-   Filtern von Zeilen mit gegebenen Kriterien (formulieren was man BEHALTEN will!) macht man in eckigen Klammern
+    -   `storms[storms.year == 2020]` = alle Sturmdaten aus dem Jahr 2020
+    -   `storms[(storms.year == 2020) & (storms.month == 6)]` = alle Sturmdaten aus dem Juni 2020. Bitte beachten, dass logisch verknüpfte Bedingungen in Klammern stehen müssen und die einzelnen Bedingungen mit `&` (UND) oder `|` (ODER) verknüpft werden.
+    -   `storms[~pd.isna(storms.category)]` = alle Sturmdaten, bei denen die Kategorie bekannt ist, wobei `~` für Negation steht und `pd.isna()` kurz für *is not available* ist.
+
+- Konkrete Zeilenauswahl (via Index oder Anzahl) geht mit der Funktion `.loc[]` und der Übergabe eines einzelnen Zeilenindex oder einer Liste von Zeilenindizes
+    -   `storms.loc[25]` = die Zeile 25
+    -   `storms.loc[[1, 3, 5]]` = die Zeilen 1, 3 und 5
+    -   `storms.head(10)` = die 10 ersten Zeilen
+    -   `storms.tail(10)` = die 10 letzten Zeilen    
+    -   `storms[storms.pressure == storms.pressure.max()]` = die Zeile(n) mit dem höchsten Wert in der Spalte `pressure`
+
 -   Sortieren von Zeilen
-    -   `arrange(storms, year)` = Sturmdaten nach Jahr aufsteigend sortieren
-    -   `arrange(storms, year, desc(month))` = Sturmdaten aufsteigend nach Jahr sortieren und innerhalb eines Jahres absteigend nach Monat
+    -   `storms.sort_values("year")` = Sturmdaten nach Jahr aufsteigend sortieren
+    -   `storms.sort_values("year", ascending=False)` = Sturmdaten nach Jahr absteigend sortieren
+    -   `storms.sort_values(["year", "month"], ascending=[True, False])` = Sturmdaten aufsteigend nach Jahr sortieren und innerhalb eines Jahres absteigend nach Monat
+
 -   Duplikate entfernen
-    -  `distinct(storms)` = alle Zeilen mit identischen Werten in allen Spalten entfernen
-    -   `distinct(storms, year, month, day)` = alle Zeilen mit gleichen Werten in den Spalten `year`, `month` und `day` entfernen (reduziert die Spalten auf die Ausgewählten)
-    -  `distinct(storms, year, month, day, .keep_all = TRUE)` = alle Zeilen mit gleichen Werten in den Spalten `year`, `month` und `day` entfernen, aber *alle Spalten behalten*
+    -   `storms.drop_duplicates()` = alle Zeilen mit identischen Werten in allen Spalten entfernen
+    -   `storms[["year", "month", "day"]].drop_duplicates()` = alle Zeilen mit gleichen Werten in den Spalten `year`, `month` und `day` entfernen (reduziert die Spalten auf die Ausgewählten)
+    -   `storms.drop_duplicates(["year", "month", "day"])` = alle Zeilen mit gleichen Werten in den Spalten `year`, `month` und `day` entfernen, aber *alle Spalten behalten*
+
 -   Auswählen/Entfernen von Spalten
-    -   `select(storms, name, year, month, day)` = nur Spalten mit Zeitinformation und Namen der Stürme behalten
-    -   `select(storms, -year, -month, -day)` = Spalte mit Zeitinformation entfernen
+    -   `storms[["year", "month", "day"]]` = nur Spalten mit Zeitinformation und Namen der Stürme behalten
+    -   `storms.drop(columns=["year", "month", "day"])` = alle Datumsspalten entfernen
+
 -   Umbenennen von Spalten
-    -   `rename(storms, sturmname = name)` = Spalte `name` in `sturmname` umbenennen
+    -   `storms.rename(columns={"name": "sturmname"})` = Spalte `name` in `sturmname` umbenennen
+
 -   Zusammenfassen von Daten: nur eine Zeile mit aggregierten Informationen (z.B. Mittelwert, Summe, Anzahl, etc.) pro Gruppe
-    -   `summarize(storms, max_wind = max(wind), num_datasets = n())` = maximale Windgeschwindigkeit und Anzahl der Datensätze (Zeilen)
+    -   `storms.agg({"wind": "max", "name": "count"})` = maximale (`max`) Windgeschwindigkeit und Anzahl (`count`) der Datensätze (Zeilen); auch Durchschnitt (`avg`), Summe (`sum`) und Minimum (`min`) sind möglich
+
 -   Gruppierung von Daten = "Zerlegung" des Datensatzes in Teiltabellen, für die anschliessende Arbeitsschritte unabängig voneinander durchgeführt werden. Wird i.d.R. verwendet, wenn die Aufgabe "pro ..." oder "für jede ..." lautet.
-    -   `group_by(storms, year)` = Gruppierung der Sturmdaten nach Jahr (aber noch keine Aggregation!)
-    -   `group_by(storms, year) |>  summarize(max_wind = max(wind))` = maximale Windgeschwindigkeit *pro Jahr* (eine "summarize" Zeile pro Teiltabelle = Gruppe = Jahr)
-    -  `group_by(storms, year) |> filter(wind == max(wind)) |> ungroup()` = alle Sturmdaten, bei denen die maximale Windgeschwindigkeit *pro Jahr* erreicht wurde (keine Zusammenfassung!)
+    -   `storms.groupby("year")` = Gruppierung der Sturmdaten nach Jahr (aber noch keine Aggregation!); das ist nur ein Zwischenschritt, der die unterschiedlichen Werte der Jahre ermittelt und für die folgenden Arbeitsschritte bereitstellt
+    -   `storms.groupby("year").agg({"wind": "max", "name": "count"})` = maximale Windgeschwindigkeit und Anzahl der Datenzeilen *pro Jahr*
+    -  `storms[storms['wind'] == storms.groupby('year')['wind'].transform('max')]` = alle Sturmdaten, bei denen die maximale Windgeschwindigkeit des jeweiligen erreicht wurde (keine Zusammenfassung!). `transform
     - Grouping ist ein extrem mächtiges Werkzeug, das in vielen Situationen verwendet wird, um Daten zu transformieren. Allerdings braucht es etwas Übung, um zu verstehen, wie es funktioniert.
 
 - Spalten hinzufügen/ausrechnen oder bestehende Spalten verändern (z.B. Einheiten umrechnen)
-    -   `mutate(storms, wind_kmh = wind * 1.60934)` = Windgeschwindigkeit in km/h berechnen und als *neue Spalte hinzufügen*
-    -   `mutate(storms, wind = wind * 1.60934)` = Windgeschwindigkeit in km/h umrechnen und *bestehende Spalte überschreiben*
-    -  `mutate(storms, wind_kmh = wind * 1.60934, wind_kmh_rounded = round(wind_kmh, 1))` = es können auch mehrere Spalten auf einmal berechnet werden und dabei direkt neue angelegte Spalten in anschliessenden Formeln verwendet werden (hier Runden auf eine Nachkommastelle)
+    -   `storms["wind_kmh"] = storms.wind * 1.852` = Windgeschwindigkeit in Knoten nach km/h konvertieren und als *neue Spalte hinzufügen* (hier darf für die Benennung der neuen Spalte nicht die Punktnotation verwendet werden)
+    -   `storms.wind = storms.wind * 1.852` = Windgeschwindigkeit in Knoten nach km/h konvertieren und *bestehende Spalte überschreiben*    
 
+- Spalten entfernen
+    -   `storms.pop("wind_kmh")` = die Spalte `wind_kmh` entfernen; als Ergebnis wird die Spalte zurückgegeben, mit der dann weitere Operationen außerhalb des DataFrame durchgeführt werden können, wie z.B. hier:
+    -   `storms.insert(2, "wind_kmh", storms.pop("wind_kmh"))` = die Spalte `wind_kmh` an die dritte Stelle (nullbasierter Index ist 2) verschieben durch Entfernen mit `pop()` und Wiedereinfügen mit `insert` an der gewünschten Stelle mit dem gleichen Namen `wind_kmh`
 
 :::::::::::::::::::: challenge
 
@@ -135,11 +148,11 @@ Basistransformationen sind:
 
 # Hinweise
 
-Verwenden sie eine Pipe die folgende Funktionen verbindet
-- `filter()`
-- `select()`
-- `distinct()`
-- `arrange()`
+Gehen Sie wie folgt vor:
+- Reduzieren Sie auf jene Zeilen, in denen das Jahr kleiner als 1980 ist
+- Reduzieren Sie auf die Spalten `name`, `year` und `status`
+- Durch die Spaltenreduktion sind Duplikate entstanden, entfernen Sie diese
+- Sortieren Sie nach Jahr und Status
 
 :::::::::::::::::::::
 
@@ -147,36 +160,86 @@ Verwenden sie eine Pipe die folgende Funktionen verbindet
 
 # Lösung
 
+Eine Lösung mit Zwischenschritten, bei denen die Arbeitsschritte einzeln ausgeführt und jeweils in der Tabelle `ergebnis` gespeichert werden, könnte so aussehen:
 
-``` r
-# Ausgangsdatensatz = Beginn der Pipe
-storms |>
-  # Zeilen filtern
-  filter(year < 1980) |>
-  # Spalten auswählen
-  select(name, year, status) |>
-  # doppelte Zeilen entfernen
-  distinct() |>
-  # sortieren
-  arrange(year, status)
+
+``` python
+# Filtern nach Stürmen vor 1980
+ergebnis = storms[storms['year'] < 1980]
 ```
 
 ``` output
-# A tibble: 129 × 3
-   name      year status       
-   <chr>    <dbl> <fct>        
- 1 Amy       1975 extratropical
- 2 Blanche   1975 extratropical
- 3 Doris     1975 extratropical
- 4 Eloise    1975 extratropical
- 5 Gladys    1975 extratropical
- 6 Hallie    1975 extratropical
- 7 Blanche   1975 hurricane    
- 8 Caroline  1975 hurricane    
- 9 Doris     1975 hurricane    
-10 Eloise    1975 hurricane    
-# ℹ 119 more rows
+NameError: name 'storms' is not defined
 ```
+
+``` python
+# Reduzieren auf die Spalten name, year und status
+ergebnis = ergebnis[['name', 'year', 'status']]
+```
+
+``` output
+NameError: name 'ergebnis' is not defined
+```
+
+``` python
+# Entfernen von Duplikaten
+ergebnis = ergebnis.drop_duplicates()
+```
+
+``` output
+NameError: name 'ergebnis' is not defined
+```
+
+``` python
+# Sortieren nach Jahr und Status
+ergebnis = ergebnis.sort_values(by=['year', 'status'])
+```
+
+``` output
+NameError: name 'ergebnis' is not defined
+```
+
+Eine Lösung, die alle Arbeitsschritte in einer Zeile zusammenfasst, könnte so aussehen:
+
+
+``` python
+ergebnis = storms[storms['year'] < 1980][['name', 'year', 'status']].drop_duplicates().sort_values(by=['year', 'status'])
+```
+
+``` output
+NameError: name 'storms' is not defined
+```
+
+Diese Lösung ist durch die Verkettung der Arbeitsschritte in einer Zeile kürzer und kompakter, aber auch schwerer zu lesen. Um das übersuchtlich zu halten, kann man die Arbeitsschritte auch in mehreren Zeilen schreiben. In Python setzt man dazu entweder den mehrzeilige Befehl in eine umgreifende Klammer wie hier:
+
+
+``` python
+(storms
+  [storms['year'] < 1980]
+  [['name', 'year', 'status']]
+  .drop_duplicates()
+  .sort_values(by=['year', 'status']))
+```
+
+``` output
+NameError: name 'storms' is not defined
+```
+
+... oder aber terminiert jede Zeile mit einem Backslash:
+
+
+``` python
+storms \
+  [storms['year'] < 1980] \
+  [['name', 'year', 'status']] \
+  .drop_duplicates() \
+  .sort_values(by=['year', 'status'])
+```
+
+``` output
+NameError: name 'storms' is not defined
+```
+
 :::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::
@@ -203,21 +266,8 @@ storms |>
   summarize(max_wind = max(wind))
 ```
 
-``` output
-# A tibble: 48 × 2
-    year max_wind
-   <dbl>    <int>
- 1  1975      120
- 2  1976      105
- 3  1977      150
- 4  1978      120
- 5  1979      150
- 6  1980      165
- 7  1981      115
- 8  1982      115
- 9  1983      100
-10  1984      115
-# ℹ 38 more rows
+``` error
+Error in summarize(group_by(storms, year), max_wind = max(wind)): could not find function "summarize"
 ```
 
 In diesem Beispiel wird die Tabelle `storms` nach dem Jahr gruppiert und für jede Gruppe (d.h. jedes Jahr) die maximale Windgeschwindigkeit berechnet.
@@ -245,19 +295,8 @@ Allerdings wird diese Gruppierung aufrecht erhalten, bis sie explizit aufgehoben
 ### Erwartete Ausgabe
 
 
-``` output
-# A tibble: 9 × 3
-  status                  year name  
-  <fct>                  <dbl> <chr> 
-1 tropical wave           2018 Kirk  
-2 subtropical depression  2020 Dolly 
-3 disturbance             2022 Julia 
-4 extratropical           2022 Martin
-5 subtropical storm       2022 Nicole
-6 hurricane               2022 Nicole
-7 tropical storm          2022 Nicole
-8 tropical depression     2022 Nicole
-9 other low               2022 Nicole
+``` error
+Error in select(ungroup(filter(mutate(group_by(storms, status), date = parse_date_time(str_c(year, : could not find function "select"
 ```
 
 :::::::::::::::::::::
@@ -371,14 +410,8 @@ storms |>
   slice_head(n=4) # nur die ersten 4 Zeilen anzeigen
 ```
 
-``` output
-# A tibble: 4 × 6
-  name    year month   day measure  value
-  <chr>  <dbl> <dbl> <int> <chr>    <int>
-1 Arthur  2020     5    16 wind        30
-2 Arthur  2020     5    16 pressure  1008
-3 Arthur  2020     5    17 wind        35
-4 Arthur  2020     5    17 pressure  1006
+``` error
+Error in slice_head(pivot_longer(select(filter(storms, name == "Arthur" & : could not find function "slice_head"
 ```
 
 Details und weitere Funktionen und Beispiele sind im Cheat Sheets des `tidyr` Paketes übersichtlich zusammengefasst.
@@ -548,13 +581,4 @@ stormyDays |>
   - [`tidyr` Cheat Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/tidyr.pdf)
   - [`stringr` Cheat Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/strings.pdf)
 
-
-
-
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
-
------------------------------------------------
-
-Dieses Dokument wurde mit Unterstützung von GitHub Copilot erstellt, einem KI-gestützten Autocompletion-Tool, das auf der OpenAI GPT-3-Technologie basiert.
-

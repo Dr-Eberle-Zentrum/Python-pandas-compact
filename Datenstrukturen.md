@@ -6,6 +6,14 @@ exercises: 5
 
 
 
+NOTIZEN:
+- Pandas DataFrame
+  - Spalte addressieren
+- Listen [1,2,3]
+- Dictionary {"name":"sturmname"}
+- "Effective Pandas Video" https://www.youtube.com/watch?v=zgbUk90aQ6A
+- EDL Pandas Video
+
 :::::::::::::::::::::::::::::::::::::: questions
 
 - Welche "Datenarten" gibt es?
@@ -65,6 +73,10 @@ marriages <-
     age = c(25, 30, 35, 12),
     married = c(TRUE, FALSE, TRUE, FALSE)
   )
+```
+
+``` error
+Error in tibble(name = c("Alice", "Bob", "Charlie", "Diana"), age = c(25, : could not find function "tibble"
 ```
 
 
