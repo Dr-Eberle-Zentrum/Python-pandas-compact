@@ -2,53 +2,27 @@
 title: Setup
 ---
 
-FIXME: Setup instructions live in this document. Please specify the tools and
-the data sets the Learner needs to have installed.
 
-## Data Sets
+## Daten
 
-<!--
-FIXME: place any data you want learners to use in `episodes/data` and then use
-       a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
-       link to it, replacing the example.com link.
--->
-Download the [data zip file](https://example.com/FIXME) and unzip it to your Desktop
+Folgende Dateien werden in den Beispielen verwendet:
 
-## Software Setup
+- [storms-2019-2021.csv](data/storms-2019-2021.csv) - deutsche CSV Datei
+- [storms-2019-2021.xlsx](data/storms-2019-2021.xlsx) - Microsoft Excel Datei
 
-::::::::::::::::::::::::::::::::::::::: discussion
+## Voraussetzungen
 
-### Details
+Folgende Installationen werden benötigt:
 
-Setup for different systems can be presented in dropdown menus via a `spoiler`
-tag. They will join to this discussion block, so you can give a general overview
-of the software used in this lesson here and fill out the individual operating
-systems (and potentially add more, e.g. online setup) in the solutions blocks.
+- R version 4.2.0 oder neuer
+- `tidyverse` packages via `install.packages(c("tidyverse", "readxl", "writexl"))`
+  - `tibble` - [Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/dataframe-2.1.pdf) - Tabellendatenstruktur
+  - `magrittr` - [Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/magrittr.pdf) - Pipe Operator `%>%`
+  - `readr`, `readxl`, `writexl` - [Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/data-import.pdf) - Datenimport & -export
+  - `dplyr` - [Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/data-transformation.pdf) - Datentransformation & -verarbeitung
+  - `stringr` - [Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/strings.pdf) - Textmanipulation
+  - `tidyr` - [Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/tidyr.pdf) - Datenbereinigung
+  - `ggplot2` - [Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/data-visualization-2.1.pdf) - Visualisierung
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::: spoiler
-
-### Windows
-
-Use PuTTY
-
-::::::::::::::::::::::::
-
-:::::::::::::::: spoiler
-
-### MacOS
-
-Use Terminal.app
-
-::::::::::::::::::::::::
-
-
-:::::::::::::::: spoiler
-
-### Linux
-
-Use Terminal
-
-::::::::::::::::::::::::
-
+Alle Codebeispiele können in RStudio ausgeführt werden, wenn zuvor `tidyverse` geladen wurde.
+Zum Beispiel via `library(tidyverse)`.
