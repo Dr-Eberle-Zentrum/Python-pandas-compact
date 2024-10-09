@@ -21,6 +21,8 @@ exercises: 10
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+## Datenquellen einlesen
+
 Mit pandas können Daten aus verschiedenen Quellen und von verschiedenen Orten eingelesen werden. Die gängigsten Quellen sind:
 
 - Textdateien (z.B. `.csv`, `.tsv`, `.txt`)
@@ -142,7 +144,7 @@ Wenn sie die letzte Pfadangabe mit der Standard-Windows-Schreibweise vergleichen
 Das Problem ist, dass der Backslash in Python als Escape-Zeichen verwendet wird, um spezielle Zeichen (wie z.B. Zeilenumbruch oder Tabulator) zu kodieren. Daher wird der Backslash in Pfadangaben in R oft verdoppelt, um dies zu umgehen. Also würde der Pfad in R so aussehen: `"C:\\Users\\Username\\Documents\\data.csv"`.
 Alternativ können sie auch in Windows (wie im obigen Beispiel) die "Linux-Schreibweise" verwenden, die mit Schrägstrichen `/` arbeitet, die in R ohne Probleme verwendet werden können.
 
-## Nach dem Import Spalten bearbeiten
+## Einfache Spaltenmanipulation
 
 Nachdem man eine CSV-Datei in einen Dataframe eingelesen hat, kommt man zunächst oft in die Situation, dass einige Spalten umbenannt, gelöscht, oder anders angeordnet werden sollen für die weitere Verarbeitung. Hier sind einige Beispiele, wie dies in pandas gemacht werden kann:
 
