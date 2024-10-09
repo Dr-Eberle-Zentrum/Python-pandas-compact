@@ -701,6 +701,9 @@ Zeile pro Datenpunkt benötigt und keine doppelt verwendet wird.</li>
 </div>
 </div>
 </div>
+<section><h2 class="section-heading" id="datenquellen-einlesen">Datenquellen einlesen<a class="anchor" aria-label="anchor" href="#datenquellen-einlesen"></a>
+</h2>
+<hr class="half-width">
 <p>Mit pandas können Daten aus verschiedenen Quellen und von
 verschiedenen Orten eingelesen werden. Die gängigsten Quellen sind:</p>
 <ul>
@@ -846,7 +849,7 @@ beim Aufruf der Funktion angegeben werden?</em></p>
   Antwort
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Die Standardwerte sind: Komma für Spaltentrennzeichen, Punkt für
 Dezimaltrennzeichen, kein Tausendertrennzeichen, und UTF-8 für die
@@ -880,7 +883,7 @@ sich der Unterschied?</em></p>
   Antwort
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Die Datensätze haben unterschiedliche Größen:</p>
 <ul>
@@ -895,7 +898,7 @@ Jahr 2020 da nur ein einzelnes Datenblatt importiert wurde.</li>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="pfade-und-arbeitsverzeichnis">Pfade und Arbeitsverzeichnis<a class="anchor" aria-label="anchor" href="#pfade-und-arbeitsverzeichnis"></a>
+</section><section><h2 class="section-heading" id="pfade-und-arbeitsverzeichnis">Pfade und Arbeitsverzeichnis<a class="anchor" aria-label="anchor" href="#pfade-und-arbeitsverzeichnis"></a>
 </h2>
 <hr class="half-width">
 <p>Dateien können auch <em>relativ</em> zum Arbeitsverzeichnis geladen
@@ -925,7 +928,7 @@ umgehen. Also würde der Pfad in R so aussehen:
 können sie auch in Windows (wie im obigen Beispiel) die
 “Linux-Schreibweise” verwenden, die mit Schrägstrichen <code>/</code>
 arbeitet, die in R ohne Probleme verwendet werden können.</p>
-</section><section><h2 class="section-heading" id="nach-dem-import-spalten-bearbeiten">Nach dem Import Spalten bearbeiten<a class="anchor" aria-label="anchor" href="#nach-dem-import-spalten-bearbeiten"></a>
+</section><section><h2 class="section-heading" id="einfache-spaltenmanipulation">Einfache Spaltenmanipulation<a class="anchor" aria-label="anchor" href="#einfache-spaltenmanipulation"></a>
 </h2>
 <hr class="half-width">
 <p>Nachdem man eine CSV-Datei in einen Dataframe eingelesen hat, kommt
@@ -1329,7 +1332,7 @@ Status sortiert ist.</em></p>
   Hinweise
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Gehen Sie wie folgt vor: - Reduzieren Sie auf jene Zeilen, in denen
 das Jahr kleiner als 1980 ist - Reduzieren Sie auf die Spalten
@@ -1347,7 +1350,7 @@ Sortieren Sie nach Jahr und Status</p>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Eine Lösung mit Zwischenschritten, bei denen die Arbeitsschritte
 einzeln ausgeführt und jeweils in der Tabelle <code>ergebnis</code>
@@ -1515,7 +1518,7 @@ den Namen des letzten Sturms auflistet.</em></p>
   Erwartete Ausgabe
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1533,7 +1536,7 @@ den Namen des letzten Sturms auflistet.</em></p>
   Hinweise
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <ul>
 <li>Gruppieren sie die Tabellendaten nach <code>status</code>, um für
@@ -1558,7 +1561,7 @@ bzw. letzte Zeile extrahieren</li>
   Lösungen
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <div class="section level3">
 <h3 id="alternative-1">Alternative 1<a class="anchor" aria-label="anchor" href="#alternative-1"></a>
@@ -1791,7 +1794,7 @@ regulären Ausdrücken extrahiert wird.</p>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <ul>
 <li>
@@ -1874,7 +1877,7 @@ Spalten stehen.</p>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
 <div class="accordion-body">
 <p>Das mapping der Spalten erfolgt über einen <em>benannten Vektor</em>,
 d.h. die Spaltennamen der linken Tabelle werden als Elementnamen für die
@@ -2075,7 +2078,7 @@ Punkte anhand des Sturmstatus einfärbt,</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>

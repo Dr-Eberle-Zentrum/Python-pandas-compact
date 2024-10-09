@@ -225,8 +225,9 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#pfade-und-arbeitsverzeichnis">Pfade und Arbeitsverzeichnis</a></li>
-<li><a href="#nach-dem-import-spalten-bearbeiten">Nach dem Import Spalten bearbeiten</a></li>
+        <ul><li><a href="#datenquellen-einlesen">Datenquellen einlesen</a></li>
+<li><a href="#pfade-und-arbeitsverzeichnis">Pfade und Arbeitsverzeichnis</a></li>
+<li><a href="#einfache-spaltenmanipulation">Einfache Spaltenmanipulation</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -346,7 +347,8 @@
 </div>
 </div>
 </div>
-<p>Mit pandas können Daten aus verschiedenen Quellen und von
+<section><h2 class="section-heading" id="datenquellen-einlesen">Datenquellen einlesen<a class="anchor" aria-label="anchor" href="#datenquellen-einlesen"></a></h2>
+<hr class="half-width"><p>Mit pandas können Daten aus verschiedenen Quellen und von
 verschiedenen Orten eingelesen werden. Die gängigsten Quellen sind:</p>
 <ul><li>Textdateien (z.B. <code>.csv</code>, <code>.tsv</code>,
 <code>.txt</code>)</li>
@@ -487,7 +489,7 @@ beim Aufruf der Funktion angegeben werden?</em></p>
   Antwort
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Die Standardwerte sind: Komma für Spaltentrennzeichen, Punkt für
 Dezimaltrennzeichen, kein Tausendertrennzeichen, und UTF-8 für die
@@ -521,7 +523,7 @@ sich der Unterschied?</em></p>
   Antwort
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Die Datensätze haben unterschiedliche Größen:</p>
 <ul><li>
@@ -534,7 +536,7 @@ Jahr 2020 da nur ein einzelnes Datenblatt importiert wurde.</li>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="pfade-und-arbeitsverzeichnis">Pfade und Arbeitsverzeichnis<a class="anchor" aria-label="anchor" href="#pfade-und-arbeitsverzeichnis"></a></h2>
+</section><section><h2 class="section-heading" id="pfade-und-arbeitsverzeichnis">Pfade und Arbeitsverzeichnis<a class="anchor" aria-label="anchor" href="#pfade-und-arbeitsverzeichnis"></a></h2>
 <hr class="half-width"><p>Dateien können auch <em>relativ</em> zum Arbeitsverzeichnis geladen
 werden. Das Arbeitsverzeichnis ist der Ordner, in dem das aktuelle
 Python-Skript ausgeführt wird. Dies erlaubt das Laden von Dateien ohne
@@ -562,7 +564,7 @@ umgehen. Also würde der Pfad in R so aussehen:
 können sie auch in Windows (wie im obigen Beispiel) die
 “Linux-Schreibweise” verwenden, die mit Schrägstrichen <code>/</code>
 arbeitet, die in R ohne Probleme verwendet werden können.</p>
-</section><section><h2 class="section-heading" id="nach-dem-import-spalten-bearbeiten">Nach dem Import Spalten bearbeiten<a class="anchor" aria-label="anchor" href="#nach-dem-import-spalten-bearbeiten"></a></h2>
+</section><section><h2 class="section-heading" id="einfache-spaltenmanipulation">Einfache Spaltenmanipulation<a class="anchor" aria-label="anchor" href="#einfache-spaltenmanipulation"></a></h2>
 <hr class="half-width"><p>Nachdem man eine CSV-Datei in einen Dataframe eingelesen hat, kommt
 man zunächst oft in die Situation, dass einige Spalten umbenannt,
 gelöscht, oder anders angeordnet werden sollen für die weitere
