@@ -226,6 +226,7 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#pfade-und-arbeitsverzeichnis">Pfade und Arbeitsverzeichnis</a></li>
+<li><a href="#nach-dem-import-spalten-bearbeiten">Nach dem Import Spalten bearbeiten</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -308,7 +309,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Datenimport aus Dateien</h1>
-        <p>Last updated on 2024-10-08 |
+        <p>Last updated on 2024-10-09 |
 
         <a href="https://github.com/Dr-Eberle-Zentrum/Python-pandas-compact/edit/main/episodes/Datenimport.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -345,9 +346,8 @@
 </div>
 </div>
 </div>
-<p>Mit Python können Daten aus verschiedenen Quellen und von
-verschiedenen Orten eingelesen werden.</p>
-<p>Die gängigsten Quellen sind:</p>
+<p>Mit pandas können Daten aus verschiedenen Quellen und von
+verschiedenen Orten eingelesen werden. Die gängigsten Quellen sind:</p>
 <ul><li>Textdateien (z.B. <code>.csv</code>, <code>.tsv</code>,
 <code>.txt</code>)</li>
 <li>Excel-Dateien (z.B. <code>.xlsx</code>, <code>.xls</code>)</li>
@@ -356,61 +356,114 @@ verschiedenen Orten eingelesen werden.</p>
 <ul><li>lokale Dateien</li>
 <li>URLs, also direkter Datenimport aus dem Internet oder lokalem
 Netzwerk</li>
-</ul><p>Im Folgenden einige Beispiele zum Einlesen von Daten aus Dateien in
-Python. Die lokalen Dateien müssen sich im <em>Arbeitsverzeichnis</em>
-befinden, also in dem gleichen Verzeichnis in dem das Python-Skript
-ausgeführt wird, oder über den relativen bzw. absoluten Dateipfad
-adressiert werden (siehe weiter unten). Um den folgenden Beispielcode
-mit lokalen Dateien auszuführen, müssen daher die Dateien <a href="data/storms-2019-2021.csv">storms-2019-2021.csv</a> und <a href="data/storms-2019-2021.xlsx">storms-2019-2021.xlsx</a> erst
-heruntergeladen und ins aktuelle Arbeitsverzeichnis kopiert werden.</p>
+</ul><p>Bevor wir loslegen, müssen wir das pandas Paket importieren. Dies
+wird in der Regel mit dem Befehl <code>import pandas as pd</code>
+gemacht. Das <code>as pd</code> ist eine gängige Abkürzung, um das Paket
+in der weiteren Verwendung kürzer zu schreiben:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># zunächst importieren wir das Paket pandas und benennen es um in "pd", das ist gängige Praxis und findet sich in fast allen Beispielen so wieder</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co"># CSV-Datei aus dem Internet laden und in die Variable web_data speichern</span></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>web_data <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/tidyverse/dplyr/master/data-raw/storms.csv"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co"># Geben wir die Daten aus</span></span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="bu">print</span>(web_data)</span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co"># Lokale Excel-Datei laden mit expliziter Angabe des Tabellenblatts</span></span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>excel_data <span class="op">=</span> pd.read_excel(<span class="st">"storms-2019-2021.xlsx"</span>, sheet_name<span class="op">=</span><span class="st">"storms-2020"</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="bu">print</span>(excel_data)</span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="co"># Lokale CSV-Datei laden. Achtung: die oben aus dem Internet geladene Datei verwendet gemäß CSV-Standard ein Komma als Trennzeichen, die lokale Datei jedoch ein Semikolon. Die Zahlen in dieser CSV-Datei sind auch mit westeuropäischem Zahlenformat ("," als Dezimaltrennzeichen und "." als Tausendertrennzeichen) gespeichert. Daher müssen hier beim Laden die Parameter sep, decimal und thousands angepasst werden. Auch das Encoding der Datei kann angegeben werden, vor allem wenn es nicht UTF-8 ist.</span></span>
-<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>csv_data <span class="op">=</span> pd.read_csv(<span class="st">"storms-2019-2021.csv"</span>, sep<span class="op">=</span><span class="st">";"</span>, decimal<span class="op">=</span><span class="st">","</span>, thousands<span class="op">=</span><span class="st">"."</span>, encoding<span class="op">=</span><span class="st">"UTF-8"</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="bu">print</span>(csv_data)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre>
 </div>
-<p>Beachten sie im letzten Beispiel das explizite Setzen des
-Textencodings, um sicherzustellen, dass Umlaute korrekt eingelesen
-werden (hier im Beispiel wird <code>latin1</code> verwendet, was für
-westeuropäische Länder wie Deutschland oder Frankreich üblich ist bzw.
-war). Dies ist vor allem beim <em>Import von alten Daten</em> wichtig,
-die in einem anderen Zeichensatz kodiert sein könnten. Heutzutage wird
-meist <code>UTF-8</code> verwendet, was ein internationaler Standard ist
-und alle Zeichen korrekt darstellt. Dies ist auch das Standardencoding
-für die meisten Funktionen wie z.B. <code>read_csv</code>.</p>
-<p>Im dem Beispiel zu <code>read_csv</code> werden auch das
-Dezimaltrennzeichen und das Tausendertrennzeichen explizit angegeben, da
-z.B. westeuropäische Länder wie Deutschland oder Frankreich diese
-Trennzeichen vertauscht haben im Vergleich zu englischsprachigen Ländern
-(welche die Standardspezifikationen für CSV-Dateien sind).</p>
+<p>Im Folgenden einige Beispiele zum Einlesen von Daten aus Dateien mit
+pandas in Python. Im Fall von CSV- oder TSV-Dateien wird die Funktion
+<code>read_csv()</code> verwendet, für Excel-Dateien
+<code>read_excel()</code>. Die Funktionen haben viele optionale
+Parameter, die in der <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html" class="external-link">Dokumentation</a>
+beschrieben sind.</p>
+<p>Hier ein Beispiel, in dem eine CSV-Datei aus dem Internet geladen und
+der entsprechende von pandas erzeugte Dataframe ausgegeben wird:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># CSV-Datei aus dem Internet laden und in die Variable web_data speichern</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>web_data <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/tidyverse/dplyr/master/data-raw/storms.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co"># Geben wir den Dataframe aus</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="bu">print</span>(web_data)</span></code></pre>
+</div>
+<p>Werden stattdessen Dateien vom lokalen Computer geladen, so müssen
+sich diese im <em>Arbeitsverzeichnis</em> befinden, wenn sie nur mit dem
+Dateinamen adressiert werden. Das Arbeitsverzeichnis ist jenes
+Verzeichnis, in dem das Python-Skript ausgeführt wird. Wenn die Dateien
+nicht im Arbeitsverzeichnis liegen, müssen sie über den relativen bzw.
+absoluten Dateipfad adressiert werden (siehe weiter unten).</p>
+<p>Um den folgenden Beispielcodes mit lokalen Dateien auszuführen,
+müssen daher die Dateien <a href="data/storms-2019-2021.csv">storms-2019-2021.csv</a> und <a href="data/storms-2019-2021.xlsx">storms-2019-2021.xlsx</a> erst
+heruntergeladen und ins aktuelle Arbeitsverzeichnis kopiert werden.</p>
+<p>Laden eines Tabellenblattes aus einer Excel-Datei:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Lokale Excel-Datei laden mit expliziter Angabe des Tabellenblatts</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>excel_data <span class="op">=</span> pd.read_excel(<span class="st">"storms-2019-2021.xlsx"</span>, sheet_name<span class="op">=</span><span class="st">"storms-2020"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="bu">print</span>(excel_data)</span></code></pre>
+</div>
+<p>Hier der Code zum Laden einer CSV-Datei vom lokalen Computer, die
+sich im aktuellen Arbeitsverzeichnis befindet. Hier werden einige der
+optionalen Parameter der Funktion <code>read_csv()</code> verwendet. Der
+Grund: die oben aus dem Internet geladene Datei verwendet gemäß
+CSV-Standard das Komma als Spaltentrennzeichen, die lokale Datei
+verwendet hierfür jedoch das Semikolon (Strichpunkt). Die Zahlen in der
+lokalen CSV-Datei sind auch mit westeuropäischem Zahlenformat
+(<code>,</code> als Dezimaltrennzeichen und <code>.</code> als
+Tausendertrennzeichen) gespeichert. Daher müssen hier beim Laden die
+Parameter <code>sep</code>, <code>decimal</code> und
+<code>thousands</code> angepasst werden. Auch die Zeichenkodierung
+(<code>encoding</code>) der Datei kann angegeben werden, vor allem wenn
+sie nicht UTF-8 ist.</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Lokale CSV-Datei laden. </span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>csv_data <span class="op">=</span> pd.read_csv(<span class="st">"storms-2019-2021.csv"</span>, sep<span class="op">=</span><span class="st">";"</span>, decimal<span class="op">=</span><span class="st">","</span>, thousands<span class="op">=</span><span class="st">"."</span>, encoding<span class="op">=</span><span class="st">"latin1"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="bu">print</span>(csv_data)</span></code></pre>
+</div>
+<p>Die angegebene Zeichenkodierung beim Aufruf von
+<code>read_csv()</code> muss der Zeichencodierung der Datei entsprechen
+oder damit kompatibel sein, um sicherzustellen, dass beispielsweise
+Umlaute und Sonderzeichen korrekt eingelesen werden (hier im Beispiel
+wird <code>latin1</code> verwendet, was für westeuropäische Länder wie
+Deutschland oder Frankreich üblich ist bzw. war). Dies ist vor allem
+beim <em>Import von alten Daten</em> wichtig zu beachten, die in einem
+anderen Zeichensatz kodiert sein könnten. Heutzutage wird meist
+<code>UTF-8</code> verwendet, was ein internationaler Standard ist und
+alle bekannten Zeichen korrekt darstellen kann. <code>UTF-8</code> ist
+auch die Standardenkodierung für die meisten Funktionen wie z.B.
+<code>read_csv()</code>, wenn kein <code>encoding</code> beim Aufruf
+mitgegeben wird.</p>
 <p>Es gibt noch viele weitere nützliche optionale Parameter der
-Funktionen <code>read_csv()</code> die in der <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html" class="external-link">Dokumentation</a>
-dieser Funktion beschrieben sind, wie beispielweise die einzulesenden
-Zeilen limitieren, Startzeile festlegen, usw.</p>
+Funktionen <code>read_csv()</code>, die in der <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html" class="external-link">Dokumentation
+dieser Funktion</a> beschrieben sind, beispielweise um festzulegen, ab
+welcher Zeile das Einlesen der CSV-Datei starten soll und wie viele
+Zielen eingelesen werden sollen:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Die ersten 10 Zeilen einer CSV-Datei einlesen</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>csv_data <span class="op">=</span> pd.read_csv(<span class="st">"irgendein.csv"</span>, nrows<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co"># Die CSV-Datei ab der 11. Zeile einlesen</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>csv_data <span class="op">=</span> pd.read_csv(<span class="st">"irgendein.csv"</span>, skiprows<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co"># Man kann auch angeben, in welcher Zeile (0-basiert) die Spaltenüberschriften stehen, das Einlesen beginnt dann ab da</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>csv_data <span class="op">=</span> pd.read_csv(<span class="st">"irgendein.csv"</span>, header<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co"># Diese Parameter kann man auch kombinierne, z.B. die ersten 10 Zeilen der überspringen und die nächsten 10 Zeilen einlesen</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>csv_data <span class="op">=</span> pd.read_csv(<span class="st">"irgendein.csv"</span>, skiprows<span class="op">=</span><span class="dv">10</span>, nrows<span class="op">=</span><span class="dv">10</span>)</span></code></pre>
+</div>
 <p>Das Speichern der Daten in einer Datei erfolgt analog, indem einfach
 <code>to_</code> anstelle von <code>read_</code> verwendet wird, also
 z.B. <code>to_csv()</code>. Bei <code>to_csv()</code> können analog die
-Spaltentrennzeichen usw. angegeben werden. Da in einem DataFrame jede
+Spaltentrennzeichen usw. angegeben werden. Da in einem Dataframe jede
 Zeile einen Index hat, wird dieser standardmäßig auch in die Datei
-geschrieben. In der Regel möchten wir das nicht, so können wir den
+geschrieben, was üblicherweise eine zusätzliche Spalte an erster Stelle
+der CSV-Datei erzeugt, die einfach die Zeilen der Datei durchnummeriert
+bei 0 beginnend. In der Regel möchten wir das nicht, so können wir den
 Parameter <code>index=False</code> setzen, z.B. mit
 <code>csv_data.to_csv("output.csv", index=False)</code>.</p>
-<p>Die Funktionen für das Einlesen und Speichern von Daten mit dem
-<code>pandas</code> Paket sind in der <a href="https://pandas.pydata.org/docs/user_guide/io.html" class="external-link">Pandas-Dokumentation
+<p>Alle Funktionen für das Einlesen und Speichern von Daten mit dem
+Paket <code>pandas</code> sind in der <a href="https://pandas.pydata.org/docs/user_guide/io.html" class="external-link">Pandas-Dokumentation
 zu IO-Tools</a> zusammengefasst.</p>
 <div id="frage-zu-csv-import" class="callout challenge">
 <div class="callout-square">
@@ -438,8 +491,8 @@ beim Aufruf der Funktion angegeben werden?</em></p>
 <div class="accordion-body">
 <p>Die Standardwerte sind: Komma für Spaltentrennzeichen, Punkt für
 Dezimaltrennzeichen, kein Tausendertrennzeichen, und UTF-8 für die
-Zeichenkodierung. Die Parameter müssen nur angegeben werden, wenn die
-CSV-Datei von diesen Standardwerten abweicht.</p>
+Zeichenkodierung. Ein Parameter muss nur angegeben werden, wenn dessen
+Ausprägung in der CSV-Datei vom jeweiligen Standardwert abweicht.</p>
 </div>
 </div>
 </div>
@@ -509,6 +562,73 @@ umgehen. Also würde der Pfad in R so aussehen:
 können sie auch in Windows (wie im obigen Beispiel) die
 “Linux-Schreibweise” verwenden, die mit Schrägstrichen <code>/</code>
 arbeitet, die in R ohne Probleme verwendet werden können.</p>
+</section><section><h2 class="section-heading" id="nach-dem-import-spalten-bearbeiten">Nach dem Import Spalten bearbeiten<a class="anchor" aria-label="anchor" href="#nach-dem-import-spalten-bearbeiten"></a></h2>
+<hr class="half-width"><p>Nachdem man eine CSV-Datei in einen Dataframe eingelesen hat, kommt
+man zunächst oft in die Situation, dass einige Spalten umbenannt,
+gelöscht, oder anders angeordnet werden sollen für die weitere
+Verarbeitung. Hier sind einige Beispiele, wie dies in pandas gemacht
+werden kann:</p>
+<p><strong>Entfernen von Spalten</strong>: Es gibt mehrere
+Möglichkeiten, eine Spalte aus einem Dataframe zu entfernen.
+<code>drop()</code> entfernt eine oder mehrere Spalten. Möchte man
+allerdings die entfernte Spalte weiterverwenden, so empfiehlt sich die
+Verwendung der Funktion <code>pop()</code>. Diese entfernt die Spalte
+und gibt sie zurück, so dass sie in einer neuen Variable gespeichert
+werden kann. Hier Beispielcode für beide Methoden:</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># Entfernen der Spalte "diameter" aus dem Dataframe "df" mit drop()</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>df.drop(columns<span class="op">=</span>[<span class="st">"diameter"</span>], inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co"># Entfernen der Spalten "status" und "wind" aus dem Dataframe "df" mit drop()</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>df.drop(columns<span class="op">=</span>[<span class="st">"status"</span>, <span class="st">"wind"</span>], inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co"># Entfernen der Spalte "diameter" aus dem Dataframe "df" mit pop()</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>diameter <span class="op">=</span> df.pop(<span class="st">"diameter"</span>)  <span class="co"># diameter enthält jetzt die Werte der entfernten Spalte "diameter"</span></span></code></pre>
+</div>
+<p>Achtung: Der Parameter <code>inplace=True</code> bedeutet, dass die
+Änderung direkt im Dataframe <code>df</code> gemacht wird. Wird dieser
+Parameter nicht so angegeben (standardmäßig ist er <code>False</code>),
+wird eine Kopie des Dataframes mit der gewünschten Änderung
+zurückgegeben, während der Dataframe <code>df</code> unverändert bleibt.
+Dies gilt für fast alle Dataframe-Manipulationen in pandas! Alternativ
+zur Angabe dieses Parameters kann das Ergebnis des Aufrufs der Funktion
+auch in <code>df</code> oder einer neuen Variable gespeichert werden,
+z.B. <code>df = df.drop(columns=["wind"])</code></p>
+<p><strong>Umbenennen von Spalten</strong>: Im folgenden Beispiel wird
+im Dataframe <code>df</code> die Spalte <code>wind</code> in
+<code>windspeed</code> und die Spalte
+<code>tropicalstorm_force_diameter</code> in <code>diameter</code>
+umbenannt.</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>df.rename(columns<span class="op">=</span>{</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>    <span class="st">"wind"</span>: <span class="st">"windspeed"</span>, </span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>    <span class="st">"tropicalstorm_force_diameter"</span>: <span class="st">"diameter"</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>}, inplace<span class="op">=</span><span class="va">True</span>)</span></code></pre>
+</div>
+<p><strong>Veränderung der Spaltenreihenfolge</strong>: Im folgenden
+Beispiel wird die Reihenfolge der Spalten im Dataframe <code>df</code>
+geändert, indem die Spalte <code>diameter</code> an die dritte Stelle
+(0-basierter Index ist also 2) verschoben wird. Dies wird erreicht,
+indem die Spalte mit <code>pop()</code> zunächst entfernt und mit
+<code>insert()</code> an der gewünschten Stelle wieder eingefügt wird.
+Auch hier wird die Änderung direkt im Dataframe gemacht, da
+<code>inplace=True</code> gesetzt ist. Beachten Sie, dass diese beiden
+Funktionen den Dataframe <code>df</code> direkt verändern und keinen
+neuen Dataframe zurückgeben. Falls Sie diesbezüglich im Unklaren sind
+beim Aufruf einer Funktion, sehen Sie in der Dokumentation der
+entsprechenden Funktion nach oder probieren Sie es einfach aus!</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># Verschieben der Spalte "diameter" an die dritte Stelle (Spaltenindex 2)</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>df.insert(<span class="dv">2</span>, df.pop(<span class="st">"diameter"</span>))</span></code></pre>
+</div>
+<p>Weiterführende Manipulationsmöglichkeiten für Dataframes behandeln
+wir im folgenden Kapitel zur Datenverarbeitung.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -598,7 +718,7 @@ any links that you are not going to use.
   "url": "https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/Datenimport.html",
   "identifier": "https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/Datenimport.html",
   "dateCreated": "2024-07-15",
-  "dateModified": "2024-10-08",
+  "dateModified": "2024-10-09",
   "datePublished": "2024-10-09"
 }
 
