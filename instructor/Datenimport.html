@@ -631,6 +631,19 @@ entsprechenden Funktion nach oder probieren Sie es einfach aus!</p>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># Verschieben der Spalte "diameter" an die dritte Stelle (Spaltenindex 2)</span></span>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>df.insert(<span class="dv">2</span>, df.pop(<span class="st">"diameter"</span>))</span></code></pre>
 </div>
+<p><strong>Einfügen neuer Spalten</strong>: Neue Spalten können einfach
+hinzugefügt werden, indem sie mit einem Wert oder einer Liste von Werten
+(üblicherweise auf Grundlage der Werte einer anderen Spalte)
+initialisiert werden:</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Neue Spalte "category" mit dem Wert "storm" für alle Zeilen hinzufügen</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>df[<span class="st">"category"</span>] <span class="op">=</span> <span class="st">"storm"</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co"># Neue Spalte "wind_kmh" mit den Werten der Spalte "wind" umgerechnet von Knoten in km/h hinzufügen</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>df[<span class="st">"wind_kmh"</span>] <span class="op">=</span> df[<span class="st">"wind"</span>] <span class="op">*</span> <span class="fl">1.852</span></span></code></pre>
+</div>
 <p>Weiterführende Manipulationsmöglichkeiten für Dataframes behandeln
 wir im folgenden Kapitel zur Datenverarbeitung.</p>
 <div id="keypoints1" class="callout keypoints">
