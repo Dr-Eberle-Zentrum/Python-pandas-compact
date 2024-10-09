@@ -24,119 +24,114 @@ TODO
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+## Zeilen via Index auswählen
+
+Auswahl konkreter Zeilen via Index geht mit der Funktion `.loc[]` und der Übergabe eines einzelnen Zeilenindex, eines Indexbereichs oder einer Liste von Zeilenindizes:
+
+- `storms.loc[25]` → die Zeile mit Index 25, also die 26. Zeile, da 0-basierter Index
+- `storms.loc[[1, 3, 5]]` → die Zeilen mit Index 1, 3 und 5
+- `storms.loc[10:20]` → die Zeilen mit Index 10 bis 19. Achtung: der Index links vom Doppelpunkt ist inklusive, rechts exklusive!
+- `storms.loc[100:]` → alle Zeilen ab Zeile mit Index 100
+- `storms.loc[:25]` → die ersten 25 Zeilen, entspricht `storms.head(25)` und `storms.loc[0:25]`  
+- `storms.head(10)` → die 10 ersten Zeilen
+- `storms.tail(10)` → die 10 letzten Zeilen
+- `storms[storms.pressure == storms.pressure.max()]` = die Zeile(n) mit dem höchsten Wert in der Spalte `pressure`
+
+Hier ist mehrmals der Begriff Index in Bezug auf die Zeilen eines Dataframe vorgekommen. In einem Dataframe ist jeder Eintrag (Zeile) mit einem Index versehen, der standardmäßig mit 0 beginnt und um 1 erhöht wird. Dieser Index ist eine eindeutige Nummer, die jede Zeile im Dataframe identifiziert. Wenn nun durch Filtern oder andere Operationen Zeilen entfernt werden, bleibt der Index erhalten und wird nicht neu sortiert. Das bedeutet, dass der Index nicht mehr mit der Zeilennummer übereinstimmen muss. Wenn Sie also eine bestimmte Zeile auswählen möchten, sollten Sie den Index verwenden, nicht die Zeilennummer. Um das zu illustrieren:
 
 
-## Workflows mittels Piping
-
-In vielen Datenverarbeitungssprachen ist der Pipe-Operator ein nützliches Werkzeug, um Arbeitsschritte zu verketten, sodass das Abspeichern von Zwischenergebnisse in Variablen vermieden werden kann.
-
-Seit R 4.1.0 ist der Pipe-Operator `|>` standardmäßig in R enthalten.
-Alternativ bietet das `magrittr` package den Pipe-Operator `%>%`, welcher eine etwas umfangreichere Funktionalität bietet.
-Wer sich für die Unterschiede interessiert, kann diese im  [Blogbetrag dazu](https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/) nachlesen.
-Für die meisten Anwendungen ist der Standard-Pipe-Operator `|>` ausreichend und äquivalent zu `%>%` verwendbar.
-
-Der Pipe-Operator ist ein nützliches Werkzeug, um den Code lesbarer zu machen und die Arbeitsschritte in einer logischen Reihenfolge zu verketten.
-Hierbei wird das Ergebnis des vorherigen Arbeitsschrittes als erstes Argument des nächsten Arbeitsschrittes verwendet.
-Da das erste Argument von (den meisten) Funktionen der Datensatz ist, ermöglicht dies die Verknüpfung von Arbeitsschritten zu einem Workflow ohne Zwischenergebnisse speichern zu müssen oder Funktionsaufrufe zu verschachteln.
-
-Zum Beispiel:
 
 
-``` r
-# einfaches Beispiel zur Verarbeitung eines Vektors mit base R Funktionen
 
-# verschachtelte Funktionsaufrufe
-# entspricht der Leserichtung von rechts nach links
-# und einer Ergebnisbeschreibung ala "Wurzel der Summe ohne NA von 1, 2, 3, NA"
-sqrt( sum( c(1, 2, 3, NA), na.rm=TRUE ) )
-
-# mit Pipe-Operator
-# entspricht der Leserichtung von links nach rechts
-# und einer Beschreibung der Arbeitsschritte in ihrer Reihenfolge
-# ala "nehme 1, 2, 3, NA, summiere ohne NA und davon die Wurzel"
-c(1, 2, 3, NA) %>% 
-  sum(na.rm = TRUE) %>% 
-  sqrt()
-
-# ok, hier nicht zwingend nötig, aber zur Veranschlaulichung des Prinzips.. ;)
+``` python
+persons = pd.DataFrame({
+    "name": ["John", "Paula", "Georgia", "Ringo"],
+    "age": [45, 17, 20, 24]
+})
 ```
 
-Pipe-basierte workflows sind ...
+``` output
+NameError: name 'pd' is not defined
+```
 
-- intuitiv lesbar, da sie der normalen Leserichtung entsprechen.
-- einfacher zu schreiben, da die umschließende Klammerung von Funktionsaufrufen entfällt. Funktionsargumente sind direkt den jeweiligen Funktionen zuordenbar.
-- einfach zu erweitern, da neue Arbeitsschritte einfach an das Ende der Kette angehängt werden können (z.B. `write_csv("bla.csv")` oder bestehende Arbeitsschritte ausgetauscht werden können.
-- reduzieren oftmals die Anzahl der temporären Variablen, die im globalen Workspace herumliegen und die Lesbarkeit des Codes beeinträchtigen.
-- einfach zu debuggen, da Zwischenergebnisse einfach ausgegeben werden können (einfach `view()` oder `print()` an das Ende der entsprechenden Zeile anhängen).
-- einfach wiederzuverwenden, da der gesamte Workflow in einer Zeile zusammengefasst ist und immer als Block aufgerufen wird. Dadurch können keine Zwischenschritte vergessen werden und der Workflow ist immer konsistent.
+``` python
+print(persons)
+```
 
-::: callout
+``` output
+NameError: name 'persons' is not defined
+```
 
-## Mehrzeilige R Kommandos
+Wenn wir nun Filtern auf alle Personen, die älter als 22 sind, erhalten wir einen Dataframe mit zwei Zeilen, deren Index 0 und 3 ist:
 
-**Wichtig:** R Kommandos können über mehrere Zeilen verteilt werden, wie im obigen Beispiel zu sehen ist, was die Übersichtlichkeit des Codes erhöht.
+``` python
+older = persons[persons.age > 22]
+```
 
-Hierzu wird z.B. der Pipe-Operator `|>` ans Ende der Zeile geschrieben und der nächste Arbeitsschritt in der nächsten Zeile fortgesetzt.
-Gleiches gilt für jeden Operator (`+`,  `==`, `&`, ..) sowie unvollständige Funktionsaufrufe, bei denen die Klammerung noch nicht geschlossen ist (d.h. schließende Klammer wird in der nächsten oder einer späteren Zeile geschrieben).
+``` output
+NameError: name 'persons' is not defined
+```
 
-:::::::::::
+``` python
+print(older)
+```
+
+``` output
+NameError: name 'older' is not defined
+```
+
+Um also im Dataframe `older` auf die zweite Zeile (die Person mit Namen Ringo) zuzugreifen, müssen wir - vielleicht etwas unintuitiv - den Index 3 verwenden:
 
 
-## Tabellen verarbeiten
+``` python
+print(older.loc[3])
+```
 
-Die Transformation von Daten erfolgt i.d.R. mittels des `dplyr` packages.
+``` output
+NameError: name 'older' is not defined
+```
 
-*Grundlegend gilt: das erste Argument einer Funktion ist immer der Datensatz!*
+Um über die Zeilennummer und nicht über ihren Index zuzugreifen, können wir entweder den Index zurücksetzen mittels `reset_index()` oder die Methode `iloc[]` aufrufen. Beide liefern das gleiche Ergebnis:
 
-Innerhalb von `dplyr` Funktionen können *Spaltennamen ohne Anführungzeichen* (quoting) verwendet werden.
 
-Basistransformationen sind:
+``` python
+# Name der Person in der zweite Zeile unabhängig vom Index
+print(older.iloc[1]["name"])   # gibt "Ringo" aus
 
--   Filtern von Zeilen mit gegebenen Kriterien (formulieren was man BEHALTEN will!) macht man in eckigen Klammern
-    -   `storms[storms.year == 2020]` = alle Sturmdaten aus dem Jahr 2020
-    -   `storms[(storms.year == 2020) & (storms.month == 6)]` = alle Sturmdaten aus dem Juni 2020. Bitte beachten, dass logisch verknüpfte Bedingungen in Klammern stehen müssen und die einzelnen Bedingungen mit `&` (UND) oder `|` (ODER) verknüpft werden.
-    -   `storms[~pd.isna(storms.category)]` = alle Sturmdaten, bei denen die Kategorie bekannt ist, wobei `~` für Negation steht und `pd.isna()` kurz für *is not available* ist.
+# Index zurücksetzen, dann entspricht der Zeilenindex der Zeilennummer
+older.reset_index(inplace=True)
+print(older.loc[1]["name"])    # gibt ebenso "Ringo" aus
+```
 
-- Konkrete Zeilenauswahl (via Index oder Anzahl) geht mit der Funktion `.loc[]` und der Übergabe eines einzelnen Zeilenindex oder einer Liste von Zeilenindizes
-    -   `storms.loc[25]` = die Zeile 25
-    -   `storms.loc[[1, 3, 5]]` = die Zeilen 1, 3 und 5
-    -   `storms.head(10)` = die 10 ersten Zeilen
-    -   `storms.tail(10)` = die 10 letzten Zeilen    
-    -   `storms[storms.pressure == storms.pressure.max()]` = die Zeile(n) mit dem höchsten Wert in der Spalte `pressure`
+## Filtern von Zeilen
 
--   Sortieren von Zeilen
-    -   `storms.sort_values("year")` = Sturmdaten nach Jahr aufsteigend sortieren
-    -   `storms.sort_values("year", ascending=False)` = Sturmdaten nach Jahr absteigend sortieren
-    -   `storms.sort_values(["year", "month"], ascending=[True, False])` = Sturmdaten aufsteigend nach Jahr sortieren und innerhalb eines Jahres absteigend nach Monat
+Das Filtern mit gegebenen Bedingungen (formulieren was man behalten will!) macht man in eckigen Klammern, sodass ein Dataframe zurückgegeben wird, der nur jene Zeilen enthält, die den Kriterien entsprechen. Der ursprüngliche Dataframe wird dabei nicht verändert:
 
--   Duplikate entfernen
-    -   `storms.drop_duplicates()` = alle Zeilen mit identischen Werten in allen Spalten entfernen
-    -   `storms[["year", "month", "day"]].drop_duplicates()` = alle Zeilen mit gleichen Werten in den Spalten `year`, `month` und `day` entfernen (reduziert die Spalten auf die Ausgewählten)
-    -   `storms.drop_duplicates(["year", "month", "day"])` = alle Zeilen mit gleichen Werten in den Spalten `year`, `month` und `day` entfernen, aber *alle Spalten behalten*
+- `storms[storms.year == 2020]` → alle Sturmdaten aus dem Jahr 2020
+- `storms[(storms.year == 2020) & (storms.month == 6)]` → alle Sturmdaten aus dem Juni 2020. Bitte beachten Sie, dass logisch verknüpfte Bedingungen jeweils in Klammern stehen müssen und die einzelnen Bedingungen mit einfachem `&` (*UND*) oder `|` (*ODER*) verknüpft werden.
+- `storms[~pd.isna(storms.category)]` → alle Sturmdaten, bei denen die Kategorie bekannt ist, wobei `~` für Negation steht und `isna()` für *is not available* steht.
 
--   Auswählen/Entfernen von Spalten
-    -   `storms[["year", "month", "day"]]` = nur Spalten mit Zeitinformation und Namen der Stürme behalten
-    -   `storms.drop(columns=["year", "month", "day"])` = alle Datumsspalten entfernen
+## Daten sortieren
 
--   Umbenennen von Spalten
-    -   `storms.rename(columns={"name": "sturmname"})` = Spalte `name` in `sturmname` umbenennen
+Die Sortierung eines Dataframe kann mit der Funktion `sort_values()` erfolgen, die die Daten nach einer oder mehreren Spalten sortiert. Die Sortierung erfolgt standardmäßig aufsteigend, kann aber mit dem Argument `ascending=False` umgekehrt werden:
 
--   Zusammenfassen von Daten: nur eine Zeile mit aggregierten Informationen (z.B. Mittelwert, Summe, Anzahl, etc.) pro Gruppe
-    -   `storms.agg({"wind": "max", "name": "count"})` = maximale (`max`) Windgeschwindigkeit und Anzahl (`count`) der Datensätze (Zeilen); auch Durchschnitt (`avg`), Summe (`sum`) und Minimum (`min`) sind möglich
+- `storms.sort_values("year")` → Sturmdaten nach Jahr aufsteigend sortieren
+- `storms.sort_values("year", ascending=False)` → Sturmdaten nach Jahr absteigend sortieren
+- `storms.sort_values(["year", "month"], ascending=[True, False])` → Sturmdaten aufsteigend nach Jahr sortieren und innerhalb eines Jahres absteigend nach Monat
 
--   Gruppierung von Daten = "Zerlegung" des Datensatzes in Teiltabellen, für die anschliessende Arbeitsschritte unabängig voneinander durchgeführt werden. Wird i.d.R. verwendet, wenn die Aufgabe "pro ..." oder "für jede ..." lautet.
-    -   `storms.groupby("year")` = Gruppierung der Sturmdaten nach Jahr (aber noch keine Aggregation!); das ist nur ein Zwischenschritt, der die unterschiedlichen Werte der Jahre ermittelt und für die folgenden Arbeitsschritte bereitstellt
-    -   `storms.groupby("year").agg({"wind": "max", "name": "count"})` = maximale Windgeschwindigkeit und Anzahl der Datenzeilen *pro Jahr*
-    -  `storms[storms['wind'] == storms.groupby('year')['wind'].transform('max')]` = alle Sturmdaten, bei denen die maximale Windgeschwindigkeit des jeweiligen erreicht wurde (keine Zusammenfassung!). `transform
-    - Grouping ist ein extrem mächtiges Werkzeug, das in vielen Situationen verwendet wird, um Daten zu transformieren. Allerdings braucht es etwas Übung, um zu verstehen, wie es funktioniert.
+## Duplikate entfernen
 
-- Spalten hinzufügen/ausrechnen oder bestehende Spalten verändern (z.B. Einheiten umrechnen)
-    -   `storms["wind_kmh"] = storms.wind * 1.852` = Windgeschwindigkeit in Knoten nach km/h konvertieren und als *neue Spalte hinzufügen* (hier darf für die Benennung der neuen Spalte nicht die Punktnotation verwendet werden)
-    -   `storms.wind = storms.wind * 1.852` = Windgeschwindigkeit in Knoten nach km/h konvertieren und *bestehende Spalte überschreiben*    
+Duplikate, also Zeilen, in denen paarweise die Werte in allen Spalten gleich sind, kann man mit der Funktion `drop_duplicates()` entfernen:
 
-- Spalten entfernen
-    -   `storms.pop("wind_kmh")` = die Spalte `wind_kmh` entfernen; als Ergebnis wird die Spalte zurückgegeben, mit der dann weitere Operationen außerhalb des DataFrame durchgeführt werden können, wie z.B. hier:
-    -   `storms.insert(2, "wind_kmh", storms.pop("wind_kmh"))` = die Spalte `wind_kmh` an die dritte Stelle (nullbasierter Index ist 2) verschieben durch Entfernen mit `pop()` und Wiedereinfügen mit `insert` an der gewünschten Stelle mit dem gleichen Namen `wind_kmh`
+- `storms.drop_duplicates()` → alle Zeilen mit identischen Werten in allen Spalten entfernen
+- `storms[["year", "month", "day"]].drop_duplicates()` → alle Zeilen mit gleichen Werten in den Spalten `year`, `month` und `day` entfernen (reduziert die Spalten auf die Ausgewählten)
+- `storms.drop_duplicates(["year", "month", "day"])` → alle Zeilen mit gleichen Werten in den Spalten `year`, `month` und `day` entfernen, aber *alle Spalten behalten*
+
+## Daten aggregieren
+
+Zusammenfassen von Daten: nur eine Zeile mit aggregierten Informationen (z.B. Mittelwert, Summe, Anzahl, etc.) pro Gruppe
+
+- `storms.agg({"wind": "max", "name": "count"})` → maximale (`max`) Windgeschwindigkeit und Anzahl (`count`) der Datensätze (Zeilen); auch Durchschnitt (`avg`), Summe (`sum`) und Minimum (`min`) sind möglich
 
 :::::::::::::::::::: challenge
 
@@ -244,8 +239,16 @@ NameError: name 'storms' is not defined
 
 ::::::::::::::::::::::::::::::
 
+## Daten gruppieren
 
-## Gruppieren und Aggregieren
+Gruppierung von Daten, also "Zerlegung" des Datensatzes in Teiltabellen, für die anschliessende Arbeitsschritte (z.B. Durchschnittswert für jede Gruppe berechnen) unabängig voneinander durchgeführt werden. Wird i.d.R. verwendet, wenn die Aufgabe "pro ..." oder "für jede ..." lautet.
+
+- `storms.groupby("year")` → Gruppierung der Sturmdaten nach Jahr (aber noch keine Aggregation!); das ist nur ein Zwischenschritt, der die unterschiedlichen Werte der Jahre ermittelt und für die folgenden Arbeitsschritte bereitstellt
+- `storms.groupby("year").agg({"wind": "max", "name": "count"})` → maximale Windgeschwindigkeit und Anzahl der Datenzeilen *pro Jahr*
+-  `storms[storms['wind'] == storms.groupby('year')['wind'].transform('max')]` → alle Sturmdaten, bei denen die maximale Windgeschwindigkeit des jeweiligen erreicht wurde (keine Zusammenfassung!). `transform
+- Grouping ist ein extrem mächtiges Werkzeug, das in vielen Situationen verwendet wird, um Daten zu transformieren. Allerdings braucht es etwas Übung, um zu verstehen, wie es funktioniert.
+
+---
 
 Eine der wichtigsten Funktionen in `dplyr` ist das Gruppieren von Daten und das Aggregieren von Werten innerhalb dieser Gruppen.
 Dies wird in der Regel mit den Funktionen `group_by()` und `summarize()` durchgeführt.

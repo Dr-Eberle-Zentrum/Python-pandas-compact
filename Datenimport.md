@@ -182,6 +182,17 @@ df.rename(columns={
 df.insert(2, df.pop("diameter"))
 ```
 
+**Einfügen neuer Spalten**: Neue Spalten können einfach hinzugefügt werden, indem sie mit einem Wert oder einer Liste von Werten (üblicherweise auf Grundlage der Werte einer anderen Spalte) initialisiert werden: 
+
+
+``` python
+# Neue Spalte "category" mit dem Wert "storm" für alle Zeilen hinzufügen
+df["category"] = "storm"
+
+# Neue Spalte "wind_kmh" mit den Werten der Spalte "wind" umgerechnet von Knoten in km/h hinzufügen
+df["wind_kmh"] = df["wind"] * 1.852
+```
+
 Weiterführende Manipulationsmöglichkeiten für Dataframes behandeln wir im folgenden Kapitel zur Datenverarbeitung.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
