@@ -127,12 +127,6 @@ Duplikate, also Zeilen, in denen paarweise die Werte in allen Spalten gleich sin
 - `storms[["year", "month", "day"]].drop_duplicates()` → alle Zeilen mit gleichen Werten in den Spalten `year`, `month` und `day` entfernen (reduziert die Spalten auf die Ausgewählten)
 - `storms.drop_duplicates(["year", "month", "day"])` → alle Zeilen mit gleichen Werten in den Spalten `year`, `month` und `day` entfernen, aber *alle Spalten behalten*
 
-## Daten aggregieren
-
-Zusammenfassen von Daten: nur eine Zeile mit aggregierten Informationen (z.B. Mittelwert, Summe, Anzahl, etc.) pro Gruppe
-
-- `storms.agg({"wind": "max", "name": "count"})` → maximale (`max`) Windgeschwindigkeit und Anzahl (`count`) der Datensätze (Zeilen); auch Durchschnitt (`avg`), Summe (`sum`) und Minimum (`min`) sind möglich
-
 :::::::::::::::::::: challenge
 
 ## Stürme vor 1980
@@ -220,7 +214,7 @@ Diese Lösung ist durch die Verkettung der Arbeitsschritte in einer Zeile kürze
 NameError: name 'storms' is not defined
 ```
 
-... oder aber terminiert jede Zeile mit einem Backslash:
+... oder aber terminiert jede Zeile - bis auf die letzte - mit einem Backslash:
 
 
 ``` python
@@ -239,52 +233,32 @@ NameError: name 'storms' is not defined
 
 ::::::::::::::::::::::::::::::
 
-## Daten gruppieren
+## Daten gruppieren und aggregieren
 
-Gruppierung von Daten, also "Zerlegung" des Datensatzes in Teiltabellen, für die anschliessende Arbeitsschritte (z.B. Durchschnittswert für jede Gruppe berechnen) unabängig voneinander durchgeführt werden. Wird i.d.R. verwendet, wenn die Aufgabe "pro ..." oder "für jede ..." lautet.
+Gruppierung von Daten, also "Zerlegung" des Datensatzes in Teiltabellen, für die anschliessende Arbeitsschritte (z.B. Durchschnittswert für jede Gruppe berechnen) unabängig voneinander durchgeführt werden. Wird üblicherweise verwendet, wenn die Aufgabe "pro ..." oder "für jede ..." lautet, z.B. Anzahl der Stürme pro Jahr oder durchschnittliche Windgeschwindigkeit je Sturmkategorie.
 
 - `storms.groupby("year")` → Gruppierung der Sturmdaten nach Jahr (aber noch keine Aggregation!); das ist nur ein Zwischenschritt, der die unterschiedlichen Werte der Jahre ermittelt und für die folgenden Arbeitsschritte bereitstellt
-- `storms.groupby("year").agg({"wind": "max", "name": "count"})` → maximale Windgeschwindigkeit und Anzahl der Datenzeilen *pro Jahr*
--  `storms[storms['wind'] == storms.groupby('year')['wind'].transform('max')]` → alle Sturmdaten, bei denen die maximale Windgeschwindigkeit des jeweiligen erreicht wurde (keine Zusammenfassung!). `transform
-- Grouping ist ein extrem mächtiges Werkzeug, das in vielen Situationen verwendet wird, um Daten zu transformieren. Allerdings braucht es etwas Übung, um zu verstehen, wie es funktioniert.
+- `storms.groupby("year").agg({"wind": "max", "name": "count"})` → maximale (`max`) Windgeschwindigkeit und Anzahl (`count`) der Datensätze (Zeilen); auch Mittelwert (`mean`), Median (`median`), Summe (`sum`), Minimum (`min`), erste bzw. letze Zeile (`first`/`last`), und andere sind möglich
+- `storms[storms['wind'] == storms.groupby('year')['wind'].transform('max')]` → alle Sturmdaten, bei denen die maximale Windgeschwindigkeit des jeweiligen erreicht wurde (keine Zusammenfassung!).
 
----
-
-Eine der wichtigsten Funktionen in `dplyr` ist das Gruppieren von Daten und das Aggregieren von Werten innerhalb dieser Gruppen.
-Dies wird in der Regel mit den Funktionen `group_by()` und `summarize()` durchgeführt.
-
-`group_by()` teilt den Datensatz in Gruppen (imaginäre Teiltabellen) auf, basierend auf den Werten in einer oder mehreren Spalten.
-Im Anschluß wird, vereinfacht gesagt, für jede Gruppe eine separate Berechnung durchgeführt.
-
-Die Funktion `summarize()` ist die am häufigsten verwendete Funktion, um Werte innerhalb dieser Gruppen zu aggregieren.
-
-Ein einfaches Beispiel:
+Man kann auch nach mehreren Spalten gruppieren und dann für jede Gruppe aggregieren. Folgendes Beispiel erzeugt einen Dataframe mit durchschnittlicher Windgeschwindigkeit pro Sturmstatus und Jahr
 
 
-``` r
-storms |>
-  # Tabelle nach Jahr gruppieren
-  group_by(year) |>
-  # maximale Windgeschwindigkeit pro Jahr berechnen
-  summarize(max_wind = max(wind))
+``` python
+mean_winds = storms.groupby(["status", "year"]).agg({"wind": "mean"})
 ```
 
-``` error
-Error in summarize(group_by(storms, year), max_wind = max(wind)): could not find function "summarize"
+``` output
+NameError: name 'storms' is not defined
 ```
 
-In diesem Beispiel wird die Tabelle `storms` nach dem Jahr gruppiert und für jede Gruppe (d.h. jedes Jahr) die maximale Windgeschwindigkeit berechnet.
-Das Ergebnis ist eine Tabelle mit zwei Spalten: `year` und `max_wind`.
+``` python
+proint(mean_winds)
+```
 
-::: callout
-
-## Achtung
-
-Zu beachten ist, dass Gruppierungen in `dplyr` nur virtuell sind und nicht zu einer physischen Aufteilung des Datensatzes führen.
-Allerdings wird diese Gruppierung aufrecht erhalten, bis sie explizit aufgehoben wird (z.B. durch `ungroup()`) oder dies implizit durch eine andere Funktion geschieht (z.B. "schließt" `summarize()` die letzte Gruppierung).
-
-:::::::::::
-
+``` output
+NameError: name 'proint' is not defined
+```
 
 :::::::::::::::::::: challenge
 
@@ -298,8 +272,8 @@ Allerdings wird diese Gruppierung aufrecht erhalten, bis sie explizit aufgehoben
 ### Erwartete Ausgabe
 
 
-``` error
-Error in select(ungroup(filter(mutate(group_by(storms, status), date = parse_date_time(str_c(year, : could not find function "select"
+``` output
+NameError: name 'storms' is not defined
 ```
 
 :::::::::::::::::::::
@@ -308,59 +282,42 @@ Error in select(ungroup(filter(mutate(group_by(storms, status), date = parse_dat
 
 ## Hinweise
 
-- Gruppieren sie die Tabellendaten nach `status`, um für jeden Sturmtyp eine "Teiltabelle" zu erhalten
-- Um den letzten Sturm zu finden
-  - Möglichkeit 1: neue Spalte mit Zeitinformation zusammensetzen und damit die Zeile mit maximalen Datum (pro Teiltabelle) extrahieren
-  - Möglichkeit 2: Teiltabellen bzgl. Zeitspalten sortieren und erste bzw. letzte Zeile extrahieren
+Am einfachsten ist es in diesem Fall, wie folgt vorzugehen:
+
+1. Sortieren des Dataframe die Daten nach Jahr, Monat und Tag
+2. Dann entfernen der Duplikate von Status und  jeweils behalten der Zeile je Status mit dem höchsten Datum
+3. Auswahl der Spalten für Status, Jahr und Name
 
 :::::::::::::::::::::
 
 :::::::::::: solution
 
-## Lösungen 
+## Lösung 
 
-### Alternative 1
+Anmerkung: Man kann entweder `drop_duplicates()` oder `groupby()` und `agg()` verwenden, um die letzte Zeile pro Gruppe zu behalten. Hier ist eine Lösung mit `drop_duplicates()`:
 
 
-``` r
-storms |>
-  # decompose table by storm status
-  group_by(status) |>
-  # encode time information of each entry in a single column
-  mutate(date = parse_date_time(str_c(year,month,day,hour,sep="-"), "%Y-%m-%d-%H")) |>
-  
-  # filter for the latest date
-  filter(date == max(date)) |>
-# ALTERNATIVELY cut out row with latest date
-  # slice_max(date, n=1) |>
-  
-  # rejoin table information and undo grouping
-  ungroup() |> 
-  select(status, year, name)
+``` python
+storms \
+  # Sortierung nach Jahr, Monat, Tag aufsteigend
+  .sort_values(["year", "month", "day"]) \
+  # Duplikate von Status entfernen und jeweils die letzte Zeile (keep="last") behalten
+  .drop_duplicates("status", keep="last") \
+  # Auswahl der Spalten status, year und name
+  [["status", "year", "name"]]
 ```
 
-### Alternative 2
+Hier ist eine Lösung mit `groupby()` und `agg()`:
 
 
-``` r
-storms |>
-  # decompose table by storm status
-  group_by(status) |>
-  
-  # sort ascending by date (hierarchical sorting)
-  arrange(year,month,day,hour) |>
-  # pick last row w.r.t. sorting
-  slice_tail(n=1) |>
-# ALTERNATIVELY pick row with last index
-  # slice( n() ) |> 
-  
-# OR do both (sort+pick) directly with slice_max
-  # slice_max( tibble(year,month,day,hour), n=1, with_ties = F ) |> 
-  
-  # rejoin table information and undo grouping
-  ungroup() |> 
-  select(status, year, name) 
+``` python
+storms \
+  # Gruppierung nach Status
+  .groupby("status") \
+  # Aggregation: Auswahl der Zeile mit dem höchsten Datum
+  .agg({"year": "last", "name": "last"})
 ```
+
 :::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::
