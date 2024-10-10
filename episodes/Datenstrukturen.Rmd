@@ -94,7 +94,7 @@ Hinweis: bei der Ausgabe eines Dataframe mit der Funktion `print()` werden stand
 
 Dataframes können sowohl aus Dateien und dem Web importiert werden (s. nächstes Kapitel) oder aber aus anderen Datenstrukturen erstellt werden, z.B. aus Dictionarys (`dict`) und Listen (`list`). Hier ist ein Beispiel, das einen Dataframe erzeugt mittels eines Dictionarys, dessen Schlüssel den Spaltennamen des Dataframes entsprechen, und dessen Werte jeweils Listen für die Inhalte (Zeilen) der entsprechenden der Spalten enthalten:
 
-```{python df.from.list}
+```{python}
 marriages = pd.DataFrame({
     "name": ["Alice", "Bob", "Charlie"],
     "age": [25, 30, 35],
