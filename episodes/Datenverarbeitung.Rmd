@@ -10,21 +10,22 @@ knitr::opts_chunk$set(echo = TRUE)
 library("reticulate")
 ```
 
-
 :::::::::::::::::::::::::::::::::::::: questions
 
-TODO
-- Wie baue ich komplexe Workflows mit pipes?
+- Wie wähle ich Zeilen und Werte aus einem Dataframe aus?
+- Wie erstelle ich komplexe Datenverarbeitungsworkflows?
 - Wie transformiere ich Tabellen?
-- Wie bearbeite ich Text?
-- Wie führe ich mehrere Datensätze zusammen?
+- Wie bearbeite ich Text in Zellen?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-TODO
-- Überblick über die Möglichkeiten der Datenverarbeitung mit `tidyverse` Paketen
+- Zugriff auf und Filtern von Zeilen
+- Sortieren von Spalten und Entfernen von Duplikaten
+- Gruppieren und Aggregieren von Daten
+- Ändern der Tabellengestalt von schmal zu breit und umgekehert
+- Verändern von Zellinhalten
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -43,9 +44,9 @@ Auswahl konkreter Zeilen via Index geht mit der Funktion `.loc[]` und der Überg
 
 Hier ist mehrmals der Begriff Index in Bezug auf die Zeilen eines Dataframe vorgekommen. In einem Dataframe ist jeder Eintrag (Zeile) mit einem Index versehen, der standardmäßig mit 0 beginnt und um 1 erhöht wird. Dieser Index ist eine eindeutige Nummer, die jede Zeile im Dataframe identifiziert. Wenn nun durch Filtern oder andere Operationen Zeilen entfernt werden, bleibt der Index erhalten und wird nicht neu sortiert. Das bedeutet, dass der Index nicht mehr mit der Zeilennummer übereinstimmen muss. Wenn Sie also eine bestimmte Zeile auswählen möchten, sollten Sie den Index verwenden, nicht die Zeilennummer. Um das zu illustrieren:
 
-
 ```{python, include=FALSE}
 import pandas as pd
+storms = pd.read_csv("https://raw.githubusercontent.com/tidyverse/dplyr/master/data-raw/storms.csv")
 ```
 
 ```{python}
@@ -58,6 +59,7 @@ print(persons)
 ```
 
 Wenn wir nun Filtern auf alle Personen, die älter als 22 sind, erhalten wir einen Dataframe mit zwei Zeilen, deren Index 0 und 3 ist:
+
 ```{python}
 older = persons[persons.age > 22]
 print(older)
@@ -105,16 +107,15 @@ Duplikate, also Zeilen, in denen paarweise die Werte in allen Spalten gleich sin
 - `storms.drop_duplicates(["year", "month", "day"])` → alle Zeilen mit gleichen Werten in den Spalten `year`, `month` und `day` entfernen, aber *alle Spalten behalten*
 
 :::::::::::::::::::: challenge
-
-## Stürme vor 1980
+### Stürme vor 1980
 
 *Erstelle eine Tabelle, welche für jeden Sturm vor 1980 neben dessen Namen nur das Jahr und dessen Status beinhaltet und nach Jahr und Status sortiert ist.*
 
 :::::::::::: solution
-
-# Hinweise
+### Hinweise
 
 Gehen Sie wie folgt vor:
+
 - Reduzieren Sie auf jene Zeilen, in denen das Jahr kleiner als 1980 ist
 - Reduzieren Sie auf die Spalten `name`, `year` und `status`
 - Durch die Spaltenreduktion sind Duplikate entstanden, entfernen Sie diese
@@ -123,8 +124,7 @@ Gehen Sie wie folgt vor:
 :::::::::::::::::::::
 
 :::::::::::: solution
-
-# Lösung
+### Schrittweise Lösung
 
 Eine Lösung mit Zwischenschritten, bei denen die Arbeitsschritte einzeln ausgeführt und jeweils in der Tabelle `ergebnis` gespeichert werden, könnte so aussehen:
 
@@ -138,6 +138,11 @@ ergebnis = ergebnis.drop_duplicates()
 # Sortieren nach Jahr und Status
 ergebnis = ergebnis.sort_values(by=['year', 'status'])
 ```
+
+:::::::::::::::::::::
+
+:::::::::::: solution
+### Lösung ohne Zwischenschritte
 
 Eine Lösung, die alle Arbeitsschritte in einer Zeile zusammenfasst, könnte so aussehen:
 
@@ -181,18 +186,15 @@ Man kann auch nach mehreren Spalten gruppieren und dann für jede Gruppe aggregi
 
 ```{python}
 mean_winds = storms.groupby(["status", "year"]).agg({"wind": "mean"})
-proint(mean_winds)
+print(mean_winds)
 ```
 
 :::::::::::::::::::: challenge
-
-## Gruppiertes Filtern
+### Gruppiertes Filtern
 
 *Erstelle eine Tabelle, welche für jeden Sturmstatus das Jahr und den Namen des letzten Sturms auflistet.*
 
-
 :::::::::::: solution
-
 ### Erwartete Ausgabe
 
 ```{python, echo=FALSE}
@@ -202,10 +204,9 @@ print(storms.sort_values(["year", "month", "day"]).drop_duplicates("status", kee
 :::::::::::::::::::::
 
 :::::::::::: solution
+### Hinweise
 
-## Hinweise
-
-Am einfachsten ist es in diesem Fall, wie folgt vorzugehen:
+Hier gibt es viele Wege, das Ziel zu erreichen. Am einfachsten ist es in diesem Fall, wie folgt vorzugehen:
 
 1. Sortieren des Dataframe die Daten nach Jahr, Monat und Tag
 2. Dann entfernen der Duplikate von Status und  jeweils behalten der Zeile je Status mit dem höchsten Datum
@@ -214,13 +215,12 @@ Am einfachsten ist es in diesem Fall, wie folgt vorzugehen:
 :::::::::::::::::::::
 
 :::::::::::: solution
+### Lösung 
 
-## Lösung 
-
-Anmerkung: Man kann entweder `drop_duplicates()` oder `groupby()` und `agg()` verwenden, um die letzte Zeile pro Gruppe zu behalten. Hier ist eine Lösung mit `drop_duplicates()`:
+Hier die Lösung nach dem Verfahren, das unter Hinweise oben angegeben wurde:
 
 ```{python, eval=FALSE}
-storms \
+last_storm_of_year = storms \
   # Sortierung nach Jahr, Monat, Tag aufsteigend
   .sort_values(["year", "month", "day"]) \
   # Duplikate von Status entfernen und jeweils die letzte Zeile (keep="last") behalten
@@ -229,232 +229,145 @@ storms \
   [["status", "year", "name"]]
 ```
 
-Hier ist eine Lösung mit `groupby()` und `agg()`:
+:::::::::::::::::::::
+
+:::::::::::: solution
+### Alternative Lösung
+
+Alternativ kann man das auch mit Gruppieren und Aggregieren lösen. Hierbei sollte zunächst sichergestellt werden, dass die Datumsangaben aufsteigend sortiert werden, dann wird nach `status` gruppiert und für jede Gruppe mittels die letzte Zeile (`year="last"`, also aufgrund der aufsteigenden Sortierung die mit dem höchsten Datum) ausgewählt. Das `reset_index()` am Schluss ist optional, um den Index zurückzusetzen, weil ansonsten noch aus der Gruppierung stammende nicht-numerische Indexeinträge entsprechend des `status` vorhanden sind.
 
 ```{python, eval=FALSE}
-storms \
+last_storm_of_year = storms \
+  # Sortieren nach Datum aufsteigend
+  .sort_values(["year", "month", "day"]) \
   # Gruppierung nach Status
   .groupby("status") \
   # Aggregation: Auswahl der Zeile mit dem höchsten Datum
-  .agg({"year": "last", "name": "last"})
+  .agg({"year": "last", "name": "last"}) \
+  # Optional: Index zurücksetzen
+  .reset_index()
 ```
+
+Haben Sie eine andere Lösung gefunden?
 
 :::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::
 
-Eine Zusammenfassung der wichtigsten Funktionen in `dplyr` finden sich in dessen Cheat Sheet.
-
-
-[![dplry cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/pngs/thumbnails/data-transformation-cheatsheet-thumbs.png){width="100%" alt="CLICK TO ENLARGE: cheat sheet for dplyr ackage"}](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf)
-
-
-
 ## Tabellengestalt ändern
 
-Die "tidy" Form ist eine spezielle Form von tabellarischen Daten, die für viele Datenverarbeitungsschritte geeignet ist. In der "tidy" Form sind die Daten so organisiert, dass jede Beobachtung (z.B. Messung) in einer Zeile notiert ist und jede Variable (also z.B. Beschreibungungen und Messwerte) eine Spalte definieren.
-Diese Art der Tabellenform wird auch "long table" oder "schmal" genannt, weil die Daten in einer langen, schmalen Tabelle organisiert sind.
+Die "tidy" Form ist eine spezielle Form von tabellarischen Daten, die für viele Datenverarbeitungsschritte geeignet ist. In der "tidy" Form sind die Daten so organisiert, dass jede Beobachtung (z.B. Messung) in einer Zeile notiert ist und jede Variable (also z.B. Beschreibungungen und Messwerte) eine Spalte definieren. Diese Art der Tabellenform wird auch "long table" oder "schmal" genannt, weil die Daten in einer langen, schmalen Tabelle organisiert sind. Dies ist beispielsweise der Fall bei den Sturmdaten, die wir bisher verwendet haben.
 
-Allerdings werden Rohdaten häufig in einer "ungünstigen" Form vorliegen, die für die weitere Verarbeitung nicht optimal ist. 
-Manuelle Datenerfassung erfolgt oft in grafischen Oberflächen wie MS Excel, worin die Daten i.d.R. in einer  "breiten" oder "wide table" Form gespeichert, in der eine Variable (z.B. Messwert) in mehreren Spalten gespeichert ist. 
-In der "breiten" Form sind die Daten so organisiert, dass Beobachtungen (und ihre Messwerte) in Spalten gruppiert sind, während die Variablen in den Zeilen stehen.
+Allerdings werden Rohdaten häufig in einer "ungünstigen" Form vorliegen, die für die weitere Verarbeitung nicht optimal ist. Manuelle Datenerfassung erfolgt oft in grafischen Oberflächen wie MS Excel, worin die Daten i.d.R. in einer  "breiten" oder "wide table" Form gespeichert, in der eine Variable (z.B. Messwert) in mehreren Spalten gespeichert ist. In der "breiten" Form sind die Daten so organisiert, dass Beobachtungen (und ihre Messwerte) in Spalten gruppiert sind, während die Variablen in den Zeilen stehen.
 
-Hier ein Beispiel aus dem Tutorial [Introduction to R/tidyverse for Exploratory Data Analysis](https://tavareshugo.github.io/r-intro-tidyverse-gapminder/)
+Man kann nun einen Dataframe von der "breiten" in die "schmale" Form umwandeln mit der Funktion `pivot()`. Diese erwartet folgende Parameter:
 
-![](https://github.com/tavareshugo/r-intro-tidyverse-gapminder/blob/e08446803314d9c8d59f309e3dee7b1cdd9a3158/fig/07-tidyr_pivot.png?raw=true){alt="wide and long table examples and respective pivoting calls" width="500px"}
+- `index`: jene Spalte bzw. Spalten des Dataframe, die in der "breiten" Form als Index für die Zeilen dienen sollte; es muss sichergestellt sein, dass die Werte in dieser Spalte bzw. die Kombinationen der Werte der Spalte eindeutig sind
+- `columns`: jene Spalte des Dataframe, die in der "breiten" Form für die weiteren Spalten dienen sollte
+- `values`: jene Spalte des Dataframe, die in der "breiten" Form für die Werte in den Zellen dienen sollte
 
-Das obige Beispiel zeigt eine "breite" Tabelle (rechts) und eine "lange" Tabelle (links) mit den gleichen Daten.
-Die Transformation zwischen beiden Formaten kann durch die Funktionen `pivot_longer()` und `pivot_wider()` erreicht werden.
-Beachten sie im Beispiel, dass die Spaltennamen des wide table Formats in beide Transformationsrichtungen verarbeitet werden können.
+Ein Beispiel für die Umwandlung der Sturmdaten von der "breiten" in die "schmale" Form auf Grundlage des Dataframes, der das Ergebnis der letzten vorherigen Aufgabe war:
+
+```{python, echo=FALSE}
+last_storm_of_year = storms.sort_values(["year", "month", "day"]).drop_duplicates("status", keep="last")[["status", "year", "name"]].reset_index(drop=True)
+print(last_storm_of_year)
+```
+
+Wir wollen in der pivotierten Tabelle, dass die Zeilen wie gehabt den Sturmstatus entsprechen, die Spalten den Stürmen und die Werte in den Zellen den Jahren, in denen der Sturm der letzte mit diesem Status war. Das erreichen wir mit folgendem Code:
+
+```{python}
+broad_table = last_storm_of_year \
+  .pivot(index="status", columns="name", values="year") \
+  .fillna("")
+
+print(broad_table)
+```
+
+Hinweis: `fillna("")` füllt leere Zellen mit einem leeren String, um die Ausgabe übersichtlicher zu gestalten. Ansonsten würde da `NaN` stehen, was für *Not a Number* steht.
+
+Eine breite Tabelle in eine schmale tidy Tabelle verwandelt man mit der Funktion `.melt()`. Ein Beispiel für die Rück-Umwandlung der breiten Sturmdaten in schmale Form:
+
+```{python}
+narrow_table = broad_table
+  # Zunächst Index zurücksetzen, um Status als Spalte zu haben
+  .reset_index() \
+  # Umwandlung in schmale Form mit Spalten status, name, year
+  .melt(id_vars="status", var_name="name", value_name="year") \
+  # Zeilen mit leeren Werten entfernen
+  .dropna()
+
+print(narrow_table)
+```
+
+Hinweis: `.dropna()` am Ende ist hilfreich, da sonst beim Umwandeln die leeren Zellen der breiten Tabelle als `NaN` in der schmalen Tabelle stehen würden. Probieren Sie es gerne ohne `.dropna()` aus, um den Unterschied zu sehen.
 
 ::: callout
+### Vor- und Nachteile
 
-## Vor- und Nachteile
-
-Während das wide table Format kompakter und damit ggf. besser zur Datenerfassung und -übersicht geeignet ist, ist das long table Format besser für die Datenanalyse und -visualisierung geeignet.
-In letzterem liegt Information redundant vor, da in jeder Zeile die komplette Information einer Beobachtung vorliegen muss.
+Während das wide table Format kompakter und damit ggf. besser zur Datenerfassung und -übersicht geeignet ist, ist das long table Format besser für die Datenanalyse und -visualisierung geeignet. In letzterem liegt Information redundant vor, da in jeder Zeile die komplette Information einer Beobachtung vorliegen muss.
 
 :::::::::::
 
-Die tidyverse Bibliothek `tidyr` bietet Funktionen, um Daten zwischen diesen beiden Formen zu transformieren. Dies wird auch als "reshaping" oder "pivotieren" bezeichnet.
-Hiermit können Spalten in Zeilen und umgekehrt umgeformt werden. 
+## Fehlende Daten füllen
 
-Das Beispiel hierfür ist etwas länger, um für Anschauungszwecke die Datentabelle erst etwas einzukürzen.
+Manchmal muss man mit Dataframes arbeiten, wo aufeinanderfolgende Zellen einer Spalte fehlende Werte haben. Das kann z.B. passieren, wenn bei der Datenerfassung nicht alle Werte erfasst wurden, oder - was öfter der Fall sein wird - die leeren Zellen einfach bedeuten, dass sich der Wert nicht geändert hat. Betrachten wir folgendes Beispiel des Dataframe `career`, in dem akademische Abschlüsse und Arbeitstiteln von Personen in einer Tabelle nach Jahrenzahlen, in denen sich etwas geändert hat, gespeichert sind. Wir erinnern uns, dass `NaN` inder Ausgabe für einen fehlenden Zellwert steht:
 
-```{r pivot.example}
-storms |>
-  filter(name == "Arthur" & year == 2020) |> # speziellen Sturm auswählen
-  select(name, year, month, day, wind, pressure) |> # (zur Vereinfachung) nur spezifische Spalten
-  # Verteile Wind und Druck in separate Zeilen mit entsprechenden Labels in einer neuen Spalte "measure"
-  pivot_longer(cols = c(wind, pressure), names_to = "measure", values_to = "value") |>
-  slice_head(n=4) # nur die ersten 4 Zeilen anzeigen
-
+```{python, echo=FALSE}
+import numpy as np
+career = pd.DataFrame({
+    "year": [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008],
+    "degree": ["Bachelor", np.nan, np.nan, "Master", np.nan, np.nan, "Dr.", np.nan, np.nan],
+    "title": ["Assistent", np.nan, np.nan, np.nan, "Gruppenleiter", np.nan, np.nan, np.nan, "Konzernchef"]
+}).set_index("year")
+print(career)
 ```
 
-Details und weitere Funktionen und Beispiele sind im Cheat Sheets des `tidyr` Paketes übersichtlich zusammengefasst.
+Hier können wir davon ausgehen, dass die Person auch in den Jahren 2001-2003 einen Bachelortitel hatte. Gleiches gilt für die Spalte `degree`. Möchte man das explizit machen im Dataframe, so hilft die Funktion `ffill()`, die man sowohl für den gesamten Dataframe als auch für einzelne Spalten aufrufen kann. Ein Beispiel für das Füllen der fehlenden Werte in allen Spalten des Dataframe:
 
-[![tidyr cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/pngs/thumbnails/tidyr-thumbs.png){width="100%" alt="CLICK TO ENLARGE: cheat sheet for tidyr ackage"}](https://raw.githubusercontent.com/rstudio/cheatsheets/main/tidyr.pdf)
-
-
-## Textdaten verändern und verwenden
-
-Um Textdaten (*Strings*) zu verändern, gibt es verschiedene Funktionen des `stringr` Paketes, die in Kombination mit `mutate()` oder anderen Funktionen verwendet werden können.
-Die meisten Funktionen des `stringr` Paketes sind sehr intuitiv und haben eine ähnliche Syntax wie die Funktionen des `dplyr` Paketes.
-Zudem sind viele mit regulären Ausdrücken verwendbar, um Textdaten aufgrund von allgemeineren Textmustern zu erkennen und zu verändern.
-Alle Funktionen des `stringr` Paketes beginnen mit `str_` und sind in der [Dokumentation](https://stringr.tidyverse.org/reference/index.html) aufgeführt.
-Einige wichtige sind:
-
-- `str_c()`: Verkettet mehrere Strings zu einem, analog to `paste0()`
-- `str_detect()`: Prüft, ob ein String einen bestimmten Textteil enthält
-- `str_replace()`: Ersetzt einen Teil eines Strings durch einen anderen
-- `str_to_lower()`/`str_to_upper`: Wandelt alle Buchstaben in Klein-/Grossbuchstaben um
-- `str_sub()`: Extrahiert einen Teil eines Strings
-- `str_trim()`: Entfernt Leerzeichen am Anfang und Ende eines Strings
-- `str_extract()`: Extrahiert einen Teil eines Strings, der einem bestimmten Muster entspricht
-- `str_remove()`: Entfernt einen Teil eines Strings, der einem bestimmten Muster entspricht
-- `str_split()`: Teilt einen String an einem bestimmten Trennzeichen auf
-
-Die meisten Funktionen liefern nur einen Treffer oder verändern nur den ersten Treffer.
-Daher gibt es von vielen Funktionen Varianten, die alle Treffer finden und/oder verarbeiten, z.B. `str_detect_all()`, `str_replace_all()`, `str_extract_all()`.
-
-Die Funktionen sind im [`stringr` Cheat Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/strings.pdf) zusammengefasst.
-
-[![stringr cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/pngs/thumbnails/strings-cheatsheet-thumbs.png){width="100%" alt="CLICK TO ENLARGE: cheat sheet for stringr ackage"}](https://raw.githubusercontent.com/rstudio/cheatsheets/main/strings.pdf)
-
-
-Beispiele für deren Verwendung mit `mutate()` und Co. sind:
-
-```{r stringr-examples, eval=FALSE}
-# Beispiel: Grossbuchstaben in Spalte "name" in Kleinbuchstaben umwandeln
-# (und nur eindeutige Einträge in Spalte "name" anzeigen)
-mutate(storms, name = str_to_lower(name)) |> distinct(name)
-# Beispiel: Jahrhundert aus Spalte "year" extrahieren
-mutate(storms, century = str_sub(year, 1, 2)) |> distinct(name, century)
- # oder via regulärem Ausdruck
-mutate(storms, century = str_extract(year, "^\\d{2}"))
-mutate(storms, century = str_remove(year, "..$"))
-# Beispiel: Nur Stürme mit "storm" im Status behalten
-filter(storms, str_detect(status, "storm")) |> distinct(name)
-
+```{python}
+career_complete = career.ffill()
+print(career_complete)
 ```
 
-Beachte:
+Möchte man das z.B. nur für die Spalte `title`, so kann man schreiben: `career["title"] = career["title"].ffill()`.
 
-1.  wenn die (Daten)Eingabe einer `stringr` Funktion ein *Vektor* ist, wird die Funktion auf jedes Element des Vektors angewendet und gibt einen Vektor mit den Ergebnissen zurück. (= *vektorisierte Prozessierung* = zentrales Verarbeitungsprinzip in R)
-2.  wenn die Eingabe *kein* String ist (z.B. eine Zahl), wird die Eingabe in einen String umgewandelt und die Funktion auf den entstandenen String angewendet. (= *automatische Typumwandlung*, sogenanntes *coercion* in R)
+## Tabelleninhalte verändern
 
+Um Datentypen oder Inhalte von Zellen zu verändern, gibt es verschiedene Funktionen, je nachdem welchen Datentyp die jeweilige Spalte des Dataframe hat. 
 
-## Reguläre Ausdrücke
+Datentypen verändert man mit der Funktion `astype()`, die den Datentyp einer Spalte ändert. Die Funktion erwartet als Argument den neuen Datentyp, z.B. `int`, `float`, `str`, `bool`, `datetime`, `category`, etc. Ein Beispiel für die Umwandlung der ganzzahligen Spalte `year` in eine Textspalte:
 
-Für komplexe Textverarbeitung werden oft reguläre Ausdrücke verwendet.
-Diese erlauben es, Textmuster zu definieren, die in einem Text gesucht, ersetzt oder extrahiert werden können.
+```{python, eval=FALSE}
+storms["year"] = storms["year"].astype(str)
+```
 
-Für eine Einführung in reguläre Ausdrücke siehe [RegexOne Tutorial](https://www.regexone.com/) oder [RStudio RegEx Cheat Sheet (pdf)](https://rstudio.github.io/cheatsheets/regex.pdf).
+Um die Inhalte von Zellen zu verändern, gibt es unter je nach Datentyp verschiedene Funktionen. Am interessantesten dabei die Funktion für die Manupulation von Textspalten. Hier einige nützliche:
 
+- `str.replace()`: ersetzt einen Teil eines Strings durch einen anderen, beispielsweise würde `df["preis"].str.replace("€", "$")` in der Spalte `preis` eines Dataframes alle Euro-Zeichen durch Dollar-Zeichen ersetzen
+- `str.lower()`, `str.upper()`: wandelt alle Buchstaben in Klein-/Grossbuchstaben um
+- `str.strip()`: entfernt Leerzeichen am Anfang und Ende eines Strings
+- `str.extract()`: extrahiert einen Teil eines Strings, der einem gegebenen regulären Ausdruck entspricht. Will man beispielsweise nur die letzten beiden Stellen der Jahreszahl in der Spalte `year` extrahieren: `storms["year"].str.extract("(\\d{2})$")`. Der jeweils gefundene Wert innerhalb der Klammern wird dabei extrahiert, hier also die letzten beiden Ziffern (`(\\d{2})`) ganz am Ende (`$`) der Jahreszahl.
+- `str.split()`: teilt einen String an einem bestimmten Trennzeichen auf. Hat man beispielsweise einen Dataframe `persons` in dem in der Spalte `name` der volle Name steht, und möchte diesen in eine neue Vor- und Nachnamenspalte auftrennen, kann man das mit `persons[["vorname", "nachname"]] = persons["name"].str.split(" ", expand=True)` erreichen.
 
 :::::::::::::::::::: challenge
+### Reguläre Ausdrücke
 
-## Reguläre Ausdrücke
-
-Betrachten sie noch einmal die beiden `mutate()` Beispiele von oben, in denen das Jahrhundert aus der Spalte "year" mit Hilfe von regulären Ausdrücken extrahiert wird.
-
-*Was genau definieren die beiden regulären Ausdrücke `^\\d{2}` und `..$`?*
-
+*Anstatt wie oben die letzten beiden Ziffern der Jahreszahl zu extrahieren, wollen wir das Jahrhundert extrahieren. Dazu benötigen wir einen regulären Ausdruck, der die ersten beiden Ziffern der Jahreszahl extrahiert. Wie sieht dieser Aufruf dann aus?*
 
 :::::::: solution
-
 ### Lösung
 
-- `^\\d{2}` = "die ersten zwei (`{2}`) Ziffern (`\\d`) am Textanfang (`^`)"
-  - hier genutzt um das Jahrhundert mit `str_extract()` zu extrahieren
-- `..$` = "die letzten zwei beliebigen Zeichen (`..`) am Ende des Textes (`$`)"
-  - hier genutzt um die letzten zwei Zeichen (Jahrzehnt) mit `str_remove()` zu entfernen
+Der reguläre Ausdruck, der die ersten beiden Ziffern der Jahreszahl extrahiert, sieht so aus: `storms["year"].str.extract("^(\\d{2})")`. Der Unterschied zum vorherigen regulären Ausdruck ist das `^`, das den Anfang des Strings markiert. Möchte man dann auch noch das extrahierte Jahrhundert in eine Ganzzahl umwandeln, so kann man noch `.astype(int)` anhängen.
 
 :::::::::::::::::
 
 ::::::::::::::::::::::::::::::
-
-
-
-
-## Daten zusammenführen
-
-Oftmals liegen daten in mehreren Tabellen vor, die zusammengeführt werden müssen, um die Daten zu analysieren.
-Zum Beispiel können Daten in einer Tabelle die Anzahl der Sturmtage pro Jahr enthalten und in einer anderen Tabelle die Kosten für Sturmschäden pro Jahr.
-
-```{r dplyr-join-examples, eval=FALSE}
-# Datensatz mit Sturmschäden pro Jahr (zufällige Werte) für 2015-2024
-costs <-
-  tibble(year = 2015:2024, # Jahresbereich festlegen
-         costs = runif(length(year), 1e6, 1e8)) # Zufallsdaten gleichverteilt erzeugen
-
-# Anzahl der Sturmtage pro Jahr
-stormyDays <-
-  storms |>
-  # Datensatz in Einzeljahre aufteilen
-  group_by(year) |>
-  # nur eine Zeile pro Monat/Jahr Kombination (pro Jahr) behalten
-  distinct(month, day) |>
-  # zählen, wie viele Zeilen pro Jahr noch vorhanden sind
-  count() |>
-  ungroup()
-
-
-# Beispiel (1): Sturmtaginformation (links) mit Kosteninformation (rechts) ergänzen
-# BEACHTE: für Jahre ohne Eintrag in `costs` wird `NA` eingetragen !
-left_join(stormyDays, costs, by = "year") |>
-  # nur die ersten und letzten 3 Zeilen anzeigen
-  slice( c(1:3, (n()-2):n()) )
-
-# Beispiel (2): nur Datensätze für die beides, d.h. Sturmtage als auch Kosten, vorhanden ist
-inner_join(stormyDays, costs, by = "year")
-
-```
-
-
-:::::::::::::::::::: challenge
-
-## Spaltennamen
-
-Studieren sie die [Hilfeseite der join Funktionen](https://dplyr.tidyverse.org/reference/mutate-joins.html) und finden sie heraus, *wie sie die Spaltennamen der beiden Tabellen angeben können*, um die Daten zu verbinden, wenn die gemeinsamen Daten in unterschiedlich benannten Spalten stehen.
-
-:::::::: solution
-
-## Lösung
-
-Das mapping der Spalten erfolgt über einen *benannten Vektor*, d.h. die Spaltennamen der linken Tabelle werden als Elementnamen für die entsprechenden Spaltennamen der rechten Tabelle verwendet:
-
-```{r dplyr-join-examples-solution, eval=FALSE}  
-stormyDays |> 
-  rename( Jahr = year ) |> # Jahresspalte exemplarisch umbenannt
-  filter( Jahr >= 2013 ) |> 
-  # geänderte Sturmtaginformation (links) aus der pipe
-  # mit Kosteninformation (rechts) aus expliziter Tabelle "costs" ergänzen
-  left_join( costs, 
-      # Explizites mapping von costs$year auf die "Jahr" Spalte der linken Tabelle
-      # Beachten sie das quoting der Spaltennamen!
-             by = c(Jahr = "year")
-      # Alternativ kann das mapping auch über eine Funktion erfolgen:
-      # Hier sind keine Anführungszeichen notwendig:
-      #  by = join_by(Jahr = year)
-      ) 
-``` 
-
-:::::::::::::::::
-
-::::::::::::::::::::::::::::::
-
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
-- Speichern sie Daten nur in Variablen zwischen, wenn sie diese Daten mehrfach benötigen.
-- Verwenden sie Pipes (`|>`) um Daten durch eine Reihe von Transformationen zu leiten.
+- In pandas lassen sich sowohl ganze Zeilen, ganze Spalten, oder einzelne Zellbereich(e) bequem manipulieren
+- Oft ist es nötig, die Tabellengestalt zu verändern, etwa von breit zu schmal oder umgekehrt, um Analysen und Transformationen einfacher durchführen zu können
 - Versuchen sie die Datenverarbeitung in kleine, leicht verständliche Schritte zu unterteilen.
-- Vermeiden sie unnötige Schleifen und Schachtelungen, das meiste lässt sich mit Grouping, vektorisierten Operationen und Joins kompakter und eleganter lösen.
-- Auch explizite Elementzugriffe (z.B. `df$col`) und -operationen können i.d.R. effizient durch `dplyr` Funktionen ersetzt werden.
-- Zusammenfassungen der Pakete:
-  - [`dplry` Cheat Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf)
-  - [`tidyr` Cheat Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/tidyr.pdf)
-  - [`stringr` Cheat Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/strings.pdf)
+- Wenn man pandas verwendet, vermeidet man Schleifen und Schachtelungen. Solche Manipulationen macht man in pandas mit dafür geeigneten Funktionsaufrufen. Das meiste lässt sich mit Gruppieren, Aggregieren und Spaltenmanipulation erreichen.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
