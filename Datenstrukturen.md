@@ -23,7 +23,8 @@ exercises: 5
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 Wir gehen in diesem Modul davon aus, dass Sie die Grundlagen der Python-Programmierung kennen, insbesondere
-- die Verwendung von Variablen, Listen und Schleifen´,
+
+- die Verwendung von Variablen, Listen und Schleifen,
 - die Verwendung von Funktionen und Methoden,
 - die Verwendung von Paketen und Modulen,
 - die Verwendung eingebauter Datenstrukturen wie `list`, `dict` und `set`.
@@ -33,6 +34,7 @@ Wenn Sie sich nicht sicher sind, können Sie gerne eines der Python-Tutorials im
 In diesem Modul ist besonders die Verarbeitung tabellarischer Datensätze relevant. Dafür sind die eingebauten Datenstrukturen von Python nicht optimal geeignet. Daher verwenden wir das Paket **[pandas](https://pandas.pydata.org)**, das speziell für die Verarbeitung von tabellarischen Daten entwickelt wurde. Für die Aufgaben in diesem Modul ist es also nötig, zunächst dieses Paket zu installieren (sofern auf Ihrem Gerät noch nicht geschehen) und dann im Python-Skript einzubinden. Die Installation erfolgt in der Regel über den Paketmanager `pip` in der Kommandozeile oder im Terminal mit dem Befehl `pip install pandas`.
 
 Die Einbindung in ein Python-Skript erfolgt dann üblicherweise mit dem Befehl:
+
 
 ``` python
 import pandas as pd
@@ -126,7 +128,6 @@ wird der Datensatz als "tidy" bezeichnet. Im folgenden Bild ist das dies veransc
 ![](https://raw.githubusercontent.com/hadley/r4ds/main/images/tidy-1.png){width="600px" alt="tidy data concept"}
 
 :::::::::::::::::::::::::: challenge
-
 ## Spaltenzugriff
 
 Betrachten sie den Datensatz `marriages` von oben.
@@ -134,7 +135,6 @@ Betrachten sie den Datensatz `marriages` von oben.
 *Wie können Sie nur die Spalte `age` aus dem Datensatz extrahieren?*
 
 :::::::::::::::: solution
-
 ## Antwort
 
 Es gibt dafür unterschiedliche Möglichkeiten, die im Folgenden aufgeführt sind:
@@ -155,18 +155,17 @@ marriages.iloc[:, 1]
 ```
 
 Hinweise:
+
 - Der Zugriff über den Spaltennamen ist in der Regel die bevorzugte Methode, da sie am lesbarsten ist.
 - Der Zugriff über den Index ist weniger lesbar und sollte nur verwendet werden, wenn der Spaltenname nicht bekannt ist oder nicht verwendet werden kann.
 - `loc` und `iloc` sind mächtige Methoden, die ganze Bereiche von Zeilen und Spalten auswählen können, wie z.B. `marriages.loc[1:2, "age"]` liefert Zeilen 1 bis 2 der Spalte `age`. Der Unterschied zwischen `loc` und `iloc` ist, dass `loc` die Zeilen und Spalten über den Indexnamen adressiert, während `iloc` dies mit dem Indexwert macht.
 
 :::::::::::::::::::::::::
-
 ## Datentypen
 
 *Welche Datentypen haben die Spalten des Datensatzes?*
 
 :::::::::::::::: solution
-
 ## Antwort
 
 - `name`: Text (`str`)
@@ -174,7 +173,6 @@ Hinweise:
 - `married`: Wahrheitswert (`bool`) mit `True` für verheiratet und `False` für nicht verheiratet
 
 :::::::::::::::::::::::::
-
 ## Aufbau
 
 *Wieviele Beobachtungen und Variablen hat der Datensatz?*
