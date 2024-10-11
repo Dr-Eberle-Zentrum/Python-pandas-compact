@@ -15,67 +15,107 @@ exercises: 10
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Datenvisualisierung mit `ggplot2`
+- Datenvisualisierung mit Dataframes und `plotnine` in Python
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-Die Visualisierung von Daten ist ein wichtiger Bestandteil der Datenanalyse, da sie es ermöglicht, Muster und Zusammenhänge in den Daten zu erkennen und zu kommunizieren.
-In R wird die Visualisierung von Daten mit dem `ggplot2` Paket durchgeführt, das auf der [*Grammar of Graphics*](https://r4ds.had.co.nz/data-visualisation.html) basiert.
-Hierbei müssen die Daten in tabellarischer Form vorliegen, d.h. jede Zeile entspricht einem Datensatz und jede Spalte einer Variable ("tidy data").
+Die Visualisierung von Daten ist ein wichtiger Bestandteil der Datenanalyse, da sie es ermöglicht, Muster und Zusammenhänge in den Daten zu erkennen und zu kommunizieren. In Python gibt es mehrere Pakete für Datenvisualisierung. Ein beliebtes, das wir auch hier vorstellen werden, ist `plotnine`, das auf *ggplot* und der [*Grammar of Graphics*](https://r4ds.had.co.nz/data-visualisation.html) basiert. Hierbei müssen die Daten in tabellarischer Form vorliegen, d.h. jede Zeile entspricht einem Datensatz und jede Spalte einer Variable ("tidy data").
 
-Die Visualisierung von Daten wird in verschiedene Schichten (z.B. Punkte, Linien, Balken) und Eigenschaften (z.B. x-Achse, y-Achse, Farbe, Form) unterteilt.
-Die Verküpfung von Tabellenspalten mit den Ebenen und Eigenschaften (d.h. Welche Information wird wie fürs Plotting verwendet) erfolgt über das Argument `mapping = ` und die `aes()` Funktion.
-Schichten (z.B. Balken, Linien, Punkte) werden mit `geom_*()` Funktionen hinzugefügt, wobei die Daten für die Schicht über das Argument `data = ` übergeben werden.
+Die Visualisierung von Daten wird in verschiedene Schichten (z.B. Punkte, Linien, Balken) und Eigenschaften (z.B. x-Achse, y-Achse, Farbe, Form) unterteilt. Die Verküpfung von Tabellenspalten mit den Ebenen und Eigenschaften (d.h. Welche Information wird wie fürs Plotting verwendet) erfolgt über die Funktion `aes()`. Geometrische Schichten (z.B. Balken, Linien, Punkte) werden mit `geom_*()` Funktionen hinzugefügt.
 
-Im Folgenden wird ein umfangreiches Beispiel für die Visualisierung von Daten mit `ggplot2` gezeigt, bei dem die Anzahl der Stürme pro Jahr visualisiert wird.
+Im Folgenden wird ein umfangreiches Beispiel für die Visualisierung von Daten mit `plotnine` gezeigt, bei dem die Anzahl der Stürme pro Jahr visualisiert wird.
 
 
-``` r
-# Beispiel: Anzahl der Stürme pro Jahr visualisieren
-
-# Rohdatensatz startet Visualisierungsworkflow
-storms |>
-
-  ########### Datenvorbereitung #############
-
-  # auf einen Eintrag (Zeile) pro Sturm und Jahr reduzieren
-  distinct(year, name) |>
-  # Anzahl der Stürme pro Jahr zählen
-  group_by(year) |>
-  count() |>
-  ungroup() |>
-
-  ########### Datenvisualisierung #############
-
-  # ggplot-Objekt erstellen (Daten via pipe übergeben)
-  ggplot(mapping = aes(x = year, y=n)) + # Verknüpfung von Datenspalten (year, n) und Achsen (x,y)
-  # Diagrammtitel und Achsenbeschriftung
-  labs(title = "Anzahl der Stürme pro Jahr", x = "Jahr", y = "Anzahl") +
-  # grundlegende Diagrammformatierung (Hintergrundfarben, Schriftarten, ...)
-  theme_minimal() +
-  # Balkendiagramm mit Anzahl der Stürme pro Jahr
-  geom_bar(fill="skyblue3", stat = "identity") +
-  # gepunktete horizontale Linie bei 20
-  geom_hline(yintercept = 20, linetype="dotted", col="red") +
-  # Highlighting der Jahre mit mehr als 20 Stürmen
-  geom_vline(data = ~ filter(.x, n>20),  # Datensatz einschränken
-            # (hier `.x` = Platzhalter für Daten aus vorheriger Ebene, d.h. `storms`)
-            aes(xintercept=year), # welche (Teil)Tabellendaten für Position zu verwenden
-            color="red") + # Zusätzliche Formatierung
-  # Jahreszahlen der Jahre mit mehr als 20 Stürmen in schräger Textausrichtung
-  geom_text(data = ~ filter(.x, n>20), # Datensatz einschränken
-            aes(label=year, x=year, y=max(n)), # Daten und Positionen festlegen
-            angle=70, vjust=0.5, hjust=-0.6, size=3, color="red") + # Textformatierung
-  # disable clipping um Jahreszahltexte außerhalb des Diagrammbereichs anzuzeigen
-  coord_cartesian(clip = "off")
+``` python
+import pandas as pd
 ```
 
-<img src="fig/Visualisierung-rendered-ggplot2-examples-1.png" style="display: block; margin: auto;" />
+``` output
+ModuleNotFoundError: No module named 'pandas'
+```
+
+``` python
+# Alle Funktionen des Pakets plotnine importieren
+from plotnine import *
+```
+
+``` output
+ModuleNotFoundError: No module named 'plotnine'
+```
+
+``` python
+# Sturmdaten aus dem Internet laden
+storms = pd.read_csv("https://raw.githubusercontent.com/tidyverse/dplyr/master/data-raw/storms.csv")
+```
+
+``` output
+NameError: name 'pd' is not defined
+```
+
+``` python
+# Zunächst einen Dataframe mit der Anzahl der Stürme pro Jahr erstellen
+storms_per_year = (storms
+    # Duplikate entfernen um nur die Spalten "year" und "name" behalten
+    .drop_duplicates(["year", "name"])
+    # Gruppieren nach Jahr
+    .groupby("year")
+    # Anzahl der Stürme ermitteln
+    .size()
+    # Ergebnis-Index in eine Spalte umwandeln
+    .reset_index(name="n"))
+```
+
+``` output
+NameError: name 'storms' is not defined
+```
+
+``` python
+# Plot erstellen
+plot = (ggplot(storms_per_year, aes(x="year", y="n"))
+    # Diagrammtitel und Achsenbeschriftung
+    + labs(title="Anzahl der Stürme pro Jahr", x="Jahr", y="Anzahl")
+    # grundlegende Diagrammformatierung
+    + theme_minimal()
+    # Balkendiagramm mit Anzahl der Stürme pro Jahr
+    + geom_bar(fill="skyblue", stat="identity")
+    # gepunktete horizontale Linie bei 20
+    + geom_hline(yintercept=20, linetype="dotted", color="red")
+    # Highlighting der Jahre mit mehr als 20 Stürmen
+    + geom_vline(
+        data=lambda x: x[x["n"] > 20],
+        mapping=aes(xintercept="year"),
+        color="red"     # Schriftfarbe rot
+    )
+    # Jahreszahlen der Jahre mit mehr als 20 Stürmen in schräger Textausrichtung
+    + geom_text(
+        data=lambda x: x[x["n"] > 20],
+        mapping=aes(label="year", x="year", y="n"),
+        angle=70,       # Schräge Textausrichtung
+        nudge_y=1,      # Text leicht nach oben versetzen
+        nudge_x=-0.8,   # Text leicht nach links versetzen
+        size=8,         # Schriftgröße 8
+        color="red"     # Schriftfarbe rot
+    )    
+)
+```
+
+``` output
+NameError: name 'ggplot' is not defined
+```
+
+``` python
+# Plot anzeigen
+plot.show()
+```
+
+``` output
+NameError: name 'plot' is not defined
+```
 
 
-``` r
+``` python
 # optional: (zuletzt gemaltes) Diagramm speichern
-ggsave("storms_per_year.png", width=10, height=5, dpi=300)
+plot.save("storms_per_year.png", width=10, height=10, dpi=300)
 ```
 
 
