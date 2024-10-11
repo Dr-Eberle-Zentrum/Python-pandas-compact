@@ -385,28 +385,17 @@ zu IO-Tools</a>.</li>
 </ul></section><section id="Datenverarbeitung"><h2 class="section-heading"><a href="Datenverarbeitung.html">Datenverarbeitung</a></h2>
 <hr class="half-width">
 <ul>
-<li>Speichern sie Daten nur in Variablen zwischen, wenn sie diese Daten
-mehrfach benötigen.</li>
-<li>Verwenden sie Pipes (<code>|&gt;</code>) um Daten durch eine Reihe
-von Transformationen zu leiten.</li>
+<li>In pandas lassen sich sowohl ganze Zeilen, ganze Spalten, oder
+einzelne Zellbereich(e) bequem manipulieren</li>
+<li>Oft ist es nötig, die Tabellengestalt zu verändern, etwa von breit
+zu schmal oder umgekehrt, um Analysen und Transformationen einfacher
+durchführen zu können</li>
 <li>Versuchen sie die Datenverarbeitung in kleine, leicht verständliche
 Schritte zu unterteilen.</li>
-<li>Vermeiden sie unnötige Schleifen und Schachtelungen, das meiste
-lässt sich mit Grouping, vektorisierten Operationen und Joins kompakter
-und eleganter lösen.</li>
-<li>Auch explizite Elementzugriffe (z.B. <code>df$col</code>) und
--operationen können i.d.R. effizient durch <code>dplyr</code> Funktionen
-ersetzt werden.</li>
-<li>Zusammenfassungen der Pakete:
-<ul>
-<li><a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf" class="external-link"><code>dplry</code>
-Cheat Sheet</a></li>
-<li><a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/tidyr.pdf" class="external-link"><code>tidyr</code>
-Cheat Sheet</a></li>
-<li><a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/strings.pdf" class="external-link"><code>stringr</code>
-Cheat Sheet</a></li>
-</ul>
-</li>
+<li>Wenn man pandas verwendet, vermeidet man Schleifen und
+Schachtelungen. Solche Manipulationen macht man in pandas mit dafür
+geeigneten Funktionsaufrufen. Das meiste lässt sich mit Gruppieren,
+Aggregieren und Spaltenmanipulation erreichen.</li>
 </ul></section><section id="Visualisierung"><h2 class="section-heading"><a href="Visualisierung.html">Visualisierung</a></h2>
 <hr class="half-width">
 <ul>
@@ -486,8 +475,8 @@ Cheat Sheet</a>
   "url": "https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/key-points.html",
   "identifier": "https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/key-points.html",
   "dateCreated": "2024-07-15",
-  "dateModified": "2024-10-10",
-  "datePublished": "2024-10-10"
+  "dateModified": "2024-10-11",
+  "datePublished": "2024-10-11"
 }
 
   </script><script>
