@@ -14,15 +14,7 @@ Folgende Dateien werden in den Beispielen verwendet:
 
 Folgende Installationen werden benötigt:
 
-- R version 4.2.0 oder neuer
-- `tidyverse` packages via `install.packages(c("tidyverse", "readxl", "writexl"))`
-  - `tibble` - [Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/dataframe-2.1.pdf) - Tabellendatenstruktur
-  - `magrittr` - [Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/magrittr.pdf) - Pipe Operator `%>%`
-  - `readr`, `readxl`, `writexl` - [Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/data-import.pdf) - Datenimport & -export
-  - `dplyr` - [Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/data-transformation.pdf) - Datentransformation & -verarbeitung
-  - `stringr` - [Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/strings.pdf) - Textmanipulation
-  - `tidyr` - [Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/tidyr.pdf) - Datenbereinigung
-  - `ggplot2` - [Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/data-visualization-2.1.pdf) - Visualisierung
-
-Alle Codebeispiele können in RStudio ausgeführt werden, wenn zuvor `tidyverse` geladen wurde.
-Zum Beispiel via `library(tidyverse)`.
+- Möglichst aktuelle Version von [Python 3](https://www.python.org/) (erstellt und getestet wurde das Material mit Python 3.12)
+- [`pandas`](https://pandas.pydata.org/) Paket via `pip install pandas` in Windows Powershell bzw. Eingabeaufforderung
+- [`plotnine`](https://plotnine.org/) Paket via `pip install plotnine` in Windows Powershell bzw. Eingabeaufforderung
+- Eine Entwicklungsumgebung. Wir empfehlen die Open-Source-Software [Visual Studio Code](https://code.visualstudio.com)

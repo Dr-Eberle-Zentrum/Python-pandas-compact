@@ -12,18 +12,18 @@ type: dataset
 authors:
   - given-names: Martin
     family-names: Raden
-    affiliation: University Tübingen
+    affiliation: University of Tübingen
     orcid: 'https://orcid.org/0000-0002-7926-5911'
   - given-names: Michael
     family-names: Derntl
-    affiliation: University Tübingen
+    affiliation: University of Tübingen
+    orcid: 'https://orcid.org/0000-0002-9475-0093'
 url: 'https://github.com/Dr-Eberle-Zentrum'
 abstract: >-
-  Compact lesson on function from the pandas packages for
-  data import, wrangling and visualization.
+  Compact lesson on functions from the pandas and pandas 
+  packages for data import, wrangling and visualization.
 keywords:
   - Python
   - pandas
-  - lesson
-  - German
+  - plotnine
 license: CC-BY-4.0

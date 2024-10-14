@@ -1,4 +1,4 @@
-# R tidyverse kompakt
+# Python pandas - kompakt
 
 Ein Carpentry-styled Lernmodul als Kurzeinstig für Python-Programmierer*innen in die Verwendung der Pakete `pandas` und `plotnine` für die Datenanalyse und -visualisierung.
 
