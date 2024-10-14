@@ -400,9 +400,9 @@ Aggregieren und Spaltenmanipulation erreichen.</li>
 <hr class="half-width">
 <ul>
 <li>
-<code>ggplot2</code> benötigt einen <code>data.frame</code> als
-Eingabe, welcher “tidy” ist (d.h. eine Zeile pro Beobachtung und eine
-Spalte pro Variable).</li>
+<code>plotnine</code> benötigt einen pandas Dataframe als Eingabe,
+der “tidy” ist (d.h. eine Zeile pro Beobachtung und eine Spalte pro
+Variable).</li>
 <li>Das <code>mapping</code> Argument ermöglicht mittels der
 <code>aes()</code> Funktion die Verknüpfung von Variablen des
 Datensatzes (d.h. Spaltennamen) mit visuellen Eigenschaften (z.B.
@@ -418,12 +418,9 @@ Achsenbeschriftung.</li>
 Diagrammformatierungen (z.B. Hintergrundfarben, Schriftarten).</li>
 <li>Es gibt viele weitere Funktionen und Argumente, um die Darstellung
 von Diagrammen zu verfeinern (z.B. <code>facet_wrap()</code>,
-<code>scale_*</code>, <code>coord_*</code>).</li>
-<li>Diagramme mit <code>ggsave()</code> in beliebigem Dateiformat (PNG,
-PDF, SVG, ..) speichern.</li>
-<li>Ausserdem gibt es viele Erweiterungen für <code>ggplot2</code> (z.B.
-<code>ggplotly</code>, <code>ggrepel</code>), die zusätzliche
-Funktionalitäten oder Visualisierungstypen/-diagramme bieten.</li>
+<code>scale_*()</code>, <code>coord_*()</code>).</li>
+<li>Diagramme können mit <code>save()</code> in beliebigem Dateiformat
+(PNG, PDF, SVG, ..) gespeichert werden.</li>
 <li>Zusammenfassung im <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf" class="external-link"><code>ggplot2</code>
 Cheat Sheet</a>
 </li>
@@ -452,7 +449,7 @@ Cheat Sheet</a>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.7" class="external-link">sandpaper (0.16.7)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/Dr-Eberle-Zentrum/varnish/tree/801bcb40bf3fb18c37950e8d445d79e8aec39af7" class="external-link">varnish (1.0.4)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.8" class="external-link">sandpaper (0.16.8)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/Dr-Eberle-Zentrum/varnish/tree/801bcb40bf3fb18c37950e8d445d79e8aec39af7" class="external-link">varnish (1.0.4)</a></p>
 			</div>
 		</footer>
 </div> <!-- / div.container -->
@@ -475,8 +472,8 @@ Cheat Sheet</a>
   "url": "https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/key-points.html",
   "identifier": "https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/key-points.html",
   "dateCreated": "2024-07-15",
-  "dateModified": "2024-10-11",
-  "datePublished": "2024-10-11"
+  "dateModified": "2024-10-14",
+  "datePublished": "2024-10-14"
 }
 
   </script><script>
