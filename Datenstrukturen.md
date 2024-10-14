@@ -40,10 +40,6 @@ Die Einbindung in ein Python-Skript erfolgt dann üblicherweise mit dem Befehl:
 import pandas as pd
 ```
 
-``` output
-ModuleNotFoundError: No module named 'pandas'
-```
-
 Eine Tabelle in pandas wird über Dataframes (Datentyp `DataFrame`) repräsentiert. Ein Dataframe ist eine zweidimensionale Datenstruktur, die Daten in Zeilen und Spalten organisiert. Jede Spalte eines Dataframe ist ein `Series`-Objekt, das eine Liste von Werten enthält. Ein Dataframe kann als eine Sammlung von `Series`-Objekten betrachtet werden, die alle den gleichen Index haben. Mit Index ist die nullbasierte Zeilennummer oder ein benutzerdefinierter Index gemeint, der die Zeilen des Dataframe identifiziert.
 
 In einem Dataframe entspricht jede Zeile einem Datensatz (oder einer Beobachtung) und jede Spalte einer Variable (oder einem Merkmal) dieses Datensatzes. Damit haben alle Daten in der gleichen Spalte den gleichen Datentyp, z.B. Ganzzahl (`int`), Kommazahl (`float`), Text/String (`str`), Datum (`date`), usw.
@@ -104,18 +100,15 @@ marriages = pd.DataFrame({
     "age": [25, 30, 35],
     "married": [True, False, True]
 })
-```
 
-``` output
-NameError: name 'pd' is not defined
-```
-
-``` python
 print(marriages)
 ```
 
 ``` output
-NameError: name 'marriages' is not defined
+      name  age  married
+0    Alice   25     True
+1      Bob   30    False
+2  Charlie   35     True
 ```
 
 Ziel der Datenverarbeitung  ist es, vorliegende Datensätze so zu transformieren, dass sie für die Analyse und Visualisierung geeignet sind und ein Format wie im obigen Beispiel vorweisen. Wenn das der Fall ist, sprich
