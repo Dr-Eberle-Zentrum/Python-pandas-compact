@@ -18,13 +18,13 @@
   <div class="container-fluid top-nav-container">
     <div class="col-md-8">
       <div class="large-logo">
-        <img id="UT-logo" alt="Universität Tübingen" src="../assets/images/UT-logo.svg"><span class="badge text-bg-danger">
-          <abbr title="This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.">
-            <a href="https://cdh.carpentries.org/the-lesson-life-cycle.html#early-development-pre-alpha-through-alpha" class="external-link alert-link">
-              <i aria-hidden="true" class="icon" data-feather="alert-octagon" style="border-radius: 5px"></i>
-              Pre-Alpha
+        <img id="UT-logo" alt="Universität Tübingen" src="../assets/images/UT-logo.svg"><span class="badge text-bg-info">
+          <abbr title="This lesson is in the beta phase, which means that it is ready for teaching by instructors outside of the original author team.">
+            <a href="https://cdh.carpentries.org/the-lesson-life-cycle.html#polishing-beta-stage" class="external-link alert-link">
+              <i aria-hidden="true" class="icon" data-feather="alert-circle" style="border-radius: 5px"></i>
+              Beta
             </a>
-            <span class="visually-hidden">This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.</span>
+            <span class="visually-hidden">This lesson is in the beta phase, which means that it is ready for teaching by instructors outside of the original author team.</span>
           </abbr>
         </span>
 
@@ -415,40 +415,22 @@ deutsche CSV Datei</li>
 Microsoft Excel Datei</li>
 </ul></section><section><h2 class="section-heading" id="voraussetzungen">Voraussetzungen<a class="anchor" aria-label="anchor" href="#voraussetzungen"></a></h2>
 <hr class="half-width"><p>Folgende Installationen werden benötigt:</p>
-<ul><li>R version 4.2.0 oder neuer</li>
+<ul><li>Möglichst aktuelle Version von <a href="https://www.python.org/" class="external-link">Python 3</a> (erstellt und getestet wurde
+das Material mit Python 3.12)</li>
 <li>
-<code>tidyverse</code> packages via
-<code>install.packages(c("tidyverse", "readxl", "writexl"))</code>
-<ul><li>
-<code>tibble</code> - <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/master/dataframe-2.1.pdf" class="external-link">Cheatsheet</a>
-- Tabellendatenstruktur</li>
+<a href="https://pandas.pydata.org/" class="external-link"><code>pandas</code></a> Paket
+via <code>pip install pandas</code> in Windows Powershell bzw.
+Eingabeaufforderung</li>
 <li>
-<code>magrittr</code> - <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/master/magrittr.pdf" class="external-link">Cheatsheet</a>
-- Pipe Operator <code>%&gt;%</code>
-</li>
-<li>
-<code>readr</code>, <code>readxl</code>, <code>writexl</code> - <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/master/data-import.pdf" class="external-link">Cheatsheet</a>
-- Datenimport &amp; -export</li>
-<li>
-<code>dplyr</code> - <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/master/data-transformation.pdf" class="external-link">Cheatsheet</a>
-- Datentransformation &amp; -verarbeitung</li>
-<li>
-<code>stringr</code> - <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/master/strings.pdf" class="external-link">Cheatsheet</a>
-- Textmanipulation</li>
-<li>
-<code>tidyr</code> - <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/master/tidyr.pdf" class="external-link">Cheatsheet</a>
-- Datenbereinigung</li>
-<li>
-<code>ggplot2</code> - <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/master/data-visualization-2.1.pdf" class="external-link">Cheatsheet</a>
-- Visualisierung</li>
-</ul></li>
-</ul><p>Alle Codebeispiele können in RStudio ausgeführt werden, wenn zuvor
-<code>tidyverse</code> geladen wurde. Zum Beispiel via
-<code><a href="https://tidyverse.tidyverse.org" class="external-link">library(tidyverse)</a></code>. <!--
+<a href="https://plotnine.org/" class="external-link"><code>plotnine</code></a> Paket via
+<code>pip install plotnine</code> in Windows Powershell bzw.
+Eingabeaufforderung</li>
+<li>Eine Entwicklungsumgebung. Wir empfehlen die Open-Source-Software <a href="https://code.visualstudio.com" class="external-link">Visual Studio Code</a> <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
- --></p>
-</section></section></main><nav class="bottom-pagination mx-md-4" aria-label="Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
+ -->
+</li>
+</ul></section></section></main><nav class="bottom-pagination mx-md-4" aria-label="Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link float-end" href="../instructor/Datenstrukturen.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
@@ -491,7 +473,7 @@ any links that you are not going to use.
   "inLanguage": "de",
   "dct:conformsTo": "https://bioschemas.org/profiles/TrainingMaterial/1.0-RELEASE",
   "description": "A Carpentries Lesson teaching foundational data and coding skills to researchers worldwide",
-  "keywords": "Python, pandas, Überblick",
+  "keywords": "Python, pandas, plotnine, Datenanalyse, Datenvisualisierung",
   "name": "Python pandas - kompakt",
   "creativeWorkStatus": "active",
   "url": "https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/instructor/index.html",

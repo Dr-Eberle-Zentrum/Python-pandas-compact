@@ -16,29 +16,29 @@ lang: de # prepare for translation integration into sandpaper
 varnish: Dr-Eberle-Zentrum/varnish
 
 # Overall title for pages.
-title: 'Python pandas - kompakt' # FIXME
+title: 'Python pandas - kompakt'
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
 created: 2024-07-15 # FIXME
 
 # Comma-separated list of keywords for the lesson
-keywords: 'Python, pandas, Überblick' # FIXME
+keywords: 'Python, pandas, plotnine, Datenanalyse, Datenvisualisierung'
 
 # Life cycle stage of the lesson
 # possible values: pre-alpha, alpha, beta, stable
-life_cycle: 'pre-alpha' # FIXME
+life_cycle: 'beta' # FIXME
 
 # License of the lesson
 license: 'CC-BY 4.0'
 
 # Link to the source repository for this lesson
-source: 'https://github.com/Dr-Eberle-Zentrum/Python-pandas-compact' # FIXME
+source: 'https://github.com/Dr-Eberle-Zentrum/Python-pandas-compact'
 
 # Default branch of your lesson
 branch: 'main'
 
 # Who to contact if there are any issues
-contact: 'info@eberle-zentrum.uni-tuebingen.de' # FIXME
+contact: 'info@eberle-zentrum.uni-tuebingen.de'
 
 # Navigation ------------------------------------------------
 #
