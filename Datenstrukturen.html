@@ -365,11 +365,6 @@ dem Befehl:</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre>
 </div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>ModuleNotFoundError: No module named 'pandas'</code></pre>
-</div>
 <p>Eine Tabelle in pandas wird über Dataframes (Datentyp
 <code>DataFrame</code>) repräsentiert. Ein Dataframe ist eine
 zweidimensionale Datenstruktur, die Daten in Zeilen und Spalten
@@ -443,29 +438,24 @@ werden, z.B. aus Dictionarys (<code>dict</code>) und Listen
 mittels eines Dictionarys, dessen Schlüssel den Spaltennamen des
 Dataframes entsprechen, und dessen Werte jeweils Listen für die Inhalte
 (Zeilen) der entsprechenden der Spalten enthalten:</p>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>marriages <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>    <span class="st">"name"</span>: [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>],</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>    <span class="st">"age"</span>: [<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>],</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>    <span class="st">"married"</span>: [<span class="va">True</span>, <span class="va">False</span>, <span class="va">True</span>]</span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>})</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>marriages <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>    <span class="st">"name"</span>: [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>],</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>    <span class="st">"age"</span>: [<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>],</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>    <span class="st">"married"</span>: [<span class="va">True</span>, <span class="va">False</span>, <span class="va">True</span>]</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>})</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="bu">print</span>(marriages)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>NameError: name 'pd' is not defined</code></pre>
-</div>
-<div class="codewrapper sourceCode" id="cb6">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="bu">print</span>(marriages)</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>NameError: name 'marriages' is not defined</code></pre>
+<pre class="output" tabindex="0"><code>      name  age  married
+0    Alice   25     True
+1      Bob   30    False
+2  Charlie   35     True</code></pre>
 </div>
 <p>Ziel der Datenverarbeitung ist es, vorliegende Datensätze so zu
 transformieren, dass sie für die Analyse und Visualisierung geeignet
@@ -495,24 +485,24 @@ extrahieren?</em></p>
   Antwort
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Es gibt dafür unterschiedliche Möglichkeiten, die im Folgenden
 aufgeführt sind:</p>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># Extrahiert die Spalte als Liste von Werten (in Pandas der Datentyp Series)</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>marriages[<span class="st">"age"</span>]</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co"># Alternative Schreibweise, die möglich ist, wenn der Spaltenname keine Leerzeichen oder Sonderzeichen enthält</span></span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>marriages.age</span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="co"># Pandas erlaubt Zugriff auch über .loc[]</span></span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>marriages.loc[:, <span class="st">"age"</span>]</span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="co"># ... und indexbasiert über .iloc[] (hier: 1 steht für die zweite Spalte, da der Index 0-basiert ist)</span></span>
-<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>marriages.iloc[:, <span class="dv">1</span>]</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Extrahiert die Spalte als Liste von Werten (in Pandas der Datentyp Series)</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>marriages[<span class="st">"age"</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co"># Alternative Schreibweise, die möglich ist, wenn der Spaltenname keine Leerzeichen oder Sonderzeichen enthält</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>marriages.age</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co"># Pandas erlaubt Zugriff auch über .loc[]</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>marriages.loc[:, <span class="st">"age"</span>]</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co"># ... und indexbasiert über .iloc[] (hier: 1 steht für die zweite Spalte, da der Index 0-basiert ist)</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>marriages.iloc[:, <span class="dv">1</span>]</span></code></pre>
 </div>
 <p>Hinweise:</p>
 <ul><li>Der Zugriff über den Spaltennamen ist in der Regel die bevorzugte
@@ -550,7 +540,7 @@ Indexwert macht.</li>
   Antwort
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <ul><li>
 <code>name</code>: Text (<code>str</code>)</li>
@@ -584,7 +574,7 @@ verheiratet</li>
   Antwort
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <ul><li>Beobachtungen: <strong>4</strong> = Anzahl der Zeilen bzw. Länge der
 Spalten</li>
