@@ -7,9 +7,7 @@ exercises: 10
 
 
 
-``` output
-ModuleNotFoundError: No module named 'plotnine'
-```
+
 
 :::::::::::::::::::::::::::::::::::::: questions
 
@@ -34,13 +32,7 @@ Im Folgenden wird ein umfangreiches Beispiel für die Visualisierung von Daten m
 import pandas as pd
 # Alle Funktionen des Pakets plotnine importieren:
 from plotnine import *
-```
 
-``` output
-ModuleNotFoundError: No module named 'plotnine'
-```
-
-``` python
 # Sturmdaten aus dem Internet laden
 storms = pd.read_csv("https://raw.githubusercontent.com/tidyverse/dplyr/master/data-raw/storms.csv")
 
@@ -85,20 +77,12 @@ plot = (ggplot(storms_per_year, mapping=aes(x="year", y="storm_count"))
         color="red"     # Schriftfarbe rot
     )    
 )
-```
 
-``` output
-NameError: name 'ggplot' is not defined
-```
-
-``` python
 # Plot anzeigen
 plot.show()
 ```
 
-``` output
-NameError: name 'plot' is not defined
-```
+<img src="fig/Visualisierung-rendered-unnamed-chunk-2-1.png" width="613" style="display: block; margin: auto;" />
 
 
 ``` python
@@ -148,19 +132,10 @@ plot = (ggplot(mesaurements, mapping=aes(x="long", y="lat", color="status"))
         color="Status" # ansonsten wird status kleingeschrieben
     )
 )   
-```
-
-``` output
-NameError: name 'ggplot' is not defined
-```
-
-``` python
 plot.show()
 ```
 
-``` output
-NameError: name 'plot' is not defined
-```
+<img src="fig/Visualisierung-rendered-unnamed-chunk-5-3.png" width="613" style="display: block; margin: auto;" />
 
 Alternativ zu `+ labs()` können die se Informationen auch separat mit den Funktionen `geom_title()`, `geom_xlab()`, `geom_ylab()` und `geom_color()` hinzugefügt werden. Sie können auch versuchen, alle Sturmmessungen zu visualisieren, anstatt nur die letzten Messungen pro Sturm zu verwenden, dann sind die Sturmpfade sichtbar.
 
