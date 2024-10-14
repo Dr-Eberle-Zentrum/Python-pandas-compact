@@ -6,6 +6,8 @@ exercises: 10
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+install.packages("reticulate", quiet=T)
+library(reticulate)
 # load tidyverse
 suppressPackageStartupMessages(library(tidyverse))
 ```
