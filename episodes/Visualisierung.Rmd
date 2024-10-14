@@ -10,6 +10,11 @@ knitr::opts_chunk$set(echo = TRUE)
 suppressPackageStartupMessages(library(tidyverse))
 ```
 
+```{python, echo=FALSE}
+import pandas as pd
+# Alle Funktionen des Pakets plotnine importieren:
+from plotnine import *
+```
 
 :::::::::::::::::::::::::::::::::::::: questions
 
@@ -25,14 +30,13 @@ suppressPackageStartupMessages(library(tidyverse))
 
 Die Visualisierung von Daten ist ein wichtiger Bestandteil der Datenanalyse, da sie es ermöglicht, Muster und Zusammenhänge in den Daten zu erkennen und zu kommunizieren. In Python gibt es mehrere Pakete für Datenvisualisierung. Ein beliebtes, das wir auch hier vorstellen werden, ist `plotnine`, das auf *ggplot* und der [*Grammar of Graphics*](https://r4ds.had.co.nz/data-visualisation.html) basiert. Hierbei müssen die Daten in tabellarischer Form vorliegen, d.h. jede Zeile entspricht einem Datensatz und jede Spalte einer Variable ("tidy data").
 
-Die Visualisierung von Daten wird in verschiedene Schichten (z.B. Punkte, Linien, Balken) und Eigenschaften (z.B. x-Achse, y-Achse, Farbe, Form) unterteilt. Die Verküpfung von Tabellenspalten mit den Ebenen und Eigenschaften (d.h. Welche Information wird wie fürs Plotting verwendet) erfolgt über die Funktion `aes()`. Geometrische Schichten (z.B. Balken, Linien, Punkte) werden mit `geom_*()` Funktionen hinzugefügt.
+Die Visualisierung von Daten wird in verschiedene Schichten (z.B. Punkte, Linien, Balken) und Eigenschaften (z.B. x-Achse, y-Achse, Farbe, Form) unterteilt. Die Verküpfung von Tabellenspalten mit den Ebenen und Eigenschaften (d.h. Welche Information wird wie fürs Plotting verwendet) erfolgt über die Funktion `aes()`, was für *aesthetic mapping* steht. Geometrische Schichten (z.B. Balken, Linien, Punkte) werden mit `geom_*()` Funktionen hinzugefügt.
 
 Im Folgenden wird ein umfangreiches Beispiel für die Visualisierung von Daten mit `plotnine` gezeigt, bei dem die Anzahl der Stürme pro Jahr visualisiert wird.
 
 ```{python}
 import pandas as pd
-
-# Alle Funktionen des Pakets plotnine importieren
+# Alle Funktionen des Pakets plotnine importieren:
 from plotnine import *
 
 # Sturmdaten aus dem Internet laden
@@ -45,12 +49,15 @@ storms_per_year = (storms
     # Gruppieren nach Jahr
     .groupby("year")
     # Anzahl der Stürme ermitteln
-    .size()
-    # Ergebnis-Index in eine Spalte umwandeln
-    .reset_index(name="n"))
+    .agg({"name": "count"})
+    # Index zurücksetzen
+    .reset_index()
+    # Anzahl-Spalte umbenennen in "storm_count"
+    .rename(columns={"name": "storm_count"})
+)
 
 # Plot erstellen
-plot = (ggplot(storms_per_year, aes(x="year", y="n"))
+plot = (ggplot(storms_per_year, mapping=aes(x="year", y="storm_count"))
     # Diagrammtitel und Achsenbeschriftung
     + labs(title="Anzahl der Stürme pro Jahr", x="Jahr", y="Anzahl")
     # grundlegende Diagrammformatierung
@@ -61,14 +68,14 @@ plot = (ggplot(storms_per_year, aes(x="year", y="n"))
     + geom_hline(yintercept=20, linetype="dotted", color="red")
     # Highlighting der Jahre mit mehr als 20 Stürmen
     + geom_vline(
-        data=lambda x: x[x["n"] > 20],
+        data=lambda x: x[x["storm_count"] > 20],
         mapping=aes(xintercept="year"),
         color="red"     # Schriftfarbe rot
     )
     # Jahreszahlen der Jahre mit mehr als 20 Stürmen in schräger Textausrichtung
     + geom_text(
-        data=lambda x: x[x["n"] > 20],
-        mapping=aes(label="year", x="year", y="n"),
+        data=lambda x: x[x["storm_count"] > 20],
+        mapping=aes(label="year", x="year", y="storm_count"),
         angle=70,       # Schräge Textausrichtung
         nudge_y=1,      # Text leicht nach oben versetzen
         nudge_x=-0.8,   # Text leicht nach links versetzen
@@ -79,77 +86,72 @@ plot = (ggplot(storms_per_year, aes(x="year", y="n"))
 
 # Plot anzeigen
 plot.show()
-``` 
+```
 
 ```{python, eval=FALSE}
-# optional: (zuletzt gemaltes) Diagramm speichern
+# optional: Diagramm als Bilddatei speichern
 plot.save("storms_per_year.png", width=10, height=10, dpi=300)
 ```
 
+Als Nachschlagewerk für alle verfügbaren und im Beispiel verwendeten Funktionen empfiehlt sich die [plotnine Dokumentation](https://plotnine.org/reference), in der die Funktionen gruppiert nach deren Zweck gelistet und detailliert beschrieben sind.
 
-Als Nachschlagewerk empfiehlt sich das offizielle Cheat Sheet des `ggplot2` Pakets, welches die wichtigsten Funktionen und Argumente übersichtlich darstellt: 
+Einen empfehlenswerten Cheatsheet für plotnine gibt es leider nicht, aber es gibt ein [Cheatsheet für ggplot2](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf), das einen guten Überblick über die ggplot-Funktionen enthält. Das Cheatsheet enthält einige für die Programmiersprache R spezifische Zeilen, aber die meisten Funktionen sind auch in plotnine verfügbar mit gleicher oder ähnlicher Syntax in Python:
 
-[![ggplot2 cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/pngs/thumbnails/data-visualization-cheatsheet-thumbs.png){width="100%" alt="CLICK TO ENLARGE: cheat sheet for ggplot2 ackage"}](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
+[![ggplot2 cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/pngs/thumbnails/data-visualization-cheatsheet-thumbs.png){width="100%" alt="Klicken zum Herunterladen: Cheatsheet für ggplot2"}](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
 
 ::::::::::::: challenge
-
 ## Sturmposition visualisieren
 
 Zeichnen sie ein Punktdiagram, welches für folgenden Datensatz 
 
-- Länge (x-Achse) und Breite (y-Achse) der Messung zeigt und die Punkte anhand des Sturmstatus einfärbt,
-- die Achsen mit "Länge" und "Breite" beschriftet, und
+- Längengrad (x-Achse) und Breitengrad (y-Achse) der Messung zeigt und die Punkte anhand des Sturmstatus einfärbt,
+- die Achsen mit "Längengrad" und "Breitengrad" beschriftet, und
 - den Diagrammtitel "Sturmposition" hat.
 
 
-```{r ggplot2-exercises, eval=FALSE}
-storms |> 
-  group_by(name,year) |> 
-  slice_tail(n=1) |> 
-  # .. TODO: ggplot2 code hier einfügen ..
+```{python, eval=FALSE}
+mesaurements = storms.drop_duplicates(["name", "year"], keep="last")
+plot = (ggplot(
+    # TODO: Plot erstellen
+  )
+)
+plot.show()
 ```
 
 
 :::::: solution
+## Lösung
 
-```{r ggplot2-exercises-solution}
-storms |> 
-  group_by(name,year) |> 
-  slice_tail(n=1) |> 
-  ggplot(mapping = aes(x = long, y = lat, color = status)) +
-  geom_point() +
-  labs(
-    title="Sturmposition",
-    x="Länge",
-    y="Breite",
-    color="Status" # ansonsten klein geschrieben
-  )
-# alternatively
-# geom_title("Sturmposition") + geom_xlab("Länge") + geom_ylab("Breite") + geom_color("Status")
-
+```{python}
+mesaurements = storms.drop_duplicates(["name", "year"], keep="last")
+plot = (ggplot(mesaurements, mapping=aes(x="long", y="lat", color="status"))
+    + geom_point()
+    + labs(
+        title="Sturmposition", 
+        x="Längengrad", 
+        y="Breitengrad",
+        color="Status" # ansonsten wird status kleingeschrieben
+    )
+)   
+plot.show()
 ```
+
+Alternativ zu `+ labs()` können die se Informationen auch separat mit den Funktionen `geom_title()`, `geom_xlab()`, `geom_ylab()` und `geom_color()` hinzugefügt werden. Sie können auch versuchen, alle Sturmmessungen zu visualisieren, anstatt nur die letzten Messungen pro Sturm zu verwenden, dann sind die Sturmpfade sichtbar.
 
 :::::::::::::::
 
 :::::::::::::::::::::::
 
 
-
 ::::::::::::::::::::::::::::::::::::: keypoints
 
-- `ggplot2` benötigt einen `data.frame` als Eingabe, welcher "tidy" ist (d.h. eine Zeile pro Beobachtung und eine Spalte pro Variable).
+- `plotnine` benötigt einen pandas Dataframe als Eingabe, der "tidy" ist (d.h. eine Zeile pro Beobachtung und eine Spalte pro Variable).
 - Das `mapping` Argument ermöglicht mittels der `aes()` Funktion die Verknüpfung von Variablen des Datensatzes (d.h. Spaltennamen) mit visuellen Eigenschaften (z.B. x-Achse, Farbe, Größe).
 - `geom_*` Funktionen fügen dem Plot Schichten hinzu (z.B. Punkte, Linien, Balken).
 - `labs()` ermöglicht die Anpassung von Diagrammtitel und Achsenbeschriftung.
 - `theme_*` Funktionen ermöglichen die Anpassung genereller Diagrammformatierungen (z.B. Hintergrundfarben, Schriftarten).
-- Es gibt viele weitere Funktionen und Argumente, um die Darstellung von Diagrammen zu verfeinern (z.B. `facet_wrap()`, `scale_*`, `coord_*`).
-- Diagramme mit `ggsave()` in beliebigem Dateiformat (PNG, PDF, SVG, ..) speichern.
-- Ausserdem gibt es viele Erweiterungen für `ggplot2` (z.B. `ggplotly`, `ggrepel`), die zusätzliche Funktionalitäten oder Visualisierungstypen/-diagramme bieten.
+- Es gibt viele weitere Funktionen und Argumente, um die Darstellung von Diagrammen zu verfeinern (z.B. `facet_wrap()`, `scale_*()`, `coord_*()`).
+- Diagramme können mit `save()` in beliebigem Dateiformat (PNG, PDF, SVG, ..) gespeichert werden.
 - Zusammenfassung im [`ggplot2` Cheat Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
------------------------------------------------
-
-Dieses Dokument wurde mit Unterstützung von GitHub Copilot erstellt, einem KI-gestützten Autocompletion-Tool, das auf der OpenAI GPT-3-Technologie basiert.
-
