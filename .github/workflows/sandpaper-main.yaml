@@ -45,8 +45,8 @@ jobs:
 
       - name: "MR: Set up additional R dependencies"
         uses: r-lib/actions/setup-r-dependencies@v2
-        cache: false
         with:
+          cache: false
           extra-packages: |
             any::reticulate
 
