@@ -7,6 +7,7 @@ exercises: 10
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 # reticulate package is required for Python code chunks
+install.packages("reticulate", quiet=T)
 library("reticulate")
 ```
 
