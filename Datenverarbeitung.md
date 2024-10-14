@@ -169,7 +169,7 @@ Eine Lösung, die alle Arbeitsschritte in einer Zeile zusammenfasst, könnte so 
 ergebnis = storms[storms['year'] < 1980][['name', 'year', 'status']].drop_duplicates().sort_values(by=['year', 'status'])
 ```
 
-Diese Lösung ist durch die Verkettung der Arbeitsschritte in einer Zeile kürzer und kompakter, aber auch schwerer zu lesen. Um das übersuchtlich zu halten, kann man die Arbeitsschritte auch in mehreren Zeilen schreiben. In Python setzt man dazu entweder den mehrzeilige Befehl in eine umgreifende Klammer wie hier:
+Diese Lösung ist durch Verkettung der Funktionsaufrufe (das sog. *method chaining*) in einer Zeile kürzer und kompakter, kann aber auch schwerer zu lesen. Um das übersichtlicher zu gestalten, kann man die Arbeitsschritte auch in mehreren Zeilen miteinander verketten. In Python setzt man dazu entweder den mehrzeiligen Befehl in eine umgreifende Klammer wie hier:
 
 
 ``` python
@@ -224,6 +224,8 @@ storms \
 
 [129 rows x 3 columns]
 ```
+
+Beim Verketten der Arbeitsschritte wird ein Funktionsergebnis jeweils mit der nächsten Funktion weiterverabeitet. Man spart dadurch Zwischenvariablen und die Kette erlaubt es, aufgrund der aneinandergereiten Funktionsnamen den Verarbeitungsworflow sozusagen zu "lesen".
 
 :::::::::::::::::::::
 
