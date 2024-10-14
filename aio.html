@@ -850,7 +850,7 @@ beim Aufruf der Funktion angegeben werden?</em></p>
   Antwort
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Die Standardwerte sind: Komma für Spaltentrennzeichen, Punkt für
 Dezimaltrennzeichen, kein Tausendertrennzeichen, und UTF-8 für die
@@ -884,7 +884,7 @@ sich der Unterschied?</em></p>
   Antwort
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Die Datensätze haben unterschiedliche Größen:</p>
 <ul>
@@ -1334,11 +1334,12 @@ könnte so aussehen:</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>ergebnis <span class="op">=</span> storms[storms[<span class="st">'year'</span>] <span class="op">&lt;</span> <span class="dv">1980</span>][[<span class="st">'name'</span>, <span class="st">'year'</span>, <span class="st">'status'</span>]].drop_duplicates().sort_values(by<span class="op">=</span>[<span class="st">'year'</span>, <span class="st">'status'</span>])</span></code></pre>
 </div>
-<p>Diese Lösung ist durch die Verkettung der Arbeitsschritte in einer
-Zeile kürzer und kompakter, aber auch schwerer zu lesen. Um das
-übersuchtlich zu halten, kann man die Arbeitsschritte auch in mehreren
-Zeilen schreiben. In Python setzt man dazu entweder den mehrzeilige
-Befehl in eine umgreifende Klammer wie hier:</p>
+<p>Diese Lösung ist durch Verkettung der Funktionsaufrufe (das sog.
+<em>method chaining</em>) in einer Zeile kürzer und kompakter, kann aber
+auch schwerer zu lesen. Um das übersichtlicher zu gestalten, kann man
+die Arbeitsschritte auch in mehreren Zeilen miteinander verketten. In
+Python setzt man dazu entweder den mehrzeiligen Befehl in eine
+umgreifende Klammer wie hier:</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1395,6 +1396,11 @@ Backslash:</p>
 
 [129 rows x 3 columns]</code></pre>
 </div>
+<p>Beim Verketten der Arbeitsschritte wird ein Funktionsergebnis jeweils
+mit der nächsten Funktion weiterverabeitet. Man spart dadurch
+Zwischenvariablen und die Kette erlaubt es, aufgrund der
+aneinandergereiten Funktionsnamen den Verarbeitungsworflow sozusagen zu
+“lesen”.</p>
 </div>
 </div>
 </div>
