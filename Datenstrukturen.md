@@ -196,5 +196,6 @@ Hinweise:
 - Ein Datensatz ist "tidy", 
   - wenn jede Zeile einem Datensatz und jede Spalte einer Variable entspricht. 
   - Vereinfacht: wenn man beim Visualisieren der Daten nur jeweils eine Zeile pro Datenpunkt benötigt und keine doppelt verwendet wird.
+- Das [pandas Cheatsheet](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf) kann helfen, die Funktionen und Methoden von Pandas zu verstehen und zu nutzen.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::

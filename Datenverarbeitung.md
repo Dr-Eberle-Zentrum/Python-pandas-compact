@@ -483,5 +483,6 @@ Der reguläre Ausdruck, der die ersten beiden Ziffern der Jahreszahl extrahiert,
 - Oft ist es nötig, die Tabellengestalt zu verändern, etwa von breit zu schmal oder umgekehrt, um Analysen und Transformationen einfacher durchführen zu können
 - Versuchen sie die Datenverarbeitung in kleine, leicht verständliche Schritte zu unterteilen.
 - Wenn man pandas verwendet, vermeidet man Schleifen und Schachtelungen. Solche Manipulationen macht man in pandas mit dafür geeigneten Funktionsaufrufen. Das meiste lässt sich mit Gruppieren, Aggregieren und Spaltenmanipulation erreichen.
+- Das [pandas Cheatsheet](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf) kann helfen, die Funktionen und Methoden von Pandas zu verstehen und zu nutzen.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
