@@ -44,7 +44,7 @@ Auswahl konkreter Zeilen via Index geht mit der Funktion `.loc[]` und der Überg
 
 Hier ist mehrmals der Begriff Index in Bezug auf die Zeilen eines Dataframe vorgekommen. In einem Dataframe ist jeder Eintrag (Zeile) mit einem Index versehen, der standardmäßig mit 0 beginnt und um 1 erhöht wird. Dieser Index ist eine eindeutige Nummer, die jede Zeile im Dataframe identifiziert. Wenn nun durch Filtern oder andere Operationen Zeilen entfernt werden, bleibt der Index erhalten und wird nicht neu sortiert. Das bedeutet, dass der Index nicht mehr mit der Zeilennummer übereinstimmen muss. Wenn Sie also eine bestimmte Zeile auswählen möchten, sollten Sie den Index verwenden, nicht die Zeilennummer. Um das zu illustrieren:
 
-```{python, include=FALSE}
+```{python, echo=FALSE}
 import pandas as pd
 storms = pd.read_csv("https://raw.githubusercontent.com/tidyverse/dplyr/master/data-raw/storms.csv")
 ```
@@ -150,7 +150,7 @@ Eine Lösung, die alle Arbeitsschritte in einer Zeile zusammenfasst, könnte so 
 ergebnis = storms[storms['year'] < 1980][['name', 'year', 'status']].drop_duplicates().sort_values(by=['year', 'status'])
 ```
 
-Diese Lösung ist durch die Verkettung der Arbeitsschritte in einer Zeile kürzer und kompakter, aber auch schwerer zu lesen. Um das übersuchtlich zu halten, kann man die Arbeitsschritte auch in mehreren Zeilen schreiben. In Python setzt man dazu entweder den mehrzeilige Befehl in eine umgreifende Klammer wie hier:
+Diese Lösung ist durch Verkettung der Funktionsaufrufe (das sog. *method chaining*) in einer Zeile kürzer und kompakter, kann aber auch schwerer zu lesen. Um das übersichtlicher zu gestalten, kann man die Arbeitsschritte auch in mehreren Zeilen miteinander verketten. In Python setzt man dazu entweder den mehrzeiligen Befehl in eine umgreifende Klammer wie hier:
 
 ```{python}
 (storms
@@ -169,6 +169,8 @@ storms \
   .drop_duplicates() \
   .sort_values(by=['year', 'status'])
 ```
+
+Beim Verketten der Arbeitsschritte wird ein Funktionsergebnis jeweils mit der nächsten Funktion weiterverabeitet. Man spart dadurch Zwischenvariablen und die Kette erlaubt es, aufgrund der aneinandergereiten Funktionsnamen den Verarbeitungsworflow sozusagen zu "lesen".
 
 :::::::::::::::::::::
 
