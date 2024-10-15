@@ -8,6 +8,7 @@ Folgende Dateien werden in den Beispielen verwendet:
 
 - [storms-2019-2021.csv](data/storms-2019-2021.csv) - deutsche CSV Datei
 - [storms-2019-2021.xlsx](data/storms-2019-2021.xlsx) - Microsoft Excel Datei
+- https://raw.githubusercontent.com/tidyverse/dplyr/master/data-raw/storms.csv - Vollständige Datei mit  Sturmmessungen von 1975 bis 2022
 
 ## Voraussetzungen
 

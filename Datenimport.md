@@ -48,7 +48,7 @@ Hier ein Beispiel, in dem eine CSV-Datei aus dem Internet geladen und der entspr
 
 
 ``` python
-# CSV-Datei aus dem Internet laden und in die Variable web_data speichern
+# CSV-Datei mit allen Sturmdaten 1975-2022 aus dem Internet laden und in die Variable web_data speichern
 web_data = pd.read_csv("https://raw.githubusercontent.com/tidyverse/dplyr/master/data-raw/storms.csv")
 
 # Geben wir den Dataframe aus
