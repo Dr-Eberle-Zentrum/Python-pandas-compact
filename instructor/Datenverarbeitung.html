@@ -395,88 +395,69 @@ sortiert. Das bedeutet, dass der Index nicht mehr mit der Zeilennummer
 übereinstimmen muss. Wenn Sie also eine bestimmte Zeile auswählen
 möchten, sollten Sie den Index verwenden, nicht die Zeilennummer. Um das
 zu illustrieren:</p>
-<div class="codewrapper">
-<h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>ModuleNotFoundError: No module named 'pandas'</code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>NameError: name 'pd' is not defined</code></pre>
-</div>
-<div class="codewrapper sourceCode" id="cb3">
+<div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>persons <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>    <span class="st">"name"</span>: [<span class="st">"John"</span>, <span class="st">"Paula"</span>, <span class="st">"Georgia"</span>, <span class="st">"Ringo"</span>],</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>    <span class="st">"age"</span>: [<span class="dv">45</span>, <span class="dv">17</span>, <span class="dv">20</span>, <span class="dv">24</span>]</span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>})</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>persons <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>    <span class="st">"name"</span>: [<span class="st">"John"</span>, <span class="st">"Paula"</span>, <span class="st">"Georgia"</span>, <span class="st">"Ringo"</span>],</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>    <span class="st">"age"</span>: [<span class="dv">45</span>, <span class="dv">17</span>, <span class="dv">20</span>, <span class="dv">24</span>]</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>})</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="bu">print</span>(persons)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>NameError: name 'pd' is not defined</code></pre>
-</div>
-<div class="codewrapper sourceCode" id="cb5">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="bu">print</span>(persons)</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>NameError: name 'persons' is not defined</code></pre>
+<pre class="output" tabindex="0"><code>      name  age
+0     John   45
+1    Paula   17
+2  Georgia   20
+3    Ringo   24</code></pre>
 </div>
 <p>Wenn wir nun Filtern auf alle Personen, die älter als 22 sind,
 erhalten wir einen Dataframe mit zwei Zeilen, deren Index 0 und 3
 ist:</p>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>older <span class="op">=</span> persons[persons.age <span class="op">&gt;</span> <span class="dv">22</span>]</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>older <span class="op">=</span> persons[persons.age <span class="op">&gt;</span> <span class="dv">22</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="bu">print</span>(older)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>NameError: name 'persons' is not defined</code></pre>
-</div>
-<div class="codewrapper sourceCode" id="cb9">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="bu">print</span>(older)</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>NameError: name 'older' is not defined</code></pre>
+<pre class="output" tabindex="0"><code>    name  age
+0   John   45
+3  Ringo   24</code></pre>
 </div>
 <p>Um also im Dataframe <code>older</code> auf die zweite Zeile (die
 Person mit Namen Ringo) zuzugreifen, müssen wir - vielleicht etwas
 unintuitiv - den Index 3 verwenden:</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="bu">print</span>(older.loc[<span class="dv">3</span>])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="bu">print</span>(older.loc[<span class="dv">3</span>])</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>NameError: name 'older' is not defined</code></pre>
+<pre class="output" tabindex="0"><code>name    Ringo
+age        24
+Name: 3, dtype: object</code></pre>
 </div>
 <p>Um über die Zeilennummer und nicht über ihren Index zuzugreifen,
 können wir entweder den Index zurücksetzen mittels
 <code>reset_index()</code> oder die Methode <code>iloc[]</code>
 aufrufen. Beide liefern das gleiche Ergebnis:</p>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># Name der Person in der zweite Zeile unabhängig vom Index</span></span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="bu">print</span>(older.iloc[<span class="dv">1</span>][<span class="st">"name"</span>])   <span class="co"># gibt "Ringo" aus</span></span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="co"># Index zurücksetzen, dann entspricht der Zeilenindex der Zeilennummer</span></span>
-<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>older.reset_index(inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="bu">print</span>(older.loc[<span class="dv">1</span>][<span class="st">"name"</span>])    <span class="co"># gibt ebenso "Ringo" aus</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># Name der Person in der zweite Zeile unabhängig vom Index</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="bu">print</span>(older.iloc[<span class="dv">1</span>][<span class="st">"name"</span>])   <span class="co"># gibt "Ringo" aus</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co"># Index zurücksetzen, dann entspricht der Zeilenindex der Zeilennummer</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>older.reset_index(inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="bu">print</span>(older.loc[<span class="dv">1</span>][<span class="st">"name"</span>])    <span class="co"># gibt ebenso "Ringo" aus</span></span></code></pre>
 </div>
 </section><section><h2 class="section-heading" id="filtern-von-zeilen">Filtern von Zeilen<a class="anchor" aria-label="anchor" href="#filtern-von-zeilen"></a></h2>
 <hr class="half-width"><p>Das Filtern mit gegebenen Bedingungen (formulieren was man behalten
@@ -550,7 +531,7 @@ Status sortiert ist.</em></p>
   Hinweise
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Gehen Sie wie folgt vor:</p>
 <ul><li>Reduzieren Sie auf jene Zeilen, in denen das Jahr kleiner als 1980
@@ -572,54 +553,22 @@ diese</li>
   Schrittweise Lösung
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Eine Lösung mit Zwischenschritten, bei denen die Arbeitsschritte
 einzeln ausgeführt und jeweils in der Tabelle <code>ergebnis</code>
 gespeichert werden, könnte so aussehen:</p>
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># Filtern nach Stürmen vor 1980</span></span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>ergebnis <span class="op">=</span> storms[storms[<span class="st">'year'</span>] <span class="op">&lt;</span> <span class="dv">1980</span>]</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>NameError: name 'storms' is not defined</code></pre>
-</div>
-<div class="codewrapper sourceCode" id="cb16">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co"># Reduzieren auf die Spalten name, year und status</span></span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>ergebnis <span class="op">=</span> ergebnis[[<span class="st">'name'</span>, <span class="st">'year'</span>, <span class="st">'status'</span>]]</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>NameError: name 'ergebnis' is not defined</code></pre>
-</div>
-<div class="codewrapper sourceCode" id="cb18">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co"># Entfernen von Duplikaten</span></span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>ergebnis <span class="op">=</span> ergebnis.drop_duplicates()</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>NameError: name 'ergebnis' is not defined</code></pre>
-</div>
-<div class="codewrapper sourceCode" id="cb20">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="co"># Sortieren nach Jahr und Status</span></span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>ergebnis <span class="op">=</span> ergebnis.sort_values(by<span class="op">=</span>[<span class="st">'year'</span>, <span class="st">'status'</span>])</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>NameError: name 'ergebnis' is not defined</code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># Filtern nach Stürmen vor 1980</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>ergebnis <span class="op">=</span> storms[storms[<span class="st">'year'</span>] <span class="op">&lt;</span> <span class="dv">1980</span>]</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co"># Reduzieren auf die Spalten name, year und status</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>ergebnis <span class="op">=</span> ergebnis[[<span class="st">'name'</span>, <span class="st">'year'</span>, <span class="st">'status'</span>]]</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="co"># Entfernen von Duplikaten</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>ergebnis <span class="op">=</span> ergebnis.drop_duplicates()</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="co"># Sortieren nach Jahr und Status</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>ergebnis <span class="op">=</span> ergebnis.sort_values(by<span class="op">=</span>[<span class="st">'year'</span>, <span class="st">'status'</span>])</span></code></pre>
 </div>
 </div>
 </div>
@@ -632,19 +581,14 @@ gespeichert werden, könnte so aussehen:</p>
   Lösung ohne Zwischenschritte
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Eine Lösung, die alle Arbeitsschritte in einer Zeile zusammenfasst,
 könnte so aussehen:</p>
-<div class="codewrapper sourceCode" id="cb22">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>ergebnis <span class="op">=</span> storms[storms[<span class="st">'year'</span>] <span class="op">&lt;</span> <span class="dv">1980</span>][[<span class="st">'name'</span>, <span class="st">'year'</span>, <span class="st">'status'</span>]].drop_duplicates().sort_values(by<span class="op">=</span>[<span class="st">'year'</span>, <span class="st">'status'</span>])</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>NameError: name 'storms' is not defined</code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>ergebnis <span class="op">=</span> storms[storms[<span class="st">'year'</span>] <span class="op">&lt;</span> <span class="dv">1980</span>][[<span class="st">'name'</span>, <span class="st">'year'</span>, <span class="st">'status'</span>]].drop_duplicates().sort_values(by<span class="op">=</span>[<span class="st">'year'</span>, <span class="st">'status'</span>])</span></code></pre>
 </div>
 <p>Diese Lösung ist durch Verkettung der Funktionsaufrufe (das sog.
 <em>method chaining</em>) in einer Zeile kürzer und kompakter, kann aber
@@ -652,35 +596,61 @@ auch schwerer zu lesen. Um das übersichtlicher zu gestalten, kann man
 die Arbeitsschritte auch in mehreren Zeilen miteinander verketten. In
 Python setzt man dazu entweder den mehrzeiligen Befehl in eine
 umgreifende Klammer wie hier:</p>
-<div class="codewrapper sourceCode" id="cb24">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>(storms</span>
-<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>  [storms[<span class="st">'year'</span>] <span class="op">&lt;</span> <span class="dv">1980</span>]</span>
-<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>  [[<span class="st">'name'</span>, <span class="st">'year'</span>, <span class="st">'status'</span>]]</span>
-<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a>  .drop_duplicates()</span>
-<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a>  .sort_values(by<span class="op">=</span>[<span class="st">'year'</span>, <span class="st">'status'</span>]))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>(storms</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  [storms[<span class="st">'year'</span>] <span class="op">&lt;</span> <span class="dv">1980</span>]</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  [[<span class="st">'name'</span>, <span class="st">'year'</span>, <span class="st">'status'</span>]]</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>  .drop_duplicates()</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>  .sort_values(by<span class="op">=</span>[<span class="st">'year'</span>, <span class="st">'status'</span>]))</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>NameError: name 'storms' is not defined</code></pre>
+<pre class="output" tabindex="0"><code>         name  year          status
+30        Amy  1975   extratropical
+49    Blanche  1975   extratropical
+111     Doris  1975   extratropical
+156    Eloise  1975   extratropical
+222    Gladys  1975   extratropical
+..        ...   ...             ...
+716     David  1979  tropical storm
+773  Frederic  1979  tropical storm
+839     Elena  1979  tropical storm
+857    Gloria  1979  tropical storm
+899     Henri  1979  tropical storm
+
+[129 rows x 3 columns]</code></pre>
 </div>
 <p>… oder aber terminiert jede Zeile - bis auf die letzte - mit einem
 Backslash:</p>
-<div class="codewrapper sourceCode" id="cb26">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>storms <span class="op">\</span></span>
-<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>  [storms[<span class="st">'year'</span>] <span class="op">&lt;</span> <span class="dv">1980</span>] <span class="op">\</span></span>
-<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>  [[<span class="st">'name'</span>, <span class="st">'year'</span>, <span class="st">'status'</span>]] <span class="op">\</span></span>
-<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a>  .drop_duplicates() <span class="op">\</span></span>
-<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a>  .sort_values(by<span class="op">=</span>[<span class="st">'year'</span>, <span class="st">'status'</span>])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>storms <span class="op">\</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>  [storms[<span class="st">'year'</span>] <span class="op">&lt;</span> <span class="dv">1980</span>] <span class="op">\</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>  [[<span class="st">'name'</span>, <span class="st">'year'</span>, <span class="st">'status'</span>]] <span class="op">\</span></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>  .drop_duplicates() <span class="op">\</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>  .sort_values(by<span class="op">=</span>[<span class="st">'year'</span>, <span class="st">'status'</span>])</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>NameError: name 'storms' is not defined</code></pre>
+<pre class="output" tabindex="0"><code>         name  year          status
+30        Amy  1975   extratropical
+49    Blanche  1975   extratropical
+111     Doris  1975   extratropical
+156    Eloise  1975   extratropical
+222    Gladys  1975   extratropical
+..        ...   ...             ...
+716     David  1979  tropical storm
+773  Frederic  1979  tropical storm
+839     Elena  1979  tropical storm
+857    Gloria  1979  tropical storm
+899     Henri  1979  tropical storm
+
+[129 rows x 3 columns]</code></pre>
 </div>
 <p>Beim Verketten der Arbeitsschritte wird ein Funktionsergebnis jeweils
 mit der nächsten Funktion weiterverabeitet. Man spart dadurch
@@ -717,25 +687,30 @@ jeweiligen erreicht wurde (keine Zusammenfassung!).</li>
 </ul><p>Man kann auch nach mehreren Spalten gruppieren und dann für jede
 Gruppe aggregieren. Folgendes Beispiel erzeugt einen Dataframe mit
 durchschnittlicher Windgeschwindigkeit pro Sturmstatus und Jahr</p>
-<div class="codewrapper sourceCode" id="cb28">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>mean_winds <span class="op">=</span> storms.groupby([<span class="st">"status"</span>, <span class="st">"year"</span>]).agg({<span class="st">"wind"</span>: <span class="st">"mean"</span>})</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>mean_winds <span class="op">=</span> storms.groupby([<span class="st">"status"</span>, <span class="st">"year"</span>]).agg({<span class="st">"wind"</span>: <span class="st">"mean"</span>})</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="bu">print</span>(mean_winds)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>NameError: name 'storms' is not defined</code></pre>
-</div>
-<div class="codewrapper sourceCode" id="cb30">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="bu">print</span>(mean_winds)</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>NameError: name 'mean_winds' is not defined</code></pre>
+<pre class="output" tabindex="0"><code>                         wind
+status        year
+disturbance   1980  20.555556
+              2010  37.142857
+              2011  33.000000
+              2013  25.512821
+              2014  23.333333
+...                       ...
+tropical wave 2005  28.125000
+              2011  25.714286
+              2012  30.000000
+              2017  27.083333
+              2018  33.500000
+
+[290 rows x 1 columns]</code></pre>
 </div>
 <div id="gruppiertes-filtern" class="callout challenge">
 <div class="callout-square">
@@ -756,12 +731,21 @@ den Namen des letzten Sturms auflistet.</em></p>
   Erwartete Ausgabe
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>NameError: name 'storms' is not defined</code></pre>
+<pre class="output" tabindex="0"><code>                       status  year    name
+16953           tropical wave  2018    Kirk
+17684  subtropical depression  2020   Dolly
+19428             disturbance  2022   Julia
+19510           extratropical  2022  Martin
+19519       subtropical storm  2022  Nicole
+19529               hurricane  2022  Nicole
+19533          tropical storm  2022  Nicole
+19535     tropical depression  2022  Nicole
+19536               other low  2022  Nicole</code></pre>
 </div>
 </div>
 </div>
@@ -774,7 +758,7 @@ den Namen des letzten Sturms auflistet.</em></p>
   Hinweise
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>Hier gibt es viele Wege, das Ziel zu erreichen. Am einfachsten ist es
 in diesem Fall, wie folgt vorzugehen:</p>
@@ -793,20 +777,20 @@ Zeile je Status mit dem höchsten Datum</li>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <p>Hier die Lösung nach dem Verfahren, das unter Hinweise oben angegeben
 wurde:</p>
-<div class="codewrapper sourceCode" id="cb33">
+<div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a>last_storm_of_year <span class="op">=</span> storms <span class="op">\</span></span>
-<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a>  <span class="co"># Sortierung nach Jahr, Monat, Tag aufsteigend</span></span>
-<span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a>  .sort_values([<span class="st">"year"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>]) <span class="op">\</span></span>
-<span id="cb33-4"><a href="#cb33-4" tabindex="-1"></a>  <span class="co"># Duplikate von Status entfernen und jeweils die letzte Zeile (keep="last") behalten</span></span>
-<span id="cb33-5"><a href="#cb33-5" tabindex="-1"></a>  .drop_duplicates(<span class="st">"status"</span>, keep<span class="op">=</span><span class="st">"last"</span>) <span class="op">\</span></span>
-<span id="cb33-6"><a href="#cb33-6" tabindex="-1"></a>  <span class="co"># Auswahl der Spalten status, year und name</span></span>
-<span id="cb33-7"><a href="#cb33-7" tabindex="-1"></a>  [[<span class="st">"status"</span>, <span class="st">"year"</span>, <span class="st">"name"</span>]]</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>last_storm_of_year <span class="op">=</span> storms <span class="op">\</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>  <span class="co"># Sortierung nach Jahr, Monat, Tag aufsteigend</span></span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>  .sort_values([<span class="st">"year"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>]) <span class="op">\</span></span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>  <span class="co"># Duplikate von Status entfernen und jeweils die letzte Zeile (keep="last") behalten</span></span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>  .drop_duplicates(<span class="st">"status"</span>, keep<span class="op">=</span><span class="st">"last"</span>) <span class="op">\</span></span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>  <span class="co"># Auswahl der Spalten status, year und name</span></span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>  [[<span class="st">"status"</span>, <span class="st">"year"</span>, <span class="st">"name"</span>]]</span></code></pre>
 </div>
 </div>
 </div>
@@ -819,7 +803,7 @@ wurde:</p>
   Alternative Lösung
   </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
 <div class="accordion-body">
 <p>Alternativ kann man das auch mit Gruppieren und Aggregieren lösen.
 Hierbei sollte zunächst sichergestellt werden, dass die Datumsangaben
@@ -830,18 +814,18 @@ die mit dem höchsten Datum) ausgewählt. Das <code>reset_index()</code>
 am Schluss ist optional, um den Index zurückzusetzen, weil ansonsten
 noch aus der Gruppierung stammende nicht-numerische Indexeinträge
 entsprechend des <code>status</code> vorhanden sind.</p>
-<div class="codewrapper sourceCode" id="cb34">
+<div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>last_storm_of_year <span class="op">=</span> storms <span class="op">\</span></span>
-<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>  <span class="co"># Sortieren nach Datum aufsteigend</span></span>
-<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a>  .sort_values([<span class="st">"year"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>]) <span class="op">\</span></span>
-<span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a>  <span class="co"># Gruppierung nach Status</span></span>
-<span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a>  .groupby(<span class="st">"status"</span>) <span class="op">\</span></span>
-<span id="cb34-6"><a href="#cb34-6" tabindex="-1"></a>  <span class="co"># Aggregation: Auswahl der Zeile mit dem höchsten Datum</span></span>
-<span id="cb34-7"><a href="#cb34-7" tabindex="-1"></a>  .agg({<span class="st">"year"</span>: <span class="st">"last"</span>, <span class="st">"name"</span>: <span class="st">"last"</span>}) <span class="op">\</span></span>
-<span id="cb34-8"><a href="#cb34-8" tabindex="-1"></a>  <span class="co"># Optional: Index zurücksetzen</span></span>
-<span id="cb34-9"><a href="#cb34-9" tabindex="-1"></a>  .reset_index()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>last_storm_of_year <span class="op">=</span> storms <span class="op">\</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>  <span class="co"># Sortieren nach Datum aufsteigend</span></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>  .sort_values([<span class="st">"year"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>]) <span class="op">\</span></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>  <span class="co"># Gruppierung nach Status</span></span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a>  .groupby(<span class="st">"status"</span>) <span class="op">\</span></span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a>  <span class="co"># Aggregation: Auswahl der Zeile mit dem höchsten Datum</span></span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a>  .agg({<span class="st">"year"</span>: <span class="st">"last"</span>, <span class="st">"name"</span>: <span class="st">"last"</span>}) <span class="op">\</span></span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a>  <span class="co"># Optional: Index zurücksetzen</span></span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a>  .reset_index()</span></code></pre>
 </div>
 <p>Haben Sie eine andere Lösung gefunden?</p>
 </div>
@@ -885,38 +869,44 @@ letzten vorherigen Aufgabe war:</p>
 <div class="codewrapper">
 <h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>NameError: name 'storms' is not defined</code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>NameError: name 'last_storm_of_year' is not defined</code></pre>
+<pre class="output" tabindex="0"><code>                   status  year    name
+0           tropical wave  2018    Kirk
+1  subtropical depression  2020   Dolly
+2             disturbance  2022   Julia
+3           extratropical  2022  Martin
+4       subtropical storm  2022  Nicole
+5               hurricane  2022  Nicole
+6          tropical storm  2022  Nicole
+7     tropical depression  2022  Nicole
+8               other low  2022  Nicole</code></pre>
 </div>
 <p>Wir wollen in der pivotierten Tabelle, dass die Zeilen wie gehabt den
 Sturmstatus entsprechen, die Spalten den Stürmen und die Werte in den
 Zellen den Jahren, in denen der Sturm der letzte mit diesem Status war.
 Das erreichen wir mit folgendem Code:</p>
-<div class="codewrapper sourceCode" id="cb37">
+<div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a>broad_table <span class="op">=</span> last_storm_of_year <span class="op">\</span></span>
-<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a>  .pivot(index<span class="op">=</span><span class="st">"status"</span>, columns<span class="op">=</span><span class="st">"name"</span>, values<span class="op">=</span><span class="st">"year"</span>) <span class="op">\</span></span>
-<span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a>  .fillna(<span class="st">""</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>broad_table <span class="op">=</span> last_storm_of_year <span class="op">\</span></span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>  .pivot(index<span class="op">=</span><span class="st">"status"</span>, columns<span class="op">=</span><span class="st">"name"</span>, values<span class="op">=</span><span class="st">"year"</span>) <span class="op">\</span></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>  .fillna(<span class="st">""</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a><span class="bu">print</span>(broad_table)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>NameError: name 'last_storm_of_year' is not defined</code></pre>
-</div>
-<div class="codewrapper sourceCode" id="cb39">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="bu">print</span>(broad_table)</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>NameError: name 'broad_table' is not defined</code></pre>
+<pre class="output" tabindex="0"><code>name                     Dolly   Julia    Kirk  Martin  Nicole
+status
+disturbance                     2022.0
+extratropical                                   2022.0
+hurricane                                               2022.0
+other low                                               2022.0
+subtropical depression  2020.0
+subtropical storm                                       2022.0
+tropical depression                                     2022.0
+tropical storm                                          2022.0
+tropical wave                           2018.0                </code></pre>
 </div>
 <p>Hinweis: <code>fillna("")</code> füllt leere Zellen mit einem leeren
 String, um die Ausgabe übersichtlicher zu gestalten. Ansonsten würde da
@@ -924,18 +914,18 @@ String, um die Ausgabe übersichtlicher zu gestalten. Ansonsten würde da
 <p>Eine breite Tabelle in eine schmale tidy Tabelle verwandelt man mit
 der Funktion <code>.melt()</code>. Ein Beispiel für die Rück-Umwandlung
 der breiten Sturmdaten in schmale Form:</p>
-<div class="codewrapper sourceCode" id="cb41">
+<div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a>narrow_table <span class="op">=</span> broad_table</span>
-<span id="cb41-2"><a href="#cb41-2" tabindex="-1"></a>  <span class="co"># Zunächst Index zurücksetzen, um Status als Spalte zu haben</span></span>
-<span id="cb41-3"><a href="#cb41-3" tabindex="-1"></a>  .reset_index() <span class="op">\</span></span>
-<span id="cb41-4"><a href="#cb41-4" tabindex="-1"></a>  <span class="co"># Umwandlung in schmale Form mit Spalten status, name, year</span></span>
-<span id="cb41-5"><a href="#cb41-5" tabindex="-1"></a>  .melt(id_vars<span class="op">=</span><span class="st">"status"</span>, var_name<span class="op">=</span><span class="st">"name"</span>, value_name<span class="op">=</span><span class="st">"year"</span>) <span class="op">\</span></span>
-<span id="cb41-6"><a href="#cb41-6" tabindex="-1"></a>  <span class="co"># Zeilen mit leeren Werten entfernen</span></span>
-<span id="cb41-7"><a href="#cb41-7" tabindex="-1"></a>  .dropna()</span>
-<span id="cb41-8"><a href="#cb41-8" tabindex="-1"></a></span>
-<span id="cb41-9"><a href="#cb41-9" tabindex="-1"></a><span class="bu">print</span>(narrow_table)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>narrow_table <span class="op">=</span> broad_table</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>  <span class="co"># Zunächst Index zurücksetzen, um Status als Spalte zu haben</span></span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>  .reset_index() <span class="op">\</span></span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>  <span class="co"># Umwandlung in schmale Form mit Spalten status, name, year</span></span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a>  .melt(id_vars<span class="op">=</span><span class="st">"status"</span>, var_name<span class="op">=</span><span class="st">"name"</span>, value_name<span class="op">=</span><span class="st">"year"</span>) <span class="op">\</span></span>
+<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a>  <span class="co"># Zeilen mit leeren Werten entfernen</span></span>
+<span id="cb22-7"><a href="#cb22-7" tabindex="-1"></a>  .dropna()</span>
+<span id="cb22-8"><a href="#cb22-8" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" tabindex="-1"></a><span class="bu">print</span>(narrow_table)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -974,12 +964,17 @@ inder Ausgabe für einen fehlenden Zellwert steht:</p>
 <div class="codewrapper">
 <h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>NameError: name 'pd' is not defined</code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>NameError: name 'career' is not defined</code></pre>
+<pre class="output" tabindex="0"><code>        degree          title
+year
+2000  Bachelor      Assistent
+2001       NaN            NaN
+2002       NaN            NaN
+2003    Master            NaN
+2004       NaN  Gruppenleiter
+2005       NaN            NaN
+2006       Dr.            NaN
+2007       NaN            NaN
+2008       NaN    Konzernchef</code></pre>
 </div>
 <p>Hier können wir davon ausgehen, dass die Person auch in den Jahren
 2001-2003 einen Bachelortitel hatte. Gleiches gilt für die Spalte
@@ -987,25 +982,26 @@ inder Ausgabe für einen fehlenden Zellwert steht:</p>
 hilft die Funktion <code>ffill()</code>, die man sowohl für den gesamten
 Dataframe als auch für einzelne Spalten aufrufen kann. Ein Beispiel für
 das Füllen der fehlenden Werte in allen Spalten des Dataframe:</p>
-<div class="codewrapper sourceCode" id="cb45">
+<div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a>career_complete <span class="op">=</span> career.ffill()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a>career_complete <span class="op">=</span> career.ffill()</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="bu">print</span>(career_complete)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>NameError: name 'career' is not defined</code></pre>
-</div>
-<div class="codewrapper sourceCode" id="cb47">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a><span class="bu">print</span>(career_complete)</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>NameError: name 'career_complete' is not defined</code></pre>
+<pre class="output" tabindex="0"><code>        degree          title
+year
+2000  Bachelor      Assistent
+2001  Bachelor      Assistent
+2002  Bachelor      Assistent
+2003    Master      Assistent
+2004    Master  Gruppenleiter
+2005    Master  Gruppenleiter
+2006       Dr.  Gruppenleiter
+2007       Dr.  Gruppenleiter
+2008       Dr.    Konzernchef</code></pre>
 </div>
 <p>Möchte man das z.B. nur für die Spalte <code>title</code>, so kann
 man schreiben:
@@ -1020,10 +1016,10 @@ neuen Datentyp, z.B. <code>int</code>, <code>float</code>,
 <code>str</code>, <code>bool</code>, <code>datetime</code>,
 <code>category</code>, etc. Ein Beispiel für die Umwandlung der
 ganzzahligen Spalte <code>year</code> in eine Textspalte:</p>
-<div class="codewrapper sourceCode" id="cb49">
+<div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a>storms[<span class="st">"year"</span>] <span class="op">=</span> storms[<span class="st">"year"</span>].astype(<span class="bu">str</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>storms[<span class="st">"year"</span>] <span class="op">=</span> storms[<span class="st">"year"</span>].astype(<span class="bu">str</span>)</span></code></pre>
 </div>
 <p>Um die Inhalte von Zellen zu verändern, gibt es unter je nach
 Datentyp verschiedene Funktionen. Am interessantesten dabei die Funktion
@@ -1078,7 +1074,7 @@ extrahiert. Wie sieht dieser Aufruf dann aus?</em></p>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
+<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
 <div class="accordion-body">
 <p>Der reguläre Ausdruck, der die ersten beiden Ziffern der Jahreszahl
 extrahiert, sieht so aus:
