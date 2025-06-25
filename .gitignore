@@ -38,3 +38,4 @@ po/*~
 renv/sandbox/
 Python-pandas-compact.Rproj
 old.github
+old.renv
