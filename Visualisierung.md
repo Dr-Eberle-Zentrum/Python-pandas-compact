@@ -7,13 +7,6 @@ exercises: 10
 
 
 
-``` output
-ModuleNotFoundError: No module named 'pandas'
-```
-
-``` output
-ModuleNotFoundError: No module named 'plotnine'
-```
 
 
 :::::::::::::::::::::::::::::::::::::: questions
@@ -37,31 +30,12 @@ Im Folgenden wird ein umfangreiches Beispiel für die Visualisierung von Daten m
 
 ``` python
 import pandas as pd
-```
-
-``` output
-ModuleNotFoundError: No module named 'pandas'
-```
-
-``` python
 # Alle Funktionen des Pakets plotnine importieren:
 from plotnine import *
-```
 
-``` output
-ModuleNotFoundError: No module named 'plotnine'
-```
-
-``` python
 # Sturmdaten aus dem Internet laden
 storms = pd.read_csv("https://raw.githubusercontent.com/tidyverse/dplyr/master/data-raw/storms.csv")
-```
 
-``` output
-NameError: name 'pd' is not defined
-```
-
-``` python
 # Zunächst einen Dataframe mit der Anzahl der Stürme pro Jahr erstellen
 storms_per_year = (storms
     # Duplikate entfernen um nur die Spalten "year" und "name" behalten
@@ -75,13 +49,7 @@ storms_per_year = (storms
     # Anzahl-Spalte umbenennen in "storm_count"
     .rename(columns={"name": "storm_count"})
 )
-```
 
-``` output
-NameError: name 'storms' is not defined
-```
-
-``` python
 # Plot erstellen
 plot = (ggplot(storms_per_year, mapping=aes(x="year", y="storm_count"))
     # Diagrammtitel und Achsenbeschriftung
@@ -109,20 +77,12 @@ plot = (ggplot(storms_per_year, mapping=aes(x="year", y="storm_count"))
         color="red"     # Schriftfarbe rot
     )    
 )
-```
 
-``` output
-NameError: name 'ggplot' is not defined
-```
-
-``` python
 # Plot anzeigen
 plot.show()
 ```
 
-``` output
-NameError: name 'plot' is not defined
-```
+<img src="fig/Visualisierung-rendered-unnamed-chunk-2-1.png" width="613" style="display: block; margin: auto;" />
 
 
 ``` python
@@ -163,13 +123,6 @@ plot.show()
 
 ``` python
 mesaurements = storms.drop_duplicates(["name", "year"], keep="last")
-```
-
-``` output
-NameError: name 'storms' is not defined
-```
-
-``` python
 plot = (ggplot(mesaurements, mapping=aes(x="long", y="lat", color="status"))
     + geom_point()
     + labs(
@@ -179,19 +132,10 @@ plot = (ggplot(mesaurements, mapping=aes(x="long", y="lat", color="status"))
         color="Status" # ansonsten wird status kleingeschrieben
     )
 )   
-```
-
-``` output
-NameError: name 'ggplot' is not defined
-```
-
-``` python
 plot.show()
 ```
 
-``` output
-NameError: name 'plot' is not defined
-```
+<img src="fig/Visualisierung-rendered-unnamed-chunk-5-3.png" width="613" style="display: block; margin: auto;" />
 
 Alternativ zu `+ labs()` können die se Informationen auch separat mit den Funktionen `geom_title()`, `geom_xlab()`, `geom_ylab()` und `geom_color()` hinzugefügt werden. Sie können auch versuchen, alle Sturmmessungen zu visualisieren, anstatt nur die letzten Messungen pro Sturm zu verwenden, dann sind die Sturmpfade sichtbar.
 

@@ -41,13 +41,6 @@ Auswahl konkreter Zeilen via Index geht mit der Funktion `.loc[]` und der Überg
 Hier ist mehrmals der Begriff Index in Bezug auf die Zeilen eines Dataframe vorgekommen. In einem Dataframe ist jeder Eintrag (Zeile) mit einem Index versehen, der standardmäßig mit 0 beginnt und um 1 erhöht wird. Dieser Index ist eine eindeutige Nummer, die jede Zeile im Dataframe identifiziert. Wenn nun durch Filtern oder andere Operationen Zeilen entfernt werden, bleibt der Index erhalten und wird nicht neu sortiert. Das bedeutet, dass der Index nicht mehr mit der Zeilennummer übereinstimmen muss. Wenn Sie also eine bestimmte Zeile auswählen möchten, sollten Sie den Index verwenden, nicht die Zeilennummer. Um das zu illustrieren:
 
 
-``` output
-ModuleNotFoundError: No module named 'pandas'
-```
-
-``` output
-NameError: name 'pd' is not defined
-```
 
 
 ``` python
@@ -55,18 +48,16 @@ persons = pd.DataFrame({
     "name": ["John", "Paula", "Georgia", "Ringo"],
     "age": [45, 17, 20, 24]
 })
-```
 
-``` output
-NameError: name 'pd' is not defined
-```
-
-``` python
 print(persons)
 ```
 
 ``` output
-NameError: name 'persons' is not defined
+      name  age
+0     John   45
+1    Paula   17
+2  Georgia   20
+3    Ringo   24
 ```
 
 Wenn wir nun Filtern auf alle Personen, die älter als 22 sind, erhalten wir einen Dataframe mit zwei Zeilen, deren Index 0 und 3 ist:
@@ -74,18 +65,13 @@ Wenn wir nun Filtern auf alle Personen, die älter als 22 sind, erhalten wir ein
 
 ``` python
 older = persons[persons.age > 22]
-```
-
-``` output
-NameError: name 'persons' is not defined
-```
-
-``` python
 print(older)
 ```
 
 ``` output
-NameError: name 'older' is not defined
+    name  age
+0   John   45
+3  Ringo   24
 ```
 
 Um also im Dataframe `older` auf die zweite Zeile (die Person mit Namen Ringo) zuzugreifen, müssen wir - vielleicht etwas unintuitiv - den Index 3 verwenden:
@@ -96,7 +82,9 @@ print(older.loc[3])
 ```
 
 ``` output
-NameError: name 'older' is not defined
+name    Ringo
+age        24
+Name: 3, dtype: object
 ```
 
 Um über die Zeilennummer und nicht über ihren Index zuzugreifen, können wir entweder den Index zurücksetzen mittels `reset_index()` oder die Methode `iloc[]` aufrufen. Beide liefern das gleiche Ergebnis:
@@ -161,37 +149,12 @@ Eine Lösung mit Zwischenschritten, bei denen die Arbeitsschritte einzeln ausgef
 ``` python
 # Filtern nach Stürmen vor 1980
 ergebnis = storms[storms['year'] < 1980]
-```
-
-``` output
-NameError: name 'storms' is not defined
-```
-
-``` python
 # Reduzieren auf die Spalten name, year und status
 ergebnis = ergebnis[['name', 'year', 'status']]
-```
-
-``` output
-NameError: name 'ergebnis' is not defined
-```
-
-``` python
 # Entfernen von Duplikaten
 ergebnis = ergebnis.drop_duplicates()
-```
-
-``` output
-NameError: name 'ergebnis' is not defined
-```
-
-``` python
 # Sortieren nach Jahr und Status
 ergebnis = ergebnis.sort_values(by=['year', 'status'])
-```
-
-``` output
-NameError: name 'ergebnis' is not defined
 ```
 
 :::::::::::::::::::::
@@ -206,10 +169,6 @@ Eine Lösung, die alle Arbeitsschritte in einer Zeile zusammenfasst, könnte so 
 ergebnis = storms[storms['year'] < 1980][['name', 'year', 'status']].drop_duplicates().sort_values(by=['year', 'status'])
 ```
 
-``` output
-NameError: name 'storms' is not defined
-```
-
 Diese Lösung ist durch Verkettung der Funktionsaufrufe (das sog. *method chaining*) in einer Zeile kürzer und kompakter, kann aber auch schwerer zu lesen. Um das übersichtlicher zu gestalten, kann man die Arbeitsschritte auch in mehreren Zeilen miteinander verketten. In Python setzt man dazu entweder den mehrzeiligen Befehl in eine umgreifende Klammer wie hier:
 
 
@@ -222,7 +181,20 @@ Diese Lösung ist durch Verkettung der Funktionsaufrufe (das sog. *method chaini
 ```
 
 ``` output
-NameError: name 'storms' is not defined
+         name  year          status
+30        Amy  1975   extratropical
+49    Blanche  1975   extratropical
+111     Doris  1975   extratropical
+156    Eloise  1975   extratropical
+222    Gladys  1975   extratropical
+..        ...   ...             ...
+716     David  1979  tropical storm
+773  Frederic  1979  tropical storm
+839     Elena  1979  tropical storm
+857    Gloria  1979  tropical storm
+899     Henri  1979  tropical storm
+
+[129 rows x 3 columns]
 ```
 
 ... oder aber terminiert jede Zeile - bis auf die letzte - mit einem Backslash:
@@ -237,7 +209,20 @@ storms \
 ```
 
 ``` output
-NameError: name 'storms' is not defined
+         name  year          status
+30        Amy  1975   extratropical
+49    Blanche  1975   extratropical
+111     Doris  1975   extratropical
+156    Eloise  1975   extratropical
+222    Gladys  1975   extratropical
+..        ...   ...             ...
+716     David  1979  tropical storm
+773  Frederic  1979  tropical storm
+839     Elena  1979  tropical storm
+857    Gloria  1979  tropical storm
+899     Henri  1979  tropical storm
+
+[129 rows x 3 columns]
 ```
 
 Beim Verketten der Arbeitsschritte wird ein Funktionsergebnis jeweils mit der nächsten Funktion weiterverabeitet. Man spart dadurch Zwischenvariablen und die Kette erlaubt es, aufgrund der aneinandergereiten Funktionsnamen den Verarbeitungsworflow sozusagen zu "lesen".
@@ -259,18 +244,25 @@ Man kann auch nach mehreren Spalten gruppieren und dann für jede Gruppe aggregi
 
 ``` python
 mean_winds = storms.groupby(["status", "year"]).agg({"wind": "mean"})
-```
-
-``` output
-NameError: name 'storms' is not defined
-```
-
-``` python
 print(mean_winds)
 ```
 
 ``` output
-NameError: name 'mean_winds' is not defined
+                         wind
+status        year           
+disturbance   1980  20.555556
+              2010  37.142857
+              2011  33.000000
+              2013  25.512821
+              2014  23.333333
+...                       ...
+tropical wave 2005  28.125000
+              2011  25.714286
+              2012  30.000000
+              2017  27.083333
+              2018  33.500000
+
+[290 rows x 1 columns]
 ```
 
 :::::::::::::::::::: challenge
@@ -283,7 +275,16 @@ NameError: name 'mean_winds' is not defined
 
 
 ``` output
-NameError: name 'storms' is not defined
+                       status  year    name
+16953           tropical wave  2018    Kirk
+17684  subtropical depression  2020   Dolly
+19428             disturbance  2022   Julia
+19510           extratropical  2022  Martin
+19519       subtropical storm  2022  Nicole
+19529               hurricane  2022  Nicole
+19533          tropical storm  2022  Nicole
+19535     tropical depression  2022  Nicole
+19536               other low  2022  Nicole
 ```
 
 :::::::::::::::::::::
@@ -357,11 +358,16 @@ Ein Beispiel für die Umwandlung der Sturmdaten von der "breiten" in die "schmal
 
 
 ``` output
-NameError: name 'storms' is not defined
-```
-
-``` output
-NameError: name 'last_storm_of_year' is not defined
+                   status  year    name
+0           tropical wave  2018    Kirk
+1  subtropical depression  2020   Dolly
+2             disturbance  2022   Julia
+3           extratropical  2022  Martin
+4       subtropical storm  2022  Nicole
+5               hurricane  2022  Nicole
+6          tropical storm  2022  Nicole
+7     tropical depression  2022  Nicole
+8               other low  2022  Nicole
 ```
 
 Wir wollen in der pivotierten Tabelle, dass die Zeilen wie gehabt den Sturmstatus entsprechen, die Spalten den Stürmen und die Werte in den Zellen den Jahren, in denen der Sturm der letzte mit diesem Status war. Das erreichen wir mit folgendem Code:
@@ -371,18 +377,22 @@ Wir wollen in der pivotierten Tabelle, dass die Zeilen wie gehabt den Sturmstatu
 broad_table = last_storm_of_year \
   .pivot(index="status", columns="name", values="year") \
   .fillna("")
-```
 
-``` output
-NameError: name 'last_storm_of_year' is not defined
-```
-
-``` python
 print(broad_table)
 ```
 
 ``` output
-NameError: name 'broad_table' is not defined
+name                     Dolly   Julia    Kirk  Martin  Nicole
+status                                                        
+disturbance                     2022.0                        
+extratropical                                   2022.0        
+hurricane                                               2022.0
+other low                                               2022.0
+subtropical depression  2020.0                                
+subtropical storm                                       2022.0
+tropical depression                                     2022.0
+tropical storm                                          2022.0
+tropical wave                           2018.0                
 ```
 
 Hinweis: `fillna("")` füllt leere Zellen mit einem leeren String, um die Ausgabe übersichtlicher zu gestalten. Ansonsten würde da `NaN` stehen, was für *Not a Number* steht.
@@ -421,11 +431,17 @@ Manchmal muss man mit Dataframes arbeiten, wo aufeinanderfolgende Zellen einer S
 
 
 ``` output
-NameError: name 'pd' is not defined
-```
-
-``` output
-NameError: name 'career' is not defined
+        degree          title
+year                         
+2000  Bachelor      Assistent
+2001       NaN            NaN
+2002       NaN            NaN
+2003    Master            NaN
+2004       NaN  Gruppenleiter
+2005       NaN            NaN
+2006       Dr.            NaN
+2007       NaN            NaN
+2008       NaN    Konzernchef
 ```
 
 Hier können wir davon ausgehen, dass die Person auch in den Jahren 2001-2003 einen Bachelortitel hatte. Gleiches gilt für die Spalte `degree`. Möchte man das explizit machen im Dataframe, so hilft die Funktion `ffill()`, die man sowohl für den gesamten Dataframe als auch für einzelne Spalten aufrufen kann. Ein Beispiel für das Füllen der fehlenden Werte in allen Spalten des Dataframe:
@@ -433,18 +449,21 @@ Hier können wir davon ausgehen, dass die Person auch in den Jahren 2001-2003 ei
 
 ``` python
 career_complete = career.ffill()
-```
-
-``` output
-NameError: name 'career' is not defined
-```
-
-``` python
 print(career_complete)
 ```
 
 ``` output
-NameError: name 'career_complete' is not defined
+        degree          title
+year                         
+2000  Bachelor      Assistent
+2001  Bachelor      Assistent
+2002  Bachelor      Assistent
+2003    Master      Assistent
+2004    Master  Gruppenleiter
+2005    Master  Gruppenleiter
+2006       Dr.  Gruppenleiter
+2007       Dr.  Gruppenleiter
+2008       Dr.    Konzernchef
 ```
 
 Möchte man das z.B. nur für die Spalte `title`, so kann man schreiben: `career["title"] = career["title"].ffill()`.
