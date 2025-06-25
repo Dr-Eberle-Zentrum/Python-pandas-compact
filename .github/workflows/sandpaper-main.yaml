@@ -45,6 +45,7 @@ jobs:
         with:
           use-public-rspm: true
           install-r: false
+          r-version: '4.4.3' # MR: fix R version
 
       - name: "Set up Pandoc"
         uses: r-lib/actions/setup-pandoc@v2
