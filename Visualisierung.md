@@ -21,7 +21,7 @@ exercises: 10
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-Die Visualisierung von Daten ist ein wichtiger Bestandteil der Datenanalyse, da sie es ermöglicht, Muster und Zusammenhänge in den Daten zu erkennen und zu kommunizieren. In Python gibt es mehrere Pakete für Datenvisualisierung. Ein beliebtes, das wir auch hier vorstellen werden, ist `plotnine`, das auf *ggplot* und der [*Grammar of Graphics*](https://r4ds.had.co.nz/data-visualisation.html) basiert. Hierbei müssen die Daten in tabellarischer Form vorliegen, d.h. jede Zeile entspricht einem Datensatz und jede Spalte einer Variable ("tidy data").
+Die Visualisierung von Daten ist ein wichtiger Bestandteil der Datenanalyse, da sie es ermöglicht, Muster und Zusammenhänge in den Daten zu erkennen und zu kommunizieren. In Python gibt es mehrere Pakete für Datenvisualisierung. Ein beliebtes, das wir auch hier vorstellen werden, ist `plotnine`, das auf *ggplot2* und der [*Grammar of Graphics*](https://r4ds.had.co.nz/data-visualisation.html) basiert. Hierbei müssen die Daten in tabellarischer Form vorliegen, d.h. jede Zeile entspricht einem Datensatz und jede Spalte einer Variable ("tidy data").
 
 Die Visualisierung von Daten wird in verschiedene Schichten (z.B. Punkte, Linien, Balken) und Eigenschaften (z.B. x-Achse, y-Achse, Farbe, Form) unterteilt. Die Verküpfung von Tabellenspalten mit den Ebenen und Eigenschaften (d.h. Welche Information wird wie fürs Plotting verwendet) erfolgt über die Funktion `aes()`, was für *aesthetic mapping* steht. Geometrische Schichten (z.B. Balken, Linien, Punkte) werden mit `geom_*()` Funktionen hinzugefügt.
 
@@ -95,6 +95,8 @@ Als Nachschlagewerk für alle verfügbaren und im Beispiel verwendeten Funktione
 Einen empfehlenswerten Cheatsheet für plotnine gibt es leider nicht, aber es gibt ein [Cheatsheet für ggplot2](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf), das einen guten Überblick über die ggplot-Funktionen enthält. Das Cheatsheet enthält einige für die Programmiersprache R spezifische Zeilen, aber die meisten Funktionen sind auch in plotnine verfügbar mit gleicher oder ähnlicher Syntax in Python:
 
 [![ggplot2 cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/pngs/thumbnails/data-visualization-cheatsheet-thumbs.png){width="100%" alt="Klicken zum Herunterladen: Cheatsheet für ggplot2"}](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
+
+Bei der Anpassung von ggplot2 Beispielen an plotnine empfehlen sich die [Heuristics for Translating Ggplot2 Code to Plotnine Code](https://jeroenjanssens.com/heuristics/) von Jeroen Janssens.
 
 ::::::::::::: challenge
 ## Sturmposition visualisieren
