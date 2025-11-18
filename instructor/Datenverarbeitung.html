@@ -315,7 +315,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Datenverarbeitung</h1>
-        <p>Zuletzt aktualisiert am 2025-11-11 |
+        <p>Zuletzt aktualisiert am 2025-11-18 |
 
         <a href="https://github.com/Dr-Eberle-Zentrum/Python-pandas-compact/edit/main/episodes/Datenverarbeitung.Rmd" class="external-link">Diese Seite bearbeiten <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -711,7 +711,7 @@ tropical wave 2005  28.125000
               2017  27.083333
               2018  33.500000
 
-[290 rows x 1 columns]</code></pre>
+[305 rows x 1 columns]</code></pre>
 </div>
 <div id="gruppiertes-filtern" class="callout challenge">
 <div class="callout-square">
@@ -740,14 +740,14 @@ den Namen des letzten Sturms auflistet.</em></p>
 </h3>
 <pre class="output" tabindex="0"><code>                       status  year    name
 16953           tropical wave  2018    Kirk
-17684  subtropical depression  2020   Dolly
-19428             disturbance  2022   Julia
-19510           extratropical  2022  Martin
-19519       subtropical storm  2022  Nicole
-19529               hurricane  2022  Nicole
-19533          tropical storm  2022  Nicole
-19535     tropical depression  2022  Nicole
-19536               other low  2022  Nicole</code></pre>
+19614  subtropical depression  2023     Don
+20717           extratropical  2024   Patty
+20724       subtropical storm  2024   Patty
+20751               hurricane  2024  Rafael
+20757               other low  2024  Rafael
+20759             disturbance  2024    Sara
+20775          tropical storm  2024    Sara
+20777     tropical depression  2024    Sara</code></pre>
 </div>
 </div>
 </div>
@@ -873,14 +873,14 @@ letzten vorherigen Aufgabe war:</p>
 </h3>
 <pre class="output" tabindex="0"><code>                   status  year    name
 0           tropical wave  2018    Kirk
-1  subtropical depression  2020   Dolly
-2             disturbance  2022   Julia
-3           extratropical  2022  Martin
-4       subtropical storm  2022  Nicole
-5               hurricane  2022  Nicole
-6          tropical storm  2022  Nicole
-7     tropical depression  2022  Nicole
-8               other low  2022  Nicole</code></pre>
+1  subtropical depression  2023     Don
+2           extratropical  2024   Patty
+3       subtropical storm  2024   Patty
+4               hurricane  2024  Rafael
+5               other low  2024  Rafael
+6             disturbance  2024    Sara
+7          tropical storm  2024    Sara
+8     tropical depression  2024    Sara</code></pre>
 </div>
 <p>Wir wollen in der pivotierten Tabelle, dass die Zeilen wie gehabt den
 Sturmstatus entsprechen, die Spalten den Stürmen und die Werte in den
@@ -898,17 +898,17 @@ Das erreichen wir mit folgendem Code:</p>
 <div class="codewrapper">
 <h3 class="code-label">AUSGABE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>name                     Dolly   Julia    Kirk  Martin  Nicole
+<pre class="output" tabindex="0"><code>name                       Don    Kirk   Patty  Rafael    Sara
 status
-disturbance                     2022.0
-extratropical                                   2022.0
-hurricane                                               2022.0
-other low                                               2022.0
-subtropical depression  2020.0
-subtropical storm                                       2022.0
-tropical depression                                     2022.0
-tropical storm                                          2022.0
-tropical wave                           2018.0                </code></pre>
+disturbance                                             2024.0
+extratropical                           2024.0
+hurricane                                       2024.0
+other low                                       2024.0
+subtropical depression  2023.0
+subtropical storm                       2024.0
+tropical depression                                     2024.0
+tropical storm                                          2024.0
+tropical wave                   2018.0                        </code></pre>
 </div>
 <p>Hinweis: <code>fillna("")</code> füllt leere Zellen mit einem leeren
 String, um die Ausgabe übersichtlicher zu gestalten. Ansonsten würde da
@@ -1177,8 +1177,8 @@ any links that you are not going to use.
   "url": "https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/instructor/Datenverarbeitung.html",
   "identifier": "https://Dr-Eberle-Zentrum.github.io/Python-pandas-compact/instructor/Datenverarbeitung.html",
   "dateCreated": "2024-07-15",
-  "dateModified": "2025-11-11",
-  "datePublished": "2025-11-11"
+  "dateModified": "2025-11-18",
+  "datePublished": "2025-11-18"
 }
 
   </script><script>
