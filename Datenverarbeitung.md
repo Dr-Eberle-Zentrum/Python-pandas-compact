@@ -262,7 +262,7 @@ tropical wave 2005  28.125000
               2017  27.083333
               2018  33.500000
 
-[290 rows x 1 columns]
+[305 rows x 1 columns]
 ```
 
 :::::::::::::::::::: challenge
@@ -277,14 +277,14 @@ tropical wave 2005  28.125000
 ``` output
                        status  year    name
 16953           tropical wave  2018    Kirk
-17684  subtropical depression  2020   Dolly
-19428             disturbance  2022   Julia
-19510           extratropical  2022  Martin
-19519       subtropical storm  2022  Nicole
-19529               hurricane  2022  Nicole
-19533          tropical storm  2022  Nicole
-19535     tropical depression  2022  Nicole
-19536               other low  2022  Nicole
+19614  subtropical depression  2023     Don
+20717           extratropical  2024   Patty
+20724       subtropical storm  2024   Patty
+20751               hurricane  2024  Rafael
+20757               other low  2024  Rafael
+20759             disturbance  2024    Sara
+20775          tropical storm  2024    Sara
+20777     tropical depression  2024    Sara
 ```
 
 :::::::::::::::::::::
@@ -360,14 +360,14 @@ Ein Beispiel für die Umwandlung der Sturmdaten von der "breiten" in die "schmal
 ``` output
                    status  year    name
 0           tropical wave  2018    Kirk
-1  subtropical depression  2020   Dolly
-2             disturbance  2022   Julia
-3           extratropical  2022  Martin
-4       subtropical storm  2022  Nicole
-5               hurricane  2022  Nicole
-6          tropical storm  2022  Nicole
-7     tropical depression  2022  Nicole
-8               other low  2022  Nicole
+1  subtropical depression  2023     Don
+2           extratropical  2024   Patty
+3       subtropical storm  2024   Patty
+4               hurricane  2024  Rafael
+5               other low  2024  Rafael
+6             disturbance  2024    Sara
+7          tropical storm  2024    Sara
+8     tropical depression  2024    Sara
 ```
 
 Wir wollen in der pivotierten Tabelle, dass die Zeilen wie gehabt den Sturmstatus entsprechen, die Spalten den Stürmen und die Werte in den Zellen den Jahren, in denen der Sturm der letzte mit diesem Status war. Das erreichen wir mit folgendem Code:
@@ -382,17 +382,17 @@ print(broad_table)
 ```
 
 ``` output
-name                     Dolly   Julia    Kirk  Martin  Nicole
+name                       Don    Kirk   Patty  Rafael    Sara
 status                                                        
-disturbance                     2022.0                        
-extratropical                                   2022.0        
-hurricane                                               2022.0
-other low                                               2022.0
-subtropical depression  2020.0                                
-subtropical storm                                       2022.0
-tropical depression                                     2022.0
-tropical storm                                          2022.0
-tropical wave                           2018.0                
+disturbance                                             2024.0
+extratropical                           2024.0                
+hurricane                                       2024.0        
+other low                                       2024.0        
+subtropical depression  2023.0                                
+subtropical storm                       2024.0                
+tropical depression                                     2024.0
+tropical storm                                          2024.0
+tropical wave                   2018.0                        
 ```
 
 Hinweis: `fillna("")` füllt leere Zellen mit einem leeren String, um die Ausgabe übersichtlicher zu gestalten. Ansonsten würde da `NaN` stehen, was für *Not a Number* steht.
