@@ -82,7 +82,7 @@ plot = (ggplot(storms_per_year, mapping=aes(x="year", y="storm_count"))
 plot.show()
 ```
 
-<img src="fig/Visualisierung-rendered-unnamed-chunk-2-1.png" width="613" style="display: block; margin: auto;" />
+<img src="fig/Visualisierung-rendered-unnamed-chunk-2-1.png" alt="" width="613" style="display: block; margin: auto;" />
 
 
 ``` python
@@ -137,7 +137,7 @@ plot = (ggplot(mesaurements, mapping=aes(x="long", y="lat", color="status"))
 plot.show()
 ```
 
-<img src="fig/Visualisierung-rendered-unnamed-chunk-5-3.png" width="613" style="display: block; margin: auto;" />
+<img src="fig/Visualisierung-rendered-unnamed-chunk-5-3.png" alt="" width="613" style="display: block; margin: auto;" />
 
 Alternativ zu `+ labs()` können die se Informationen auch separat mit den Funktionen `geom_title()`, `geom_xlab()`, `geom_ylab()` und `geom_color()` hinzugefügt werden. Sie können auch versuchen, alle Sturmmessungen zu visualisieren, anstatt nur die letzten Messungen pro Sturm zu verwenden, dann sind die Sturmpfade sichtbar.
 

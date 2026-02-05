@@ -180,21 +180,101 @@ Diese Lösung ist durch Verkettung der Funktionsaufrufe (das sog. *method chaini
   .sort_values(by=['year', 'status']))
 ```
 
-``` output
-         name  year          status
-30        Amy  1975   extratropical
-49    Blanche  1975   extratropical
-111     Doris  1975   extratropical
-156    Eloise  1975   extratropical
-222    Gladys  1975   extratropical
-..        ...   ...             ...
-716     David  1979  tropical storm
-773  Frederic  1979  tropical storm
-839     Elena  1979  tropical storm
-857    Gloria  1979  tropical storm
-899     Henri  1979  tropical storm
+```{=html}
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-[129 rows x 3 columns]
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>year</th>
+      <th>status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>30</th>
+      <td>Amy</td>
+      <td>1975</td>
+      <td>extratropical</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>Blanche</td>
+      <td>1975</td>
+      <td>extratropical</td>
+    </tr>
+    <tr>
+      <th>111</th>
+      <td>Doris</td>
+      <td>1975</td>
+      <td>extratropical</td>
+    </tr>
+    <tr>
+      <th>156</th>
+      <td>Eloise</td>
+      <td>1975</td>
+      <td>extratropical</td>
+    </tr>
+    <tr>
+      <th>222</th>
+      <td>Gladys</td>
+      <td>1975</td>
+      <td>extratropical</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>716</th>
+      <td>David</td>
+      <td>1979</td>
+      <td>tropical storm</td>
+    </tr>
+    <tr>
+      <th>773</th>
+      <td>Frederic</td>
+      <td>1979</td>
+      <td>tropical storm</td>
+    </tr>
+    <tr>
+      <th>839</th>
+      <td>Elena</td>
+      <td>1979</td>
+      <td>tropical storm</td>
+    </tr>
+    <tr>
+      <th>857</th>
+      <td>Gloria</td>
+      <td>1979</td>
+      <td>tropical storm</td>
+    </tr>
+    <tr>
+      <th>899</th>
+      <td>Henri</td>
+      <td>1979</td>
+      <td>tropical storm</td>
+    </tr>
+  </tbody>
+</table>
+<p>129 rows × 3 columns</p>
+</div>
 ```
 
 ... oder aber terminiert jede Zeile - bis auf die letzte - mit einem Backslash:
@@ -208,21 +288,101 @@ storms \
   .sort_values(by=['year', 'status'])
 ```
 
-``` output
-         name  year          status
-30        Amy  1975   extratropical
-49    Blanche  1975   extratropical
-111     Doris  1975   extratropical
-156    Eloise  1975   extratropical
-222    Gladys  1975   extratropical
-..        ...   ...             ...
-716     David  1979  tropical storm
-773  Frederic  1979  tropical storm
-839     Elena  1979  tropical storm
-857    Gloria  1979  tropical storm
-899     Henri  1979  tropical storm
+```{=html}
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-[129 rows x 3 columns]
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>year</th>
+      <th>status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>30</th>
+      <td>Amy</td>
+      <td>1975</td>
+      <td>extratropical</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>Blanche</td>
+      <td>1975</td>
+      <td>extratropical</td>
+    </tr>
+    <tr>
+      <th>111</th>
+      <td>Doris</td>
+      <td>1975</td>
+      <td>extratropical</td>
+    </tr>
+    <tr>
+      <th>156</th>
+      <td>Eloise</td>
+      <td>1975</td>
+      <td>extratropical</td>
+    </tr>
+    <tr>
+      <th>222</th>
+      <td>Gladys</td>
+      <td>1975</td>
+      <td>extratropical</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>716</th>
+      <td>David</td>
+      <td>1979</td>
+      <td>tropical storm</td>
+    </tr>
+    <tr>
+      <th>773</th>
+      <td>Frederic</td>
+      <td>1979</td>
+      <td>tropical storm</td>
+    </tr>
+    <tr>
+      <th>839</th>
+      <td>Elena</td>
+      <td>1979</td>
+      <td>tropical storm</td>
+    </tr>
+    <tr>
+      <th>857</th>
+      <td>Gloria</td>
+      <td>1979</td>
+      <td>tropical storm</td>
+    </tr>
+    <tr>
+      <th>899</th>
+      <td>Henri</td>
+      <td>1979</td>
+      <td>tropical storm</td>
+    </tr>
+  </tbody>
+</table>
+<p>129 rows × 3 columns</p>
+</div>
 ```
 
 Beim Verketten der Arbeitsschritte wird ein Funktionsergebnis jeweils mit der nächsten Funktion weiterverabeitet. Man spart dadurch Zwischenvariablen und die Kette erlaubt es, aufgrund der aneinandergereiten Funktionsnamen den Verarbeitungsworflow sozusagen zu "lesen".
