@@ -194,7 +194,7 @@ There are no repository variables for this workflow.
 
 ## Pull Request and Review Management
 
-Because our lessons execute code, pull requests are a security risk for any lesson and thus have security measures associated with them.
+Because our lessons execute code, pull requests are a security risk for any lesson and thus have security measures associted with them.
 **Do not merge any pull requests that do not pass checks and do not have bots commented on them.**
 
 This series of workflows all go together and are described in the following diagram and the below sections:

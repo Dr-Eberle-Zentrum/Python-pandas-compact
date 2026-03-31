@@ -197,7 +197,6 @@ jobs:
         id: upload-cache
         uses: carpentries/actions-cache@frog-matchedkey-1
         with:
-          # insecure: false # optional, use http instead of https. default false
           accessKey: ${{ steps.aws-creds.outputs.aws-access-key-id }}
           secretKey: ${{ steps.aws-creds.outputs.aws-secret-access-key }}
           sessionToken: ${{ steps.aws-creds.outputs.aws-session-token }}
