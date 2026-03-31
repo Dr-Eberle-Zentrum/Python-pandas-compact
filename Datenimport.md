@@ -6,7 +6,6 @@ exercises: 10
 
 
 
-
 :::::::::::::::::::::::::::::::::::::: questions
 
 - Wie importiere ich Daten?
