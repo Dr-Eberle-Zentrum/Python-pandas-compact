@@ -12,7 +12,6 @@ library("reticulate")
 py_require(c("pandas"))
 ```
 
-
 :::::::::::::::::::::::::::::::::::::: questions
 
 - Wie importiere ich Daten?
