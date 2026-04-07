@@ -1,0 +1,194 @@
+---
+title: "Datenstrukturen"
+teaching: 15
+exercises: 5
+---
+
+
+
+:::::::::::::::::::::::::::::::::::::: questions
+
+- Welche Datenarten gibt es?
+- Wie organisiere ich tabellarische Daten?
+- Was sind "tidy" Daten?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: objectives
+
+- Standarddatentypen in Python
+- DataFrames für tabellarische Daten
+- Konzept der "tidy" Daten
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+Wir gehen in diesem Modul davon aus, dass Sie die Grundlagen der Python-Programmierung kennen, insbesondere
+
+- die Verwendung von Variablen, Listen und Schleifen,
+- die Verwendung von Funktionen und Methoden,
+- die Verwendung von Paketen und Modulen,
+- die Verwendung eingebauter Datenstrukturen wie `list`, `dict` und `set`.
+
+Wenn Sie sich nicht sicher sind, können Sie gerne eines der Python-Tutorials im Web durchgehen, z.B. [das offizielle Python-Tutorial](https://docs.python.org/3/tutorial/index.html) oder [das Python-Tutorial von W3Schools](https://www.w3schools.com/python/).
+
+In diesem Modul ist besonders die Verarbeitung tabellarischer Datensätze relevant. Dafür sind die eingebauten Datenstrukturen von Python nicht optimal geeignet. Daher verwenden wir das Paket **[pandas](https://pandas.pydata.org)**, das speziell für die Verarbeitung von tabellarischen Daten entwickelt wurde. Für die Aufgaben in diesem Modul ist es also nötig, zunächst dieses Paket zu installieren (sofern auf Ihrem Gerät noch nicht geschehen) und dann im Python-Skript einzubinden. Die Installation erfolgt in der Regel über den Paketmanager `pip` in der Kommandozeile oder im Terminal mit dem Befehl `pip install pandas`.
+
+Die Einbindung in ein Python-Skript erfolgt dann üblicherweise mit dem Befehl:
+
+
+``` python
+import pandas as pd
+```
+
+Eine Tabelle in pandas wird über Dataframes (Datentyp `DataFrame`) repräsentiert. Ein Dataframe ist eine zweidimensionale Datenstruktur, die Daten in Zeilen und Spalten organisiert. Jede Spalte eines Dataframe ist ein `Series`-Objekt, das eine Liste von Werten enthält. Ein Dataframe kann als eine Sammlung von `Series`-Objekten betrachtet werden, die alle den gleichen Index haben. Mit Index ist die nullbasierte Zeilennummer oder ein benutzerdefinierter Index gemeint, der die Zeilen des Dataframe identifiziert.
+
+In einem Dataframe entspricht jede Zeile einem Datensatz (oder einer Beobachtung) und jede Spalte einer Variable (oder einem Merkmal) dieses Datensatzes. Damit haben alle Daten in der gleichen Spalte den gleichen Datentyp, z.B. Ganzzahl (`int`), Kommazahl (`float`), Text/String (`str`), Datum (`date`), usw.
+
+Im Folgenden wird der [Beispieldatensatz `storms`](https://dplyr.tidyverse.org/reference/storms.html) als Dataframe ausgegeben (wie der Datensatz importiert wird, wird später behandelt). Dieser Datensatz enthält Messdaten zu tropischen Stürmen an unterschiedlichen Tagen. Hier ist ein Ausschnitt des Dataframes:
+
+```
+         name  year  month  day  hour   lat  long               status  \
+0         Amy  1975      6   27     0  27.5 -79.0  tropical depression   
+1         Amy  1975      6   27     6  28.5 -79.0  tropical depression   
+2         Amy  1975      6   27    12  29.5 -79.0  tropical depression   
+3         Amy  1975      6   27    18  30.5 -79.0  tropical depression   
+4         Amy  1975      6   28     0  31.5 -78.8  tropical depression   
+...       ...   ...    ...  ...   ...   ...   ...                  ...   
+19532  Nicole  2022     11   10    19  29.2 -83.0       tropical storm   
+19533  Nicole  2022     11   11     0  30.1 -84.0       tropical storm   
+19534  Nicole  2022     11   11     6  31.2 -84.6  tropical depression   
+19535  Nicole  2022     11   11    12  33.2 -84.6  tropical depression   
+19536  Nicole  2022     11   11    18  35.4 -83.8            other low   
+
+       category  wind  pressure  tropicalstorm_force_diameter  \
+0           NaN    25      1013                           NaN   
+1           NaN    25      1013                           NaN   
+2           NaN    25      1013                           NaN   
+3           NaN    25      1013                           NaN   
+4           NaN    25      1012                           NaN   
+...         ...   ...       ...                           ...   
+19532       NaN    40       989                         300.0   
+19533       NaN    35       992                         300.0   
+19534       NaN    30       996                           0.0   
+19535       NaN    25       999                           0.0   
+19536       NaN    25      1000                           0.0   
+
+       hurricane_force_diameter  
+0                           NaN  
+1                           NaN  
+2                           NaN  
+3                           NaN  
+4                           NaN  
+...                         ...  
+19532                       0.0  
+19533                       0.0  
+19534                       0.0  
+19535                       0.0  
+19536                       0.0  
+
+[19537 rows x 13 columns]
+```
+
+Hinweis: bei der Ausgabe eines Dataframe mit der Funktion `print()` werden standardmäßig jeweils die ersten und letzten fünf Zeilen ausgegeben. Da dieser Datensatz 13 Spalten hat und daher nicht alle Spalten in einer Reihe dargestellt werden können, wird die Breite des Dataframe in drei Teile aufgeteilt und separat dargestellt.
+
+Dataframes können sowohl aus Dateien und dem Web importiert werden (s. nächstes Kapitel) oder aber aus anderen Datenstrukturen erstellt werden, z.B. aus Dictionarys (`dict`) und Listen (`list`). Hier ist ein Beispiel, das einen Dataframe erzeugt mittels eines Dictionarys, dessen Schlüssel den Spaltennamen des Dataframes entsprechen, und dessen Werte jeweils Listen für die Inhalte (Zeilen) der entsprechenden der Spalten enthalten:
+
+
+``` python
+marriages = pd.DataFrame({
+    "name": ["Alice", "Bob", "Charlie"],
+    "age": [25, 30, 35],
+    "married": [True, False, True]
+})
+
+print(marriages)
+```
+
+``` output
+      name  age  married
+0    Alice   25     True
+1      Bob   30    False
+2  Charlie   35     True
+```
+
+Ziel der Datenverarbeitung  ist es, vorliegende Datensätze so zu transformieren, dass sie für die Analyse und Visualisierung geeignet sind und ein Format wie im obigen Beispiel vorweisen. Wenn das der Fall ist, sprich
+
+- jede Zeile entspricht einem Datensatz und
+- jede Spalte entspricht einer Variable,
+
+wird der Datensatz als "tidy" bezeichnet. Im folgenden Bild ist das dies veranschaulicht:
+
+![](https://raw.githubusercontent.com/hadley/r4ds/main/images/tidy-1.png){width="600px" alt="tidy data concept"}
+
+:::::::::::::::::::::::::: challenge
+## Spaltenzugriff
+
+Betrachten sie den Datensatz `marriages` von oben.
+
+*Wie können Sie nur die Spalte `age` aus dem Datensatz extrahieren?*
+
+:::::::::::::::: solution
+## Antwort
+
+Es gibt dafür unterschiedliche Möglichkeiten, die im Folgenden aufgeführt sind:
+
+
+``` python
+# Extrahiert die Spalte als Liste von Werten (in Pandas der Datentyp Series)
+marriages["age"]
+
+# Alternative Schreibweise, die möglich ist, wenn der Spaltenname keine Leerzeichen oder Sonderzeichen enthält
+marriages.age
+
+# Pandas erlaubt Zugriff auch über .loc[]
+marriages.loc[:, "age"]
+
+# ... und indexbasiert über .iloc[] (hier: 1 steht für die zweite Spalte, da der Index 0-basiert ist)
+marriages.iloc[:, 1]
+```
+
+Hinweise:
+
+- Der Zugriff über den Spaltennamen ist in der Regel die bevorzugte Methode, da sie am lesbarsten ist.
+- Der Zugriff über den Index ist weniger lesbar und sollte nur verwendet werden, wenn der Spaltenname nicht bekannt ist oder nicht verwendet werden kann.
+- `loc` und `iloc` sind mächtige Methoden, die ganze Bereiche von Zeilen und Spalten auswählen können, wie z.B. `marriages.loc[1:2, "age"]` liefert Zeilen 1 bis 2 der Spalte `age`. Der Unterschied zwischen `loc` und `iloc` ist, dass `loc` die Zeilen und Spalten über den Indexnamen adressiert, während `iloc` dies mit dem Indexwert macht.
+
+:::::::::::::::::::::::::
+## Datentypen
+
+*Welche Datentypen haben die Spalten des Datensatzes?*
+
+:::::::::::::::: solution
+## Antwort
+
+- `name`: Text (`str`)
+- `age`: Ganzzahl (`int`); wenn man Kommazahlen angibt, wird der Datentyp `float` sein (z.B. `25.0`)
+- `married`: Wahrheitswert (`bool`) mit `True` für verheiratet und `False` für nicht verheiratet
+
+:::::::::::::::::::::::::
+## Aufbau
+
+*Wieviele Beobachtungen und Variablen hat der Datensatz?*
+
+:::::::::::::::: solution
+
+## Antwort
+
+- Beobachtungen: **4** = Anzahl der Zeilen bzw. Länge der Spalten
+- Variablen: **3** = Anzahl der Spalten
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: keypoints
+
+- Spalten in einem `DataFrame` werden auch Variablen (des Datensatzes) genannt.
+  - Eine Spalte ist eine `Series`, also eine Liste von Werten des gleichen Datentyps.
+- Zeilen in einem `DataFrame` werden auch Beobachtungen (des Datensatzes) genannt.
+- Ein Datensatz ist "tidy", 
+  - wenn jede Zeile einem Datensatz und jede Spalte einer Variable entspricht. 
+  - Vereinfacht: wenn man beim Visualisieren der Daten nur jeweils eine Zeile pro Datenpunkt benötigt und keine doppelt verwendet wird.
+- Das [pandas Cheatsheet](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf) kann helfen, die Funktionen und Methoden von Pandas zu verstehen und zu nutzen.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
