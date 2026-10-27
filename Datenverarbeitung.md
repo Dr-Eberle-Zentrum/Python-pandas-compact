@@ -377,7 +377,13 @@ Wir wollen in der pivotierten Tabelle, dass die Zeilen wie gehabt den Sturmstatu
 broad_table = last_storm_of_year \
   .pivot(index="status", columns="name", values="year") \
   .fillna("")
+```
 
+``` output
+<string>:3: Pandas4Warning: 'str' is not supported as a fill value for float64 dtype. In a future version, calling fillna with an incompatible value will raise. Explicitly cast to a common dtype before filling.
+```
+
+``` python
 print(broad_table)
 ```
 
